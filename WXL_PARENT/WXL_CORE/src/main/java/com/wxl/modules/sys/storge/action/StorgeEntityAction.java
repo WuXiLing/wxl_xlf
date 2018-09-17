@@ -14,7 +14,6 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.shiro.web.servlet.ShiroHttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -129,7 +128,7 @@ public class StorgeEntityAction extends SingleTableController<StorgeEntity, Stor
 
 		try {
 
-			InputStream inputStream = new FileInputStream(new File(Global.getConfig("userfiles.basedir") + entity.getFilePhysicalPath()));
+			InputStream inputStream = new FileInputStream(Global.getCurrenFiletPath(new File(Global.getConfig("userfiles.basedir") + entity.getFilePhysicalPath())));
 			OutputStream os = response.getOutputStream();
 			byte[] b = new byte[2048];
 			int length;
@@ -156,7 +155,8 @@ public class StorgeEntityAction extends SingleTableController<StorgeEntity, Stor
 		OutputStream out = null;
 		try {
 			StorgeEntity entity = service.get(id);
-			InputStream inputStream = new FileInputStream(new File(Global.getConfig("userfiles.basedir") + entity.getFilePhysicalPath()));
+			
+			InputStream inputStream = new FileInputStream(Global.getCurrenFiletPath(new File(Global.getConfig("userfiles.basedir") + entity.getFilePhysicalPath())));
 			response.setContentType("multipart/form-data;charset=utf8");
 			out = response.getOutputStream();
 			byte[] b = new byte[1024];

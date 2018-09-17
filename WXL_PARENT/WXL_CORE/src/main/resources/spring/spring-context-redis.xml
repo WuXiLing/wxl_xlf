@@ -46,7 +46,13 @@
         <property name="hashKeySerializer">
             <bean class="org.springframework.data.redis.serializer.StringRedisSerializer"></bean>
         </property> -->
-    </bean>
+        <property name="keySerializer"> 
+	       <bean class="org.springframework.data.redis.serializer.StringRedisSerializer"/> 
+	    </property> 
+	    <property name="valueSerializer"> 
+	        <bean class="org.springframework.data.redis.serializer.JdkSerializationRedisSerializer"/> 
+	     </property> 
+	</bean>
 
     <!-- 配置RedisCacheManager -->
     <bean id="redisCacheManager" class="org.springframework.data.redis.cache.RedisCacheManager">

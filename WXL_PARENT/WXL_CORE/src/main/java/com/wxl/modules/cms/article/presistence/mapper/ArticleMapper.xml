@@ -7,7 +7,7 @@
 	</sql>
 
 	<sql id="articleQueryCloumnsJoin">
-	   LEFT JOIN SYS_USER se on se.id = st.releasetor
+	   LEFT JOIN sys_user se on se.id = st.releasetor
 	</sql>
 
 	<select id="get" resultType="Article">
