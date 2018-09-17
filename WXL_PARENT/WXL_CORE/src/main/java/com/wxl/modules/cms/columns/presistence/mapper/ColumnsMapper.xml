@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wxl.modules.cms.columns.presistence.mapper.ColumnsMapper">
+
+	<resultMap type="Columns" id="columnsResult">
+		<id property="id" column="id" />
+		<result property="parent.id" column="parent.id"/> 
+		<result property="parent.name" column="parent.name"/>
+		<collection property="childrens" select="findByParentId" column="{parentId=id}" />
+	</resultMap>
+
+	<sql id="columnsQueryCloumnsSQL">
+		st.*
+		, sr.id as "parent.id", sr.name as "parent.name"
+	</sql>
+
+	<sql id="columnsQueryCloumnsJoin">
+		LEFT JOIN T_CMS_COLUMNS sr ON sr.id = st.parentId
+	</sql>
+	<select id="get" resultType="Columns" resultMap="columnsResult">
+		SELECT
+		<include refid="columnsQueryCloumnsSQL" />
+		FROM T_CMS_COLUMNS st
+		<include refid="columnsQueryCloumnsJoin" />
+		WHERE st.id = #{id}
+	</select>
+
+	<select id="selectAll" resultType="Columns">
+		SELECT
+		<include refid="columnsQueryCloumnsSQL" />
+		FROM T_CMS_COLUMNS st
+		<include refid="columnsQueryCloumnsJoin" />
+		ORDER BY st.longCode,st.sort
+	</select>
+
+	<select id="findByParentId" resultType="Columns" resultMap="columnsResult">
+		SELECT
+		<include refid="columnsQueryCloumnsSQL" />
+		FROM T_CMS_COLUMNS st
+		<include refid="columnsQueryCloumnsJoin" />
+		where st.parentId = #{parentId}
+		ORDER BY st.sort
+	</select>
+
+	<select id="selectList" resultType="Columns">
+		SELECT
+		<include refid="columnsQueryCloumnsSQL" />
+		FROM T_CMS_COLUMNS st
+		<include refid="columnsQueryCloumnsJoin" />
+		ORDER BY st.longCode,st.sort
+	</select>
+
+	<select id="selectPageList" resultType="Columns">
+		SELECT
+		<include refid="columnsQueryCloumnsSQL" />
+		FROM T_CMS_COLUMNS st
+		<include refid="columnsQueryCloumnsJoin" />
+		ORDER BY st.longCode,st.sort
+	</select>
+
+	<select id="findByUserId" resultType="Columns">
+		SELECT
+		<include refid="columnsQueryCloumnsSQL" />
+		FROM T_CMS_COLUMNS st
+		<include refid="columnsQueryCloumnsJoin" />
+		ORDER BY st.longCode,st.sort
+	</select>
+	
+	<select id="getChildrenColumnsByParentId" resultType="Columns">
+		SELECT
+		<include refid="columnsQueryCloumnsSQL" />
+		FROM T_CMS_COLUMNS st
+		<include refid="columnsQueryCloumnsJoin" />
+		where st.parentId = #{parentId}
+		ORDER BY st.sort
+	</select>
+	<select id="getFirstNavColumns" resultType="Columns">
+		SELECT
+		<include refid="columnsQueryCloumnsSQL" />
+		FROM T_CMS_COLUMNS st
+		<include refid="columnsQueryCloumnsJoin" />
+		where st.firstnav = 'on'
+		ORDER BY st.sort
+	</select>
+	
+	<!-- 启用 -->
+	<update id="start">
+		UPDATE T_CMS_COLUMNS
+		SET status = 0
+		WHERE id = #{id}
+	</update>
+	<!-- 停用 -->
+	<update id="stop">
+		UPDATE T_CMS_COLUMNS
+		SET status = 1
+		WHERE id = #{id}
+	</update>
+	<!-- 假删除 -->
+	<update id="fakeDelete">
+		UPDATE T_CMS_COLUMNS
+		SET status = 2
+		WHERE id = #{id}
+	</update>
+
+	<!-- 启更新 -->
+	<update id="update">
+		UPDATE T_CMS_COLUMNS
+		SET
+		type = #{type},
+		parentId = #{parent.id},
+		code = #{code},
+		image = #{image},
+		name = #{name},
+		firstnav = #{firstnav},
+		target = #{target},
+		depth = #{depth},
+		longName = #{longName},
+		longCode = #{longCode},
+		sort = #{sort},
+		lastUpdateDate = #{lastUpdateDate},
+		lastUpdateUser = #{lastUpdateUser.id},
+		lastUpdateVersion = #{lastUpdateVersion},
+		lastUpdateIp = #{lastUpdateIp}
+		WHERE id = #{id}
+	</update>
+	<!-- 删除 -->
+	<delete id="delete">
+		DELETE FROM T_CMS_COLUMNS
+		WHERE ID = #{id}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="insert">
+		INSERT INTO T_CMS_COLUMNS (
+		ID,
+		type,
+		parentId,
+		code,
+		name,
+		firstnav,
+		target,
+		depth,
+		longName,
+		longCode,
+		sort,
+		image,
+		createDate,
+		createUser,
+		version,
+		ip
+		)
+		VALUES
+		(
+		#{id},
+		#{type},
+		#{parent.id},
+		#{code},
+		#{name},
+		#{firstnav},
+		#{target},
+		#{depth},
+		#{longName},
+		#{longCode},
+		#{sort},
+		#{image},
+		#{createDate},
+		#{createUser.id},
+		#{version},
+		#{ip}
+		)
+	</insert>
+</mapper>

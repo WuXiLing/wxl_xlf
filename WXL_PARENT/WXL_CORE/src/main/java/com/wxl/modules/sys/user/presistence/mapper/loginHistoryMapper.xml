@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wxl.modules.sys.user.presistence.mapper.LoginHistoryMapper">
+	<sql id="loginHistoryQueryCloumnsSQL">
+		st.*,
+		sr.id as "user.id",
+		sr.name as "user.name"
+	</sql>
+
+	<sql id="loginHistoryQueryCloumnsJoin">
+		LEFT JOIN sys_user sr ON sr.id = st.user_id
+	</sql>
+
+	<!-- 根据Id获取记录 -->
+	<select id="get" resultType="LoginHistory">
+		SELECT
+		<include refid="loginHistoryQueryCloumnsSQL" />
+		FROM sys_login_history st
+		<include refid="loginHistoryQueryCloumnsJoin" />
+		WHERE st.id = #{id}
+	</select>
+
+	<!-- 查询jqgrid记录 -->
+	<select id="selectJqgridPageList" resultType="LoginHistory">
+		SELECT
+		<include refid="loginHistoryQueryCloumnsSQL" />
+		FROM sys_login_history st
+		<include refid="loginHistoryQueryCloumnsJoin" />
+		<where>
+			<if test="cm.userId != null and cm.userId != ''">
+				AND st.user_id = #{cm.userId}
+			</if>
+		</where>
+		order by st.loginDate desc
+	</select>
+
+	<select id="selectLayuiPageList" resultType="LoginHistory">
+		SELECT
+		<include refid="loginHistoryQueryCloumnsSQL" />
+		FROM sys_login_history st
+		<include refid="loginHistoryQueryCloumnsJoin" />
+		<where>
+			<if test="cm.userId != null and cm.userId != ''">
+				AND st.user_id = #{cm.userId}
+			</if>
+		</where>
+		order by st.loginDate desc
+	</select>
+
+	<!-- 查询所有记录 -->
+	<select id="selectAll" resultType="LoginHistory">
+		SELECT
+		<include refid="loginHistoryQueryCloumnsSQL" />
+		FROM sys_login_history st
+		<include refid="loginHistoryQueryCloumnsJoin" />
+		order by st.loginDate desc
+	</select>
+
+	<!-- 插入记录 -->
+	<insert id="insert">
+		INSERT INTO sys_login_history(
+		id,
+		user_id,
+		loginDate,
+		loginIp,
+		createDate,
+		createUser,
+		lastUpdateDate,
+		lastUpdateUser,
+		version,
+		lastUpdateVersion,
+		ip,
+		lastUpdateIp,
+		status,
+		remarks
+		) VALUES (
+		#{id},
+		#{user.id},
+		#{loginDate},
+		#{loginIp},
+		#{createDate},
+		#{createUser.id},
+		#{lastUpdateDate},
+		#{lastUpdateUser.id},
+		#{version},
+		#{lastUpdateVersion},
+		#{ip},
+		#{lastUpdateIp},
+		#{status},
+		#{remarks}
+		)
+	</insert>
+</mapper>

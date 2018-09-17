@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wxl.modules.sys.billrule.presistence.mapper.BillRuleMapper">
+    <sql id="billRuleQueryCloumnsSQL">
+	ID AS 'id',
+	CLASSNAME AS 'className',
+	MAX_VALUE AS 'maxValue',
+	PREFIX AS 'prefix',
+	YEARMONTH AS 'yearMonth',
+	ALLFORMATE AS 'allFormate'
+    </sql>
+	<select id="get" resultType="BillRule">
+		SELECT 
+			<include refid="billRuleQueryCloumnsSQL"/>
+		FROM T_WXL_BILLRULE 
+		WHERE ID = #{id}
+	</select>
+	
+	<select id="findList" resultType="BillRule">
+		SELECT 
+			<include refid="billRuleQueryCloumnsSQL"/> 
+		FROM T_WXL_BILLRULE ST
+		WHERE 1=1
+		<if test="className != null and className != ''">
+			AND ST.CLASSNAME = #{className}
+		</if>
+		<if test="yearMonth != null and yearMonth != ''">
+			AND ST.YEARMONTH = #{yearMonth}
+		</if>
+	</select>
+	
+	<select id="findCode" resultType="BillRule">
+		SELECT 
+			<include refid="billRuleQueryCloumnsSQL"/> 
+		FROM T_WXL_BILLRULE ST
+		WHERE 1=1
+		<if test="className != null and className != ''">
+			AND ST.CLASSNAME = #{className}
+		</if>
+		<if test="yearMonth != null and yearMonth != ''">
+			 AND ST.YEARMONTH LIKE 
+				<choose>
+				    <when test="cm.dbType == 'oracle'">'%'||#{yearMonth}||'%'</when>
+				    <when test="cm.dbType == 'mssql'">'%'+#{yearMonth}+'%'</when>
+				    <when test="cm.dbType == 'mysql'">CONCAT('%', #{yearMonth}, '%')</when>
+				    <otherwise>'%'||#{yearMonth}||'%'</otherwise>
+				</choose>	
+		</if>
+		<if test="prefix != null and prefix != ''">
+			AND ST.PREFIX = #{prefix}
+		</if>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO T_WXL_BILLRULE(
+			ID, 
+			CLASSNAME, 
+			MAX_VALUE,
+			PREFIX,
+			YEARMONTH,
+			ALLFORMATE
+		) VALUES (
+			#{id}, 
+			#{className}, 
+			#{maxValue},
+			#{prefix},
+			#{yearMonth},
+			#{allFormate}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE T_WXL_BILLRULE SET 
+			MAX_VALUE=#{maxValue},
+			YEARMONTH=#{yearMonth}
+		WHERE ID = #{id}
+	</update>
+	
+	<update id="delete">
+		DELETE from T_WXL_BILLRULE 
+		WHERE ID = #{id}
+	</update>
+</mapper>

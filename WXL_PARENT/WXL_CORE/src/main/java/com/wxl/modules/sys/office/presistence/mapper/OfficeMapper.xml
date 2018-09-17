@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wxl.modules.sys.office.presistence.mapper.OfficeMapper">
+
+	<resultMap type="Office" id="officeResult">
+		<collection property="childrens" select="findByParentId" column="{parentId=id}" ></collection>
+	</resultMap>
+	<sql id="officeQueryCloumnsSQL">
+		st.*
+	</sql>
+	<sql id="officeQueryCloumnsJoin">
+		
+	</sql>
+	<select id="get" resultType="Office">
+		SELECT
+		<include refid="officeQueryCloumnsSQL" />
+		FROM sys_office st
+		<include refid="officeQueryCloumnsJoin" />
+		WHERE st.id = #{id}
+	</select>
+
+	<select id="selectAll" resultType="Office">
+		SELECT
+		<include refid="officeQueryCloumnsSQL" />
+		FROM sys_office st
+		<include refid="officeQueryCloumnsJoin" />
+		ORDER BY st.longCode,st.sort
+	</select>
+
+	<select id="findByParentId" resultType="Office" resultMap="officeResult">
+		SELECT
+		<include refid="officeQueryCloumnsSQL" />
+		FROM sys_office st
+		<include refid="officeQueryCloumnsJoin" />
+		where st.parentId = #{parentId}
+		ORDER BY st.sort
+	</select>
+
+	<select id="selectList" resultType="Office">
+		SELECT
+		<include refid="officeQueryCloumnsSQL" />
+		FROM sys_office st
+		<include refid="officeQueryCloumnsJoin" />
+		ORDER BY st.long_Code,st.sort
+	</select>
+
+	<insert id="insert">
+		INSERT INTO sys_office(
+		id,
+		parentId,
+		longName,
+		longCode,
+		code,
+		name,
+		type,
+		grade,
+		address,
+		zipCode,
+		abbreviation,
+		sort,
+		createDate,
+		createUser,
+		version,
+		ip,
+		remarks
+		) VALUES (
+		#{id},
+		#{parent.id},
+		#{longName},
+		#{longCode},
+		#{code},
+		#{name},
+		#{type},
+		#{grade},
+		#{address},
+		#{zipCode},
+		#{abbreviation},
+		#{sort},
+		#{createDate},
+		#{createUser.id},
+		#{version},
+		#{ip},
+		#{remarks}
+		)
+	</insert>
+
+	<update id="update">
+		UPDATE sys_office SET
+		parentId = #{parent.id},
+		code = #{code},
+		name = #{name},
+		type = #{type},
+		grade = #{grade},
+		address = #{address},
+		zip_code = #{zipCode},
+		abbreviation = #{abbreviation},
+		longName = #{longName},
+		longCode = #{longCode},
+		sort = #{sort},
+		lastUpdateDate = #{lastUpdateDate},
+		lastUpdateUser = #{lastUpdateUser.id},
+		lastUpdateVersion = #{lastUpdateVersion},
+		lastUpdateIp = #{lastUpdateIp},
+		remarks = #{remarks}
+		WHERE id = #{id}
+	</update>
+
+	<update id="updateSort" parameterType="java.util.Map">
+		<foreach collection="params.keys" item="key" open="" close="" separator=";">
+			UPDATE sys_menu
+			<set>
+				sort = #{params[${key}]}
+			</set>
+			WHERE
+			id = #{key}
+		</foreach>
+	</update>
+
+	<update id="delete">
+		DELETE FROM sys_office WHERE ID = #{id}
+	</update>
+
+</mapper>
