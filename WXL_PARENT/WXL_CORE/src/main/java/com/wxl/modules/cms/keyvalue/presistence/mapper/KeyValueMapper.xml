@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wxl.modules.cms.keyvalue.presistence.mapper.KeyValueMapper">
+	<sql id="keyValueQueryCloumnsSQL">
+		st.*
+	</sql>
+
+	<sql id="keyValueQueryCloumnsJoin"></sql>
+
+	<select id="get" resultType="KeyValue">
+		SELECT
+		<include refid="keyValueQueryCloumnsSQL" />
+		FROM t_cms_keyvalue st
+		<include refid="keyValueQueryCloumnsJoin" />
+		WHERE st.id = #{id}
+	</select>
+
+	<select id="selectPageList" resultType="KeyValue">
+		SELECT
+		<include refid="keyValueQueryCloumnsSQL" />
+		FROM t_cms_keyvalue st
+		<include refid="keyValueQueryCloumnsJoin" />
+		<where>
+			<if test="cm.columnsId != null and cm.columnsId != ''">
+				AND st.columnsId = #{cm.columnsId}
+			</if>
+		</where>
+	</select>
+
+	<select id="selectLayuiPageList" resultType="KeyValue">
+		SELECT
+		<include refid="keyValueQueryCloumnsSQL" />
+		FROM t_cms_keyvalue st
+		<include refid="keyValueQueryCloumnsJoin" />
+		<where>
+			<if test="cm.columnsId != null and cm.columnsId != ''">
+				AND st.columnsId = #{cm.columnsId}
+			</if>
+		</where>
+	</select>
+
+	<select id="selectAll" resultType="KeyValue">
+		SELECT
+		<include refid="keyValueQueryCloumnsSQL" />
+		FROM t_cms_keyvalue st
+		<include refid="keyValueQueryCloumnsJoin" />
+	</select>
+
+	<select id="selectList" resultType="KeyValue">
+		SELECT
+		<include refid="keyValueQueryCloumnsSQL" />
+		FROM t_cms_keyvalue st
+		<include refid="keyValueQueryCloumnsJoin" />
+	</select>
+
+	<!-- 插入用户 -->
+	<insert id="insert">
+		INSERT INTO t_cms_keyvalue(
+		id,
+		keyword,
+		keyvalue,
+		createUser,
+		version,
+		ip,
+		remarks
+		) VALUES (
+		#{id},
+		#{keyword},
+		#{keyvalue},
+		#{createUser.id},
+		#{version},
+		#{ip},
+		#{remarks}
+		)
+	</insert>
+
+	<!-- 更新用户 -->
+	<update id="update">
+		UPDATE t_cms_keyvalue SET
+		keyword = #{keyword},
+		keyvalue = #{keyvalue},
+		lastUpdateUser= #{lastUpdateUser.id},
+		lastUpdateVersion= #{lastUpdateVersion},
+		lastUpdateIp= #{lastUpdateIp},
+		remarks = #{remarks}
+		WHERE id = #{id}
+	</update>
+	<delete id="delete">
+	    DELETE FROM t_cms_keyvalue WHERE id = #{id}
+	</delete>
+</mapper>

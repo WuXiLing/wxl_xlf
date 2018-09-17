@@ -1,0 +1,22 @@
+CREATE TABLE `sys_role` (
+  `id` varchar(64) NOT NULL COMMENT '主键',
+  `company_id` varchar(64) DEFAULT NULL COMMENT '归属公司',
+  `office_id` varchar(64) DEFAULT NULL COMMENT '归属部门',
+  `enname` varchar(100) NOT NULL COMMENT '英文名称',
+  `roleType` varchar(100) NOT NULL COMMENT '权限类型',
+  `dataScope` varchar(100) DEFAULT NULL COMMENT '数据范围',
+  `name` varchar(100) DEFAULT NULL COMMENT '姓名',
+  `useable` varchar(200) DEFAULT NULL COMMENT '是否可用',
+  `sysData` char(1) DEFAULT '0' COMMENT '系统初始化数据：1、是；0、否',
+  `createUser` varchar(64) DEFAULT NULL COMMENT '创建者',
+  `createDate` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `lastUpdateUser` varchar(64) DEFAULT NULL COMMENT '更新者',
+  `lastUpdateDate` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
+  `remarks` varchar(255) DEFAULT NULL COMMENT '备注信息',
+  `version` VARCHAR(20) NULL COMMENT '版本号',
+  `lastUpdateVersion` VARCHAR(20) NULL COMMENT '最后更新版本号',
+  `ip` VARCHAR(20) NULL COMMENT 'IP',
+  `lastUpdateIp` VARCHAR(20) NULL COMMENT '最后更新IP',
+  `status` char(2) DEFAULT NULL COMMENT '状态',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='角色表';
