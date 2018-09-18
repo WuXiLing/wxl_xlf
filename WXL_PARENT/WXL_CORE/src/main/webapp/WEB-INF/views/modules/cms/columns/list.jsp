@@ -4,18 +4,17 @@
 <head>
 <title>栏目管理</title>
 <meta name="decorator" content="layui" />
-<%@include file="/WEB-INF/views/layui/treetable.jsp"%>
 </head>
 <body>
     <div class="layui-fluid">
-		<div class="layui-btn-group menu-operate-btn">
+		<div class="layui-btn-group cms-columns-operate-btn">
 			<button class="layui-btn layui-btn-sm" data-type="toquery">
 				<i class="fa fa-search"></i>查询
 			</button>
 		</div>
-		<table id="tableMain" class="layui-table" lay-filter="tableMain"></table>
+		<table id="cms_columns-table" class="layui-table" lay-filter="cms_columns-table"></table>
 	</div>
-	<div class="layui-card columns-component-layer" style="display: none;">
+	<div class="layui-card cms-columns-component-layer" style="display: none;">
 		<div class="layui-card-header">查询</div>
 		<div class="layui-card-body">
 			<form class="layui-form layui-form-pane">
@@ -28,8 +27,8 @@
 					</div>
 				</div>
 				<div class="layui-form-item">
-					<div class="layui-input-block columns-table-operate-btn">
-						<button class="layui-btn layui-btn-sm" lay-submit data-type="query" lay-filter="component-form-columns-query"><i class="fa fa-search"></i>查询</button>
+					<div class="layui-input-block cms-columns-table-operate-btn">
+						<button class="layui-btn layui-btn-sm" lay-submit data-type="query" lay-filter="component-form-cms-columns-query"><i class="fa fa-search"></i>查询</button>
 						<button type="reset" class="layui-btn layui-btn-sm layui-btn-primary"><i class="fa fa-reply"></i>重新填写</button>
 					</div>
 				</div>
@@ -55,6 +54,6 @@
 	<c:forEach items="${fns:getDictItem('columns_type')}" var="yn">
 		<input type="hidden" id="st_columns_type_${yn.id}" value="${yn.name}">
 	</c:forEach>
-	<script src="${ctxStatic}/wxl/modules/cms/columns/index.js" type="text/javascript"></script>
+	<script src="${ctxStatic}/wxl/modules/cms/columns/index2.js" type="text/javascript"></script>
 </body>
 </html>

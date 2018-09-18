@@ -119,3 +119,322 @@ function subString1111(str, len){
 function autoAddEllipsis(pStr, pLen) {
 	return subString1111(pStr, pLen*2);
 }
+
+var Wxl = function Wxl(moduleKey, options) {
+	this.defaults = {
+		version : "1.2.1",
+		moduleKey : "",// 模块唯一性字符
+		baseUrl : "",// 模块相对URL
+		icon : "",// 图标
+		title : "",// 标题
+		table : undefined,// 表格
+		treeTable : undefined,// 树表格
+		tableId : moduleKey + "-table",// 表格ID
+		tableType : "table",// 表格类型
+		tableButtonId : "#" + moduleKey + "-table-operate-bar",// 表格按钮ID
+		operateButtonId : "." + moduleKey + "-operate-btn",// 查询按钮伪类
+		queryLayerId : "." + moduleKey + "-query-layer",// 弹出查询按钮伪类
+		queryContentId : "." + moduleKey + "-query-content",
+		addOp : "add",// 新增标识符
+		updOp : "upd",// 修改标识符
+		delOp : "delete",// 删除标识符
+		detailOp : "detail",// 详细标识符
+		treeTableDataOp : "getManageData",//树表格数据
+		tableDataOp : "selectLayuiPageList",//表格数据
+		addChildrenOp : "addChildren"
+	}
+
+	this.options = $.extend({}, this.defaults, options)
+	var self = this;
+	// 获取新增
+	this.getAddUrl = function() {
+		return self.options.baseUrl + "/" + self.options.addOp;
+	}
+	this.getDelUrl = function() {
+		return self.options.baseUrl + "/" + self.options.delOp + "/";
+	}
+	this.getUpdUrl = function() {
+		return self.options.baseUrl + "/" + self.options.updOp+ "/";
+	}
+	this.getDetailUrl = function() {
+		return self.options.baseUrl + "/" + self.options.detailOp + "/";
+	}
+	this.getAddChildrenUrl = function() {
+		return self.options.baseUrl + "/" + self.options.addChildrenOp + "/";
+	}
+	this.getTableDataUrl = function() {
+		return self.options.baseUrl + "/" + self.options.tableDataOp + "/";
+	}
+	this.getTreeTableDataUrl = function() {
+		return self.options.baseUrl + "/" + self.options.treeTableDataOp + "/";
+	}
+
+	this.add = function() {
+		var index = layui.layer.open({
+			type : 2,
+			title : self.options.icon + self.options.title + '新增',
+			content : self.getAddUrl(),
+			area : [ '90%', '90%' ],
+			maxmin : true
+		});
+	}
+
+	this.upd = function(id) {
+		var index = layui.layer.open({
+			type : 2,
+			title : self.options.icon + self.options.title + "编辑",
+			content : self.getUpdUrl() + id,
+			area : [ '90%', '90%' ],
+			maxmin : true
+		});
+	}
+
+	this.del = function(id, callback) {
+		layer.confirm('确定删除选中的数据吗？', function() {
+			$.ajax({
+				type : 'POST',
+				url : self.getDelUrl() + id,
+				async : false,
+				dataType : "json",
+				contentType : "application/json; charset=utf-8",
+				success : function(msg) {
+					if(callback && callback instanceof Function){
+						callback();
+					}
+					self.reloadTable();
+					layer.msg('删除成功。', {
+						time : 2000
+					});
+					// location.reload();
+				},
+				error : function() {
+					parent.layer.alert("删除失败。", {
+						title : '提示'
+					});
+				}
+			});
+		});
+	}
+
+	this.detail = function(id) {
+		var index = parent.layui.layer.open({
+			type : 2,
+			title : self.options.icon + self.options.title + "详细",
+			content : self.getDetailUrl() + id,
+			area : [ '90%', '90%' ],
+			maxmin : true
+		});
+	}
+
+	this.addChildren = function(id) {
+		var index = layui.layer.open({
+			type : 2,
+			title : self.options.icon + self.options.title + "新增",
+			content : self.getAddChildrenUrl() + id,
+			area : [ '90%', '90%' ],
+			maxmin : true
+		});
+	}
+
+	this.toquery = function() {
+		layer.open({
+			type : 1,
+			shade : false,
+			title : false,
+			offset : [ '100px' ],
+			area : [ '500px', '240px' ],
+			content : $(self.options.queryContentId),
+			cancel : function() {
+				$(self.options.queryContentId).hide();
+			}
+		});
+	}
+	this.query = function() {
+		if (self.options.tableType == "treeTable") {
+			var keyword = $("#keyword").val();
+			if (keyword == '') {
+				layer.msg("请输入搜索内容", {
+					icon : 5
+				});
+				return;
+			}
+			var searchCount = 0;
+			$('#' + self.options.tableId).next('.treeTable').find('.layui-table-body tbody tr td').each(function() {
+				$(this).css('background-color', 'transparent');
+				var text = $(this).text();
+				if (keyword != '' && text.indexOf(keyword) >= 0) {
+					$(this).css('background-color', 'rgba(250,230,160,0.5)');
+					if (searchCount == 0) {
+						self.options.treeTable.expandAll('#' + self.options.tableId);
+						$('html,body').stop(true);
+						$('html,body').animate({
+							scrollTop : $(this).offset().top - 150
+						}, 500);
+					}
+					searchCount++;
+				}
+			});
+			if (searchCount == 0) {
+				layer.msg("没有匹配结果", {
+					icon : 5
+				});
+			}
+		} else if(self.options.tableType == "table"){
+			parseQuery();
+			
+			layer.load(2);
+			self.options.table.reload(self.options.tableId,{
+			   where: { //设定异步数据接口的额外参数，任意设
+				  aaaaaa: 'xxx'
+				    ,bbb: 'yyy'
+				    //…
+				  }
+				,page: {
+				    curr: 1 //重新从第 1 页开始
+				},
+				done : function() {
+					layer.closeAll('loading');
+				}
+			});
+			
+		}
+	}
+	this.initTreeTable = function() {
+		// 渲染表格
+		var renderTable = function() {
+			layer.load(2);
+			self.options.treeTable.render({
+				treeColIndex : 1,
+				treeSpid : 0,
+				treeIdName : 'id',
+				treePidName : 'pId',
+				elem : '#' + self.options.tableId,
+				url : self.getTreeTableDataUrl(),
+				page : false,
+				width : '100%',
+				cols : [ self.options.columns ],
+				height : 'full-70',
+				done : function() {
+					layer.closeAll('loading');
+				}
+			});
+		};
+
+		renderTable();
+
+		// 监听工具条
+		self.options.table.on('tool(' + self.options.tableId + ')', function(obj) {
+			var data = obj.data;
+			if (obj.event === 'detail') {
+				self.detail(data.id);
+			} else if (obj.event === 'del') {
+				self.del(data.id);
+			} else if (obj.event === 'edit') {
+				self.upd(data.id);
+			} else if (obj.event === 'addChildren') {
+				self.addChildren(data.id);
+			}
+		});
+	}
+
+	this.reloadTable = function(params){
+		if (self.options.tableType == "table") {
+			self.options.table.reload(self.options.tableId, params);
+		} else if (self.options.tableType == "treeTable") {
+			self.initTreeTable();
+		}
+	}
+	
+	this.bindEve = function() {
+		var active = {
+			add : function() {
+				self.add();
+			},
+			toquery : function() {
+				self.toquery();
+			},
+			query : function() {
+				self.query();
+			}
+		};
+
+		$('.layui-btn').on('click', function() {
+			var type = $(this).data('type');
+			active[type] ? active[type].call(this) : '';
+		});
+	}
+
+	this.initTable = function() {
+		// 渲染表格
+		var renderTable = function() {
+			layer.load(2);
+			self.options.table.render({
+				elem : '#' + self.options.tableId,
+				url : self.getTableDataUrl(),
+				page : true,
+				width : '100%',
+				cols : [ self.options.columns ],
+				height : 'full-100',
+				done : function() {
+					layer.closeAll('loading');
+				}
+			});
+		};
+
+		renderTable();
+
+		// 监听工具条
+		self.options.table.on('tool(' + self.options.tableId + ')', function(obj) {
+			var data = obj.data;
+			if (obj.event === 'detail') {
+				self.detail(data.id);
+			} else if (obj.event === 'del') {
+				self.del(data.id);
+			} else if (obj.event === 'edit') {
+				self.upd(data.id);
+			} else if (obj.event === 'addChildren') {
+				self.addChildren(data.id);
+			}
+		});
+	}
+
+	this.init = function() {
+		layui.config({
+			base : ctxStatic + '/plugins/layui/lay/modules/'
+		}).extend({
+			treetable : 'treetable'
+		}).use([  'table','form','layer','treetable' ], function() {
+			var form = layui.form;
+			self.options.treeTable = layui.treetable;
+			self.options.table = layui.table;
+			self.bindEve();
+			if (self.options.tableType == "table") {
+				self.initTable();
+				form.on('submit(component-form-columns-query)', function(data) {
+					return false;
+				});
+			} else if (self.options.tableType == "treeTable") {
+				self.initTreeTable();
+			}
+		});
+	}
+}
+
+function inheritObject(o) {
+	// 声明一个过渡函数对象
+	function F() {}
+	// 过渡对象的原型继承父对象
+	F.prototype = o;
+	// 返回一个过渡对象的实例，该实例的原型继承了父对象
+	return new F();
+}
+// 寄生式继承
+// 寄生式继承就是对原型继承的第二次封装，使得子类的原型等于父类的原型。并且在第二次封装的过程中对继承的对象进行了扩展
+function inheritPrototype(subClass, superClass) {
+	// 复制一份父类的原型保存在变量中，使得p的原型等于父类的原型
+	var p = inheritObject(superClass.prototype);
+	// 修正因为重写子类原型导致子类constructor属性被修改
+	p.constructor = subClass;
+	// 设置子类的原型
+	subClass.prototype = p;
+}

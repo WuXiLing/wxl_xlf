@@ -37,15 +37,9 @@
               <form class="layui-form layui-form-pane">
 					<div class="layui-form-item">
 						<div class="layui-inline">
-							<label class="layui-form-label">姓名</label>
+							<label class="layui-form-label">标题：</label>
 							<div class="layui-input-block">
-								<input type="text" name="name" placeholder="请输入姓名" class="layui-input condition">
-							</div>
-						</div>
-						<div class="layui-inline">
-							<label class="layui-form-label">登录名</label>
-							<div class="layui-input-block">
-								<input type="text" name="loginName" placeholder="请输入登录名" class="layui-input condition">
+								<input type="text" name="title" placeholder="请输入标题" class="layui-input condition">
 							</div>
 						</div>
 					</div>

@@ -26,11 +26,11 @@
 					<div class="layui-form-item">
 						<label class="layui-form-label">缩略图：</label>
 						<div class="layui-input-inline">
-							<input name="image" id="image_id" type='hidden'>
+							<input name="image" id="image_id" class="image" type='hidden'>
 							<input id="image_name" placeholder="图片地址" value="" class="layui-input">
 						</div>
 						<div class="layui-input-inline layui-btn-container" style="width: auto;">
-							<button type="button" class="layui-btn layui-btn-primary" id="LAY_avatarUpload">
+							<button type="button" class="layui-btn layui-btn-primary" id="image_upload">
 								<i class="layui-icon">&#xe67c;</i>上传图片
 							</button>
 						</div>

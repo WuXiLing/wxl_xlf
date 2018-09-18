@@ -73,8 +73,8 @@ public class MenuController extends TreeTableController<Menu, MenuService> {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "menuManageData")
-	public Map<String, Object> menuManageData(HttpServletResponse response) {
+	@RequestMapping(value = "getManageData")
+	public Map<String, Object> getManageData(HttpServletResponse response) {
 		Map<String,Object> params = new HashMap<String,Object>();
 		List<Map<String, Object>> mapList = new ArrayList<>();
 		List<Menu> list = UserUtils.getMenuList();

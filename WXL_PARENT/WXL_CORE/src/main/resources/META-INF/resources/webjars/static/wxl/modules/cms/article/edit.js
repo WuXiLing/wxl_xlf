@@ -67,6 +67,7 @@ layui.use([ 'form', 'laydate', 'table'  ],
 
 		/* 监听提交 */
 		form.on('submit(component-form-article-edit)', function(data) {
+			
 			$.ajax({
 				type : 'POST',
 				url : baseUrl + "aysnsave",
@@ -74,7 +75,11 @@ layui.use([ 'form', 'laydate', 'table'  ],
 				dataType : "json",
 				contentType : "application/json; charset=utf-8",
 				success : function(msg) {
-					table.reload(tableId, {
+					//parent.reload($("#columnsId").val());
+					
+					//parent.layui.table.reload("article-table-operate");
+					
+					parent.layui.table.reload(tableId, {
 						page : {
 							curr : 1
 						// 重新从第 1 页开始

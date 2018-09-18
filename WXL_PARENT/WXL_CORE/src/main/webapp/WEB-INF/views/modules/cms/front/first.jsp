@@ -122,7 +122,7 @@
 				//height : 'full-70',
 				where : {
 					key : {
-						"limit" : 8,
+						
 						"status" : 1,
 						"columnsId" : '4e04bedf842d40ddaba5794bb5985928'
 					}
@@ -149,6 +149,7 @@
 					}
 				}] ],
 				page : false,
+				limit: 8,
 				done : function(res, curr, count){
 					$(".layui-table-header").hide();
 				},

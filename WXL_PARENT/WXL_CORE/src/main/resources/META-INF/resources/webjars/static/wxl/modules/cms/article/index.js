@@ -187,7 +187,7 @@ layui.use([ 'table','form','layer' ], function() {
 				});
 			});
 		} else if (obj.event === 'edit') {
-			var index = parent.layui.layer.open({
+			var index = layui.layer.open({
 				type : 2,
 				title : "<i class='layui-icon layui-icon-read'></i> 文章编辑",
 				content : baseUrl + 'upd/' + data.id,
@@ -199,7 +199,7 @@ layui.use([ 'table','form','layer' ], function() {
 	});
 	var active = {
 		add : function(){
-			var index = parent.layui.layer.open({
+			var index = layui.layer.open({
 				type: 2,
 				title:"<i class='layui-icon layui-icon-read'></i> 文章新增",
 				content: baseUrl + 'add?columnsId=' + selectId,

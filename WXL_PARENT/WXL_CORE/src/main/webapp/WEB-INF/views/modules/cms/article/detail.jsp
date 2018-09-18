@@ -35,7 +35,7 @@
 					<div class="layui-form-item">
 						<label class="layui-form-label">内容：</label>
 						<div class="layui-input-block">
-							<script id="content" type="text/plain" style="width:100%;height:500px;"></script>
+							<script id="content" type="text/plain" style="width:100%;height:500px;">${article.content}</script>
 						</div>
 					</div>
 					<div class="layui-form-item">
@@ -71,7 +71,6 @@
 	<script>
 	var ue = UE.getEditor('content');
 	  ue.ready(function() {
-		    ue.setContent('${article.content}');
 	        ue.setDisabled();
 	  });
 	</script>

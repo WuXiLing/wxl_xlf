@@ -155,7 +155,8 @@
 	<update id="release">
 		UPDATE t_cms_article SET
 		status = 1,
-		releasetor = #{releasetor}
+		releasetor = #{releasetor},
+		releaseDate = CURRENT_TIMESTAMP
 		WHERE id = #{id}
 	</update>
 

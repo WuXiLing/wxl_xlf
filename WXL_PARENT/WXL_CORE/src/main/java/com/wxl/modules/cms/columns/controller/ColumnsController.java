@@ -96,8 +96,8 @@ public class ColumnsController extends TreeTableController<Columns, ColumnsServi
 	}
 
 	@ResponseBody
-	@RequestMapping(value = "columnsManageData")
-	public Map<String, Object> columnsManageData(HttpServletResponse response) {
+	@RequestMapping(value = "getManageData")
+	public Map<String, Object> getManageData(HttpServletResponse response) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		List<Map<String, Object>> mapList = new ArrayList<>();
 		List<Columns> list = CmsUtils.getColumnsList();
