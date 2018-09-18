@@ -1,0 +1,4 @@
+classes
+WXL_PARENT/WXL_CORE/target
+WXL_PARENT/WXL_CORE/src/main/webapp/WEB-INF/classes
+**/.**
