@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>eureka_customer</artifactId>
+	<packaging>jar</packaging>
+
+	<name>eureka_customer</name>
+	<description>Demo project for Spring Boot</description>
+
+	<parent>
+		<groupId>avic.eureka</groupId>
+		<artifactId>eureka_parent</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+		<!-- <relativePath /> -->
+	</parent>
+	<dependencies>
+		<dependency>
+			<groupId>avic.eureka</groupId>
+			<artifactId>eureka_common</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<mainClass>avic.apache.eureka.EurekaCustomerApplication</mainClass>
+				</configuration>
+			</plugin>
+		</plugins>
+		<finalName>eureka_customer</finalName>
+	</build>
+</project>

@@ -89,6 +89,19 @@
 		<url-pattern>/druid/*</url-pattern>
 	</servlet-mapping>
 
+<<<<<<< HEAD
+=======
+    <!-- activiti code -->
+	<!-- <filter>
+		<filter-name>JSONPFilter</filter-name>
+		<filter-class>org.activiti.explorer.JsonpCallbackFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>JSONPFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping> -->
+
+>>>>>>> ebbb5fa033832c23feae3fa25849d31f1e876660
 	<!-- Validate code -->
 	<servlet>
 		<servlet-name>captchaServlet</servlet-name>
@@ -99,6 +112,10 @@
 		<url-pattern>/servlet/validateCodeServlet</url-pattern>
 	</servlet-mapping>
 
+<<<<<<< HEAD
+=======
+    <!-- cxf code -->
+>>>>>>> ebbb5fa033832c23feae3fa25849d31f1e876660
 	<servlet>
 		<servlet-name>CXFServlet</servlet-name>
 		<servlet-class>org.apache.cxf.transport.servlet.CXFServlet</servlet-class>
