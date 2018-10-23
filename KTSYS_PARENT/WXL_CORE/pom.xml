@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>ktsys_core</artifactId>
+	<name>KTSYS_CORE</name>
+	<parent>
+		<groupId>com.wxl</groupId>
+		<artifactId>ktsys_parent</artifactId>
+		<version>2.0.0</version>
+	</parent>
+	<description>xxxx</description>
+	<properties>
+		<activiti.version>5.22.0</activiti.version><!-- activiti工作流  -->
+		<cxf.version>3.2.4</cxf.version><!-- cxf服务 -->
+		<netty.version>4.1.2.Final</netty.version><!-- netty服务 -->
+		<ojdbc6.version>11.2.0.3</ojdbc6.version><!-- oracle的jdbc驱动 -->
+		<siger.version>1.6.4</siger.version><!-- sigar（获取系统信息、CPU 、内存等） -->
+		<jwt.version>3.4.0</jwt.version>
+		<spring.redis.version>1.7.0.RELEASE</spring.redis.version>
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-redis</artifactId>
+			<version>${spring.redis.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.netty</groupId>
+			<artifactId>netty-all</artifactId>
+			<version>${netty.version}</version>
+		</dependency>
+		<!-- cxf webservice -->
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-core</artifactId>
+			<version>${cxf.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-frontend-jaxws</artifactId>
+			<version>${cxf.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-transports-http</artifactId>
+			<version>${cxf.version}</version>
+		</dependency>
+		<!-- oracle -->
+		<dependency>
+			<groupId>com.oracle</groupId>
+			<artifactId>ojdbc6</artifactId>
+			<version>${ojdbc6.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.wxl</groupId>
+			<artifactId>siger</artifactId>
+			<version>${siger.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.auth0</groupId>
+			<artifactId>java-jwt</artifactId>
+			<version>${jwt.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20180130</version>
+		</dependency>
+	</dependencies>
+	<build>
+		<finalName>KTSYS_CORE</finalName>
+		<outputDirectory>${project.basedir}/src/main/webapp/WEB-INF/classes/</outputDirectory>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.6</version>
+				<configuration>
+					<!-- 打jar包 start -->
+					<archiveClasses>true</archiveClasses>
+					<!-- 打jar包 end -->
+					<!-- <excludes>WEB-INF/classes/**</excludes> -->
+					<overlays>
+						<overlay>
+							<id>KTSYS_CORE</id>
+							<type>jar</type>
+						</overlay>
+					</overlays>
+					<!-- war排除资源 start -->
+					<warSourceExcludes>
+						WEB-INF/views/**,
+						WEB-INF/tags/**,
+						WEB-INF/classes/org/**,
+						WEB-INF/classes/com/**,
+						WEB-INF/classes/spring/**,
+						WEB-INF/classes/cache/**,
+						WEB-INF/classes/act/**,
+						WEB-INF/classes/data/**,
+						WEB-INF/classes/mappings/**,
+						WEB-INF/classes/editor.html,
+						WEB-INF/classes/log4j.properties,
+						WEB-INF/classes/jdbc.properties,
+						WEB-INF/classes/wxl.properties,
+						WEB-INF/classes/mybatis-refresh.properties,
+						WEB-INF/classes/mybatis-config.xml,
+						WEB-INF/classes/plugins.xml,
+						WEB-INF/classes/stencilset.json,
+						WEB-INF/classes/META-INF/fns.tld,
+						WEB-INF/classes/META-INF/shiros.tld,
+						WEB-INF/classes/META-INF/flow.tld,
+						WEB-INF/classes/META-INF/fnc.tld,
+						WEB-INF/classes/META-INF/resources/webjars/**,
+						WEB-INF/classes/META-INF/resources/tags/**,
+						WEB-INF/classes/META-INF/resources/views/**
+					</warSourceExcludes>
+					<!-- war排除资源 end -->
+					<webappDirectory>${project.build.directory}/${project.artifactId}</webappDirectory>
+					<warName>${project.artifactId}</warName>
+				</configuration>
+			</plugin>
+			<!-- 复制文件 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<id>install</id>
+						<phase>install</phase>
+						<configuration>
+							<tasks>
+								<delete file="${project.basedir}/src/main/resources/META-INF/resources/WEB-INF/tags/"></delete>
+								<copy todir="${project.basedir}/src/main/resources/META-INF/resources/WEB-INF/tags/">
+									<fileset dir="${project.basedir}/src/main/webapp/WEB-INF/tags/" />
+								</copy>
+								<delete file="${project.basedir}/src/main/resources/META-INF/resources/WEB-INF/views/"></delete>
+								<copy todir="${project.basedir}/src/main/resources/META-INF/resources/WEB-INF/views/">
+									<fileset dir="${project.basedir}/src/main/webapp/WEB-INF/views/" />
+								</copy>
+							</tasks>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<!-- 打包jar文件时，配置manifest文件，加入lib包的jar依赖 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>2.4</version>
+				<configuration>
+					<encoding>${project.build.sourceEncoding}</encoding>
+					<includes>
+						<include>com/**</include>
+						<include>org/**</include>
+						<include>init/**</include>
+						<include>cache/**</include><!-- 缓存文件 -->
+						<include>spring/**</include><!-- spring相关配置文件 -->
+						<include>data/**</include>
+						<!-- <include>log4j.properties</include> --><!-- 日志相关配置 -->
+						<include>shiro.properties</include>
+						<!-- mybatis相关 -->
+						<include>mybatis-config.xml</include>
+						<include>mybatis-refresh.properties</include>
+						<!-- <include>jdbc.properties</include> --><!-- 数据库 -->
+						<!-- <include>wxl.properties</include> -->
+						<include>netty.properties</include>
+						<include>banner.txt</include>
+						<!-- mybatis相关 -->
+						<include>META-INF/fns.tld</include>
+						<include>META-INF/shiros.tld</include>
+						<include>META-INF/**</include>
+					</includes>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

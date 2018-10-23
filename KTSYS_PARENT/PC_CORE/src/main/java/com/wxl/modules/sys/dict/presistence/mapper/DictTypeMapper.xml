@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.wxl.modules.sys.dict.presistence.mapper.DictTypeMapper">
+
+	<select id="get" resultType="DictType">
+		SELECT
+		*
+		FROM sys_dict_type ST
+		WHERE id
+		= #{id}
+	</select>
+
+	<select id="selectList" resultType="DictType">
+		SELECT
+		*
+		FROM sys_dict_type st
+		<where>
+		   1=1
+		   <if test="cm.name != null and cm.name != ''">
+		      and st.name = #{cm.name}
+		   </if>
+		   <if test="cm.code != null and cm.code != ''">
+		      and st.code = #{cm.code}
+		   </if>
+		   <if test="cm.id != null and cm.id != ''">
+		      and st.id = #{cm.id}
+		   </if>
+		</where>
+		order by st.sort
+	</select>
+
+	<select id="selectLayuiPageList" resultType="DictType">
+		SELECT *
+		FROM sys_dict_type ST
+		order by ST.sort
+	</select>
+	
+	<select id="checkUnique" resultType="DictType">
+	    SELECT *
+		FROM sys_dict_type ST
+		<where>
+		   1=1
+		   <if test="cm.name != null and cm.name != ''">
+		      and ST.name = #{cm.name}
+		   </if>
+		   <if test="cm.code != null and cm.code != ''">
+		      and ST.code = #{cm.code}
+		   </if>
+		   <if test="cm.id != null and cm.id != ''">
+		      and ST.id &lt;&gt; #{cm.id}
+		   </if>
+		</where>
+	</select>
+
+	<insert id="insert">
+		INSERT INTO sys_dict_type(
+		id,
+		name,
+		code,
+		sort,
+		createUser,
+		lastUpdateUser,
+		version,
+		lastUpdateVersion,
+		ip,
+		lastUpdateIp,
+		status,
+		remarks
+		)
+		VALUES (
+		#{id},
+		#{name},
+		#{code},
+		#{sort},
+		#{createUser.id},
+		#{lastUpdateUser.id},
+		#{version},
+		#{lastUpdateVersion},
+		#{ip},
+		#{lastUpdateIp},
+		#{status},
+		#{remarks}
+		)
+	</insert>
+
+	<update id="update">
+		UPDATE sys_dict_type SET
+		name = #{name},
+		code =
+		#{code},
+		sort = #{sort},
+		lastUpdateDate = #{lastUpdateDate},
+		lastUpdateUser = #{lastUpdateUser.id},
+		lastUpdateVersion =
+		#{lastUpdateVersion},
+		lastUpdateIp = #{lastUpdateIp},
+		remarks =
+		#{remarks}
+		WHERE id = #{id}
+	</update>
+
+	<update id="delete">
+		DELETE FROM sys_dict_type WHERE id = #{id}
+	</update>
+</mapper>

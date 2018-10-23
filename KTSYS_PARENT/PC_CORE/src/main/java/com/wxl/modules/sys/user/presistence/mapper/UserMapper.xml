@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wxl.modules.sys.user.presistence.mapper.UserMapper">
+	<sql id="userQueryCloumnsSQL">
+		st.*,
+		sr.id as "company.id",
+		sr.name as "company.name",
+		se.id as "office.id",
+		se.name as "office.name"
+	</sql>
+
+	<sql id="userQueryCloumnsJoin">
+		LEFT JOIN sys_office sr ON sr.id = st.company_id
+		LEFT JOIN sys_office se ON se.id = st.office_id
+	</sql>
+
+	<!-- 根据编号获得用户 -->
+	<select id="get" resultType="User">
+		SELECT
+		<include refid="userQueryCloumnsSQL" />
+		FROM sys_user st
+		<include refid="userQueryCloumnsJoin" />
+		WHERE st.id = #{id}
+	</select>
+
+	<select id="selectPageList" resultType="User">
+		SELECT
+		<include refid="userQueryCloumnsSQL" />
+		FROM sys_user st
+		<include refid="userQueryCloumnsJoin" />
+		<where>
+			<if test="cm.officeId != null and cm.officeId != ''">
+				AND st.office_id = #{cm.officeId}
+			</if>
+		</where>
+	</select>
+
+	<select id="selectJqgridPageList" resultType="User">
+		SELECT
+		<include refid="userQueryCloumnsSQL" />
+		FROM sys_user st
+		<include refid="userQueryCloumnsJoin" />
+		<where>
+			<if test="cm.officeId != null and cm.officeId != ''">
+				AND st.office_id = #{cm.officeId}
+			</if>
+		</where>
+	</select>
+
+	<select id="selectLayuiPageList" resultType="User">
+		SELECT
+		<include refid="userQueryCloumnsSQL" />
+		FROM sys_user st
+		<include refid="userQueryCloumnsJoin" />
+		<where>
+			<if test="cm.officeId != null and cm.officeId != ''">
+				AND st.office_id = #{cm.officeId}
+			</if>
+			<if test="cm.name != null and cm.name != ''">
+				AND st.name LIKE
+				<choose>
+					<when test="cm.dbType == 'oracle'">'%'||#{cm.name}||'%'</when>
+					<when test="cm.dbType == 'mssql'">'%'+#{cm.name}+'%'</when>
+					<when test="cm.dbType == 'mysql'">CONCAT('%', #{cm.name}, '%')</when>
+					<otherwise>'%'||#{cm.name}||'%'</otherwise>
+				</choose>
+			</if>
+			<if test="cm.loginName != null and cm.loginName != ''">
+				AND st.loginname LIKE
+				<choose>
+					<when test="cm.dbType == 'oracle'">'%'||#{cm.loginName}||'%'</when>
+					<when test="cm.dbType == 'mssql'">'%'+#{cm.loginName}+'%'</when>
+					<when test="cm.dbType == 'mysql'">CONCAT('%', #{cm.loginName}, '%')</when>
+					<otherwise>'%'||#{cm.loginName}||'%'</otherwise>
+				</choose>
+			</if>
+		</where>
+	</select>
+
+	<select id="selectAll" resultType="User">
+		SELECT
+		<include refid="userQueryCloumnsSQL" />
+		FROM sys_user st
+		<include refid="userQueryCloumnsJoin" />
+		ORDER BY st.loginname
+	</select>
+
+	<select id="selectList" resultType="User">
+		SELECT
+		<include refid="userQueryCloumnsSQL" />
+		FROM sys_user st
+		<include refid="userQueryCloumnsJoin" />
+		ORDER BY st.loginname
+	</select>
+	
+	<select id="verify"  resultType="User">
+	   SELECT
+		<include refid="userQueryCloumnsSQL" />
+		FROM sys_user st
+		<include refid="userQueryCloumnsJoin" />
+		<where>
+			<if test="cm.id != null and cm.id != ''">
+				AND st.id &gt; #{cm.id} and st.id &lt; #{cm.id}
+			</if>
+			<if test="cm.no != null and cm.no != ''">
+				AND st.no = #{cm.no}
+			</if>
+		</where>
+	</select>
+
+	<!-- 根据登录名查询用户 -->
+	<select id="findUserByLoginName" resultType="User" parameterType="User">
+		SELECT
+		<include refid="userQueryCloumnsSQL" />
+		FROM sys_user st
+		<include refid="userQueryCloumnsJoin" />
+		WHERE st.loginname = #{loginName}
+	</select>
+
+	<!-- 根据身份证号校验用户 -->
+	<select id="checkIdCard" resultType="java.lang.Integer">
+		SELECT
+		count(1)
+		FROM sys_user
+		a
+		WHERE a.idcard = #{idcard}
+	</select>
+
+	<!-- 根据officeId获取用户（树查询用户时用） -->
+	<select id="findByOfficeId" resultType="User" useCache="true">
+		SELECT
+		<include refid="userQueryCloumnsSQL" />
+		FROM sys_user st
+		<include refid="userQueryCloumnsJoin" />
+		<where>
+			<if test="officeId != null and officeId != ''">
+				AND st.office_id = #{officeId}
+			</if>
+		</where>
+	</select>
+
+	<!-- 根据roleId获取用户（树查询用户时用） -->
+	<select id="findByRoleId" resultType="User" useCache="true">
+		SELECT
+		<include refid="userQueryCloumnsSQL" />
+		FROM sys_user st
+		left join sys_user_role sw on sw.user_id = st.id
+		<include refid="userQueryCloumnsJoin" />
+		<where>
+			<if test="roleId != null and roleId != ''">
+				AND sw.role_id = #{roleId}
+			</if>
+		</where>
+	</select>
+
+	<!-- 插入用户 -->
+	<insert id="insert">
+		INSERT INTO sys_user(
+		id,
+		no,
+		name,
+		company_id,
+		office_id,
+		loginname,
+		password,
+		email,
+		phone,
+		mobile,
+		usertype,
+		photo,
+		gender,
+		idcard,
+		birthday,
+		nation,
+		qq,
+		createDate,
+		createUser,
+		lastUpdateDate,
+		lastUpdateUser,
+		version,
+		lastUpdateVersion,
+		ip,
+		lastUpdateIp,
+		status,
+		remarks
+		) VALUES (
+		#{id},
+		#{no},
+		#{name},
+		#{company.id},
+		#{office.id},
+		#{loginName},
+		#{password},
+		#{email},
+		#{phone},
+		#{mobile},
+		#{userType},
+		#{photo},
+		#{gender},
+		#{idcard},
+		#{birthday},
+		#{nation},
+		#{qq},
+		#{createDate},
+		#{createUser.id},
+		#{lastUpdateDate},
+		#{lastUpdateUser.id},
+		#{version},
+		#{lastUpdateVersion},
+		#{ip},
+		#{lastUpdateIp},
+		#{status},
+		#{remarks}
+		)
+	</insert>
+
+	<!-- 更新用户 -->
+	<update id="update">
+		UPDATE sys_user SET
+		company_id = #{company.id},
+		office_id = #{office.id},
+		loginname = #{loginName},
+		name = #{name},
+		email = #{email},
+		phone = #{phone},
+		mobile = #{mobile},
+		usertype = #{userType},
+		photo = #{photo},
+		gender = #{gender},
+		idcard = #{idcard},
+		birthday = #{birthday},
+		nation = #{nation},
+		qq = #{qq},
+		lastUpdateDate= #{lastUpdateDate},
+		lastUpdateUser= #{lastUpdateUser.id},
+		lastUpdateVersion= #{lastUpdateVersion},
+		lastUpdateIp= #{lastUpdateIp},
+		remarks = #{remarks}
+		WHERE id = #{id}
+	</update>
+
+	<!-- 更新用户密码 -->
+	<update id="updatePassword">
+		UPDATE sys_user SET
+		password = #{pwd}
+		WHERE id =
+		#{userId}
+	</update>
+
+	<!-- 初始化用户密码 -->
+	<update id="pwdReset">
+		UPDATE sys_user SET password = #{entryptPassword}
+	</update>
+
+	<!-- 初始化用户密码 -->
+	<update id="pwdUserReset">
+		UPDATE sys_user SET password = #{entryptPassword}
+		where id = #{userId}
+	</update>
+
+	<!-- 逻辑删除用户 -->
+	<update id="delete">
+		UPDATE sys_user SET
+		del_flag = #{DEL_FLAG_DELETE}
+		WHERE id = #{id}
+	</update>
+
+
+	<!-- 更新用户密码 -->
+	<update id="updateUserAvatar">
+		UPDATE sys_user SET
+		photo = #{storgeId},
+		screenShot =
+		#{screenShot,jdbcType=BLOB}
+		WHERE id = #{userId}
+	</update>
+</mapper>

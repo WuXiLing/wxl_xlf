@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<decorators defaultdir="/WEB-INF/views">
+	
+	<decorator name="layui" page="layui/default.jsp" />
+</decorators>

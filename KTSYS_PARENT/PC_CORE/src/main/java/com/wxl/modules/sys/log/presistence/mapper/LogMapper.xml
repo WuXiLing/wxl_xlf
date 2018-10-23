@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wxl.modules.sys.log.presistence.mapper.LogMapper">
+	<select id="selectPageList" resultType="Log">
+		SELECT
+		st.*,
+		st.params as param,
+		u.name AS "opreatUser",
+		c.name AS
+		"opreatCompany",
+		o.name AS "opreatDep"
+		FROM sys_log ST
+		JOIN sys_user u ON
+		u.id = st.createUser
+		JOIN sys_office c ON c.id = u.company_id
+		JOIN
+		sys_office o ON o.id = u.office_id
+		<!-- <where> <if test="cm.title != null and cm.title != ''"> AND a.title 
+			LIKE CONCAT('%', #{cm.title}, '%') </if> <if test="cm.createUser != null 
+			and cm.createUser.id != null and cm.createUser.id != ''"> AND a.createUser 
+			= #{cm.createBy.id} </if> <if test="cm.opreatUser != null and cm.opreatUser 
+			!= ''"> AND u.name = #{cm.opreatUser} </if> <if test="cm.requestUri != null 
+			and cm.requestUri != ''"> AND a.request_uri LIKE <if test="dbName == 'oracle'">'%'||#{cm.requestUri}||'%'</if> 
+			<if test="dbName == 'mysql'">CONCAT('%', #{cm.requestUri}, '%')</if> </if> 
+			</where> ORDER BY st.createDate desc -->
+	</select>
+
+	<select id="selectJqgridPageList" resultType="Log">
+		SELECT
+		st.*,
+		st.params as param,
+		u.name AS "opreatUser",
+		c.name AS
+		"opreatCompany",
+		o.name AS "opreatDep"
+		FROM sys_log ST
+		JOIN sys_user u ON
+		u.id = st.createUser
+		JOIN sys_office c ON c.id = u.company_id
+		JOIN
+		sys_office o ON o.id = u.office_id
+		<!-- <where> <if test=""></if> </where> -->
+	</select>
+	
+	<select id="selectLayuiPageList" resultType="Log">
+		SELECT
+		st.*,
+		st.params as param,
+		u.name AS "opreatUser",
+		c.name AS
+		"opreatCompany",
+		o.name AS "opreatDep"
+		FROM sys_log ST
+		JOIN sys_user u ON
+		u.id = st.createUser
+		JOIN sys_office c ON c.id = u.company_id
+		JOIN
+		sys_office o ON o.id = u.office_id
+		<!-- <where> <if test=""></if> </where> -->
+	</select>
+
+	<insert id="insert">
+		INSERT INTO sys_log(
+		id,
+		type,
+		title,
+		remote_addr,
+		user_agent,
+		request_uri,
+		method,
+		params,
+		exception,
+		remoteArea,
+		createDate,
+		createUser,
+		lastUpdateDate,
+		lastUpdateUser,
+		version,
+		lastUpdateVersion,
+		ip,
+		lastUpdateIp,
+		status,
+		remarks
+		) VALUES (
+		#{id},
+		#{type},
+		#{title},
+		#{remoteAddr},
+		#{userAgent},
+		#{requestUri},
+		#{method},
+		#{param},
+		#{exception},
+		#{remoteArea},
+		#{createDate},
+		#{createUser.id},
+		#{lastUpdateDate},
+		#{lastUpdateUser.id},
+		#{version},
+		#{lastUpdateVersion},
+		#{ip},
+		#{lastUpdateIp},
+		#{status},
+		#{remarks}
+		)
+	</insert>
+	
+	<update id="delete">
+		UPDATE sys_log SET
+		WHERE id = #{id}
+	</update>
+</mapper>

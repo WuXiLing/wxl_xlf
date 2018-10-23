@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wxl.modules.cms.guestbook.presistence.mapper.GuestBookMapper">
+	<sql id="guestBookQueryCloumnsSQL">
+		st.*
+	</sql>
+
+	<sql id="guestBookQueryCloumnsJoin"></sql>
+
+	<select id="get" resultType="GuestBook">
+		SELECT
+		<include refid="guestBookQueryCloumnsSQL" />
+		FROM t_cms_guestbook st
+		<include refid="guestBookQueryCloumnsJoin" />
+		WHERE st.id = #{id}
+	</select>
+
+	<select id="selectPageList" resultType="GuestBook">
+		SELECT
+		<include refid="guestBookQueryCloumnsSQL" />
+		FROM t_cms_guestbook st
+		<include refid="guestBookQueryCloumnsJoin" />
+		<where>
+			<if test="cm.columnsId != null and cm.columnsId != ''">
+				AND st.columnsId = #{cm.columnsId}
+			</if>
+		</where>
+	</select>
+
+	<select id="selectLayuiPageList" resultType="GuestBook">
+		SELECT
+		<include refid="guestBookQueryCloumnsSQL" />
+		FROM t_cms_guestbook st
+		<include refid="guestBookQueryCloumnsJoin" />
+		<where>
+			<if test="cm.columnsId != null and cm.columnsId != ''">
+				AND st.columnsId = #{cm.columnsId}
+			</if>
+		</where>
+	</select>
+
+	<select id="selectAll" resultType="GuestBook">
+		SELECT
+		<include refid="guestBookQueryCloumnsSQL" />
+		FROM t_cms_guestbook st
+		<include refid="guestBookQueryCloumnsJoin" />
+		ORDER BY st.stick desc
+	</select>
+
+	<select id="selectList" resultType="GuestBook">
+		SELECT
+		<include refid="guestBookQueryCloumnsSQL" />
+		FROM t_cms_guestbook st
+		<include refid="guestBookQueryCloumnsJoin" />
+		ORDER BY st.stick desc
+	</select>
+
+	<!-- 插入用户 -->
+	<insert id="insert">
+		INSERT INTO t_cms_guestbook(
+		id,
+		title,
+		content,
+		source,
+		releaseDate,
+		createUser,
+		version,
+		ip,
+		remarks
+		) VALUES (
+		#{id},
+		#{title},
+		#{content},
+		#{source},
+		#{releaseDate},
+		#{createUser.id},
+		#{version},
+		#{ip},
+		#{remarks}
+		)
+	</insert>
+
+	<!-- 更新用户 -->
+	<update id="update">
+		UPDATE t_cms_guestbook SET
+		title = #{title},
+		content = #{content},
+		source = #{source},
+		lastUpdateUser= #{lastUpdateUser.id},
+		lastUpdateVersion= #{lastUpdateVersion},
+		lastUpdateIp= #{lastUpdateIp},
+		remarks = #{remarks}
+		WHERE id = #{id}
+	</update>
+	<delete id="delete">
+	    DELETE FROM t_cms_guestbook WHERE id = #{id}
+	</delete>
+</mapper>

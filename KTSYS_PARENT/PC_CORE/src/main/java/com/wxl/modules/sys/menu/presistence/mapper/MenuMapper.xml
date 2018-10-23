@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wxl.modules.sys.menu.presistence.mapper.MenuMapper">
+
+	<resultMap type="Menu" id="menuResult">
+		<id property="id" column="id" />
+		<!-- <association property="parent" select="get" column="parentId" javaType="Menu" /> -->
+		<collection property="childrens" select="findByParentId" column="{parentId=id}" />
+	</resultMap>
+	<sql id="menuQueryCloumnsSQL">
+		st.*
+		<!-- ,sr.id as "parent.id", sr.name as "parent.name" -->
+	</sql>
+
+	<sql id="menuQueryCloumnsJoin">
+		<!-- LEFT JOIN sys_menu sr ON sr.id = st.parentId -->
+	</sql>
+	<select id="get" resultType="Menu" resultMap="menuResult">
+		SELECT
+		<include refid="menuQueryCloumnsSQL" />
+		FROM sys_menu ST
+		<include refid="menuQueryCloumnsJoin" />
+		WHERE ST.id = #{id}
+	</select>
+
+	<select id="selectJqgridPageList" resultMap="menuResult">
+		SELECT
+		<include refid="menuQueryCloumnsSQL" />
+		FROM sys_menu ST
+		<include refid="menuQueryCloumnsJoin" />
+		ORDER BY st.sort
+		<!-- ORDER BY st.sort -->
+	</select>
+
+	<select id="selectAll" resultType="Menu">
+		SELECT
+		<include refid="menuQueryCloumnsSQL" />
+		FROM sys_menu st
+		<include refid="menuQueryCloumnsJoin" />
+		ORDER BY st.longCode,st.sort
+	</select>
+
+	<select id="findByParentId" resultType="Menu" resultMap="menuResult">
+		SELECT
+		<include refid="menuQueryCloumnsSQL" />
+		FROM sys_menu st
+		<include refid="menuQueryCloumnsJoin" />
+		where st.parentId = #{parentId}
+		ORDER BY st.sort
+	</select>
+
+	<select id="selectList" resultType="Menu">
+		SELECT
+		<include refid="menuQueryCloumnsSQL" />
+		FROM sys_menu st
+		<include refid="menuQueryCloumnsJoin" />
+		ORDER BY st.longCode,st.sort
+		<!-- ORDER BY st.sort -->
+	</select>
+
+	<select id="findByUserId" resultType="Menu">
+		SELECT
+		DISTINCT
+		st.*,
+		sp.id as "parent.id",
+		sp.name as "parent.name"
+		FROM sys_menu st
+		LEFT JOIN sys_menu sp ON sp.id =
+		st.parentId
+		JOIN sys_role_menu sr ON sr.menu_id = st.id
+		JOIN sys_role se
+		ON se.id = sr.role_id AND se.useable = '1'
+		JOIN sys_user_role sw ON
+		sw.role_id = se.id
+		JOIN sys_user sq ON sq.id = sw.user_id AND sq.id =
+		#{userId}
+		ORDER BY st.longCode,st.sort
+	</select>
+
+	<insert id="insert">
+		INSERT INTO sys_menu(
+		id,
+		parentId,
+		longName,
+		longCode,
+		name,
+		href,
+		target,
+		icon,
+		sort,
+		is_show,
+		permission,
+		createDate,
+		createUser,
+		version,
+		ip,
+		remarks
+		) VALUES (
+		#{id},
+		#{parent.id},
+		#{longName},
+		#{longCode},
+		#{name},
+		#{href},
+		#{target},
+		#{icon},
+		#{sort},
+		#{isShow},
+		#{permission},
+		#{createDate},
+		#{createUser.id},
+		#{version},
+		#{ip},
+		#{remarks}
+		)
+	</insert>
+
+	<update id="update">
+		UPDATE sys_menu SET
+		parentId = #{parent.id},
+		name =
+		#{name},
+		href = #{href},
+		target = #{target},
+		icon = #{icon},
+		is_show =
+		#{isShow},
+		permission = #{permission},
+		depth = #{depth},
+		longName =
+		#{longName},
+		longCode = #{longCode},
+		sort = #{sort},
+		lastUpdateDate = #{lastUpdateDate},
+		lastUpdateUser =
+		#{lastUpdateUser.id},
+		lastUpdateVersion = #{lastUpdateVersion},
+		lastUpdateIp = #{lastUpdateIp},
+		remarks = #{remarks}
+		WHERE id = #{id}
+	</update>
+
+	<update id="updateSort" parameterType="java.util.Map">
+		<foreach collection="params.keys" item="key" open="" close="" separator=";">
+			UPDATE sys_menu
+			<set>
+				sort = #{params[${key}]}
+			</set>
+			WHERE
+			id = #{key}
+		</foreach>
+	</update>
+
+	<delete id="delete">
+		DELETE FROM sys_menu
+		WHERE ID = #{id}
+	</delete>
+</mapper>

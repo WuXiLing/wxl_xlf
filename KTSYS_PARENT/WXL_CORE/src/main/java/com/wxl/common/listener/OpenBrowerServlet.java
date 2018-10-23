@@ -1,0 +1,56 @@
+package com.wxl.common.listener;
+
+import java.awt.Desktop;
+import java.io.IOException;
+import java.net.URI;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.wxl.common.config.Global;
+
+/**
+ * open manage and front view after startup
+ * 
+ * @author Liang
+ *
+ */
+public class OpenBrowerServlet extends HttpServlet {
+
+	private static final long serialVersionUID = -1496644117614324928L;
+
+	protected static Logger logger = LoggerFactory.getLogger(OpenBrowerServlet.class);
+
+	public OpenBrowerServlet() {
+		super();
+	}
+
+	public void init() throws ServletException {
+		logger.info("init open view ... ");
+		
+		String openAddress = Global.getConfig("project.open.address");
+		if("true".equals(openAddress)) {
+			String domain = Global.getConfig("project.domain");
+			String openAddressView = Global.getConfig("project.open.address.view");
+			String [] views = StringUtils.isNoneBlank(openAddressView) ? openAddressView.split(",") : new String [] {};
+			if(views !=null && views.length > 0) {
+				for(String view : views) {
+					logger.info("open view：" + view);
+					URI uri = URI.create(domain + view);
+					Desktop dp = Desktop.getDesktop();
+					if (dp.isSupported(Desktop.Action.BROWSE)) {
+						try {
+							dp.browse(uri);
+						} catch (IOException e) {
+							logger.error("open error：" + view,e);
+						}
+					}
+				}
+			}
+		}
+	}
+}

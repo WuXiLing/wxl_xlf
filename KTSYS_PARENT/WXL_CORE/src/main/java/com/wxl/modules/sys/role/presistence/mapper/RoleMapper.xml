@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wxl.modules.sys.role.presistence.mapper.RoleMapper">
+
+	<sql id="roleQueryCloumnsSQL">
+		st.*
+	</sql>
+
+	<sql id="roleQueryCloumnsJoin">
+		
+	</sql>
+
+
+
+	<select id="get" resultType="Role">
+		SELECT
+		<include refid="roleQueryCloumnsSQL" />
+		FROM sys_role st
+		<include refid="roleQueryCloumnsJoin" />
+		where st.id = #{id}
+	</select>
+
+	<select id="selectList" resultType="Role">
+		SELECT
+		<include refid="roleQueryCloumnsSQL" />
+		FROM sys_role st
+		<include refid="roleQueryCloumnsJoin" />
+	</select>
+
+	<select id="selectPageList" resultType="Role">
+		SELECT
+		<include refid="roleQueryCloumnsSQL" />
+		FROM sys_role st
+		<include refid="roleQueryCloumnsJoin" />
+	</select>
+	
+	
+	<select id="selectLayuiPageList" resultType="Role">
+		SELECT
+		<include refid="roleQueryCloumnsSQL" />
+		FROM sys_role st
+		<include refid="roleQueryCloumnsJoin" />
+		<where>
+		    1 = 1
+			<if test="cm.name != null and cm.name != ''">
+				AND st.name LIKE
+				<choose>
+					<when test="cm.dbType == 'oracle'">'%'||#{cm.name}||'%'</when>
+					<when test="cm.dbType == 'mssql'">'%'+#{cm.name}+'%'</when>
+					<when test="cm.dbType == 'mysql'">CONCAT('%', #{cm.name}, '%')</when>
+					<otherwise>'%'||#{cm.name}||'%'</otherwise>
+				</choose>
+			</if>
+			<if test="cm.enname != null and cm.enname != ''">
+				AND st.enname LIKE
+				<choose>
+					<when test="cm.dbType == 'oracle'">'%'||#{cm.enname}||'%'</when>
+					<when test="cm.dbType == 'mssql'">'%'+#{cm.enname}+'%'</when>
+					<when test="cm.dbType == 'mysql'">CONCAT('%', #{cm.enname}, '%')</when>
+					<otherwise>'%'||#{cm.enname}||'%'</otherwise>
+				</choose>
+			</if>
+		</where>
+	</select>
+	
+	<select id="selectAll" resultType="Role">
+		SELECT
+		<include refid="roleQueryCloumnsSQL" />
+		FROM sys_role st
+		<include refid="roleQueryCloumnsJoin" />
+	</select>
+
+	<select id="findByName" resultType="Role">
+		SELECT
+		<include refid="roleQueryCloumnsSQL" />
+		FROM sys_role st
+		<include refid="roleQueryCloumnsJoin" />
+		WHERE st.name = #{name}
+	</select>
+
+	<select id="findByEnname" resultType="Role">
+		SELECT
+		<include refid="roleQueryCloumnsSQL" />
+		FROM sys_role st
+		<include refid="roleQueryCloumnsJoin" />
+		WHERE st.enname = #{enname}
+	</select>
+
+	<select id="findRoloByUserId" resultType="Role">
+		select
+		<include refid="roleQueryCloumnsSQL" />
+		from sys_role st
+		<include refid="roleQueryCloumnsJoin" />
+		left join sys_user_role sr on sr.role_id = st.id
+		where sr.user_id =
+		#{userId}
+	</select>
+	<select id="findRoloByMenuId" resultType="Role">
+		select
+		<include refid="roleQueryCloumnsSQL" />
+		from sys_role st
+		<include refid="roleQueryCloumnsJoin" />
+		left join sys_role_menu sr on sr.role_id = st.id
+		where sr.menu_id =
+		#{menuId}
+	</select>
+
+	<insert id="insert">
+		INSERT INTO sys_role(
+		id,
+		name,
+		enname,
+		roletype,
+		datascope,
+		sysdata,
+		createDate,
+		createUser,
+		lastUpdateDate,
+		lastUpdateUser,
+		version,
+		lastUpdateVersion,
+		ip,
+		lastUpdateIp,
+		status,
+		remarks
+		) VALUES (
+		#{id},
+		#{name},
+		#{enname},
+		#{roleType},
+		#{dataScope},
+		#{sysData},
+		#{createDate},
+		#{createUser.id},
+		#{lastUpdateDate},
+		#{lastUpdateUser.id},
+		#{version},
+		#{lastUpdateVersion},
+		#{ip},
+		#{lastUpdateIp},
+		#{status},
+		#{remarks}
+		)
+	</insert>
+
+	<update id="update">
+		UPDATE sys_role SET
+		name = #{name},
+		enname = #{enname},
+		roletype = #{roleType},
+		datascope = #{dataScope},
+		remarks = #{remarks},
+		sys_data = #{sysData},
+		lastUpdateDate = #{lastUpdateDate},
+		lastUpdateUser = #{lastUpdateUser.id},
+		lastUpdateVersion = #{lastUpdateVersion},
+		lastUpdateIp = #{lastUpdateIp},
+		remarks = #{remarks}
+		WHERE id = #{id}
+	</update>
+
+	<delete id="deleteRoleMenu">
+		DELETE FROM sys_role_menu WHERE role_id = #{id}
+	</delete>
+
+	<insert id="insertRoleMenu">
+		INSERT INTO sys_role_menu(role_id, menu_id)
+		<foreach collection="menuList" item="menu" separator=" union all ">
+			SELECT
+			#{id}, #{menu.id} FROM dual
+		</foreach>
+	</insert>
+
+	<delete id="deleteRoleOffice">
+		DELETE FROM sys_role_office WHERE role_id = #{id}
+	</delete>
+
+	<insert id="insertRoleOffice">
+		INSERT INTO sys_role_office(role_id, office_id)
+		<foreach collection="officeList" item="office" separator=" union all ">
+			SELECT #{id}, #{office.id} FROM dual
+		</foreach>
+	</insert>
+
+	<update id="delete">
+	<!-- 	UPDATE sys_role SET
+		del_flag = #{DEL_FLAG_DELETE}
+		WHERE id = #{id} -->
+		delete from sys_role
+		WHERE id = #{id}
+	</update>
+</mapper>

@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wxl.modules.cms.article.presistence.mapper.ArticleMapper">
+	<sql id="articleQueryCloumnsSQL">
+		st.*,
+		se.name as "releasetName"
+	</sql>
+
+	<sql id="articleQueryCloumnsJoin">
+	   LEFT JOIN SYS_USER se on se.id = st.releasetor
+	</sql>
+
+	<select id="get" resultType="Article">
+		SELECT
+		<include refid="articleQueryCloumnsSQL" />
+		FROM t_cms_article st
+		<include refid="articleQueryCloumnsJoin" />
+		WHERE st.id = #{id}
+	</select>
+
+	<select id="selectPageList" resultType="Article">
+		SELECT
+		<include refid="articleQueryCloumnsSQL" />
+		FROM t_cms_article st
+		<include refid="articleQueryCloumnsJoin" />
+		<where>
+			<if test="cm.columnsId != null and cm.columnsId != ''">
+				AND st.columnsId = #{cm.columnsId}
+			</if>
+		</where>
+		ORDER BY st.stick desc
+		<if test="cm.cmslimit != null and cm.cmslimit != ''">
+			limit ${cm.cmslimit}
+		</if>
+	</select>
+
+	<select id="selectLayuiPageList" resultType="Article">
+		SELECT
+		<include refid="articleQueryCloumnsSQL" />
+		FROM t_cms_article st
+		<include refid="articleQueryCloumnsJoin" />
+		<where>
+			<if test="cm.columnsId != null and cm.columnsId != ''">
+				AND st.columnsId = #{cm.columnsId}
+			</if>
+			<if test="cm.status != null and cm.status != ''">
+				AND st.status = #{cm.status}
+			</if>
+			<if test="cm.frontQuery != null and cm.frontQuery != ''">
+				AND st.releaseDate &lt;= current_time()
+			</if>
+			<if test="cm.title != null and cm.title != ''">
+				AND st.title LIKE CONCAT('%', #{cm.title},'%')
+			</if>
+		</where>
+		order by st.stick desc
+		<if test="cm.cmslimit != null and cm.cmslimit != ''">
+			limit ${cm.cmslimit}
+		</if>
+	</select>
+
+	<select id="selectAll" resultType="Article">
+		SELECT
+		<include refid="articleQueryCloumnsSQL" />
+		FROM t_cms_article st
+		<include refid="articleQueryCloumnsJoin" />
+		<where>
+			<if test="cm.columnsId != null and cm.columnsId != ''">
+				AND st.columnsId = #{cm.columnsId}
+			</if>
+		</where>
+		ORDER BY st.stick desc
+		<if test="cm.cmslimit != null and cm.cmslimit != ''">
+			limit ${cm.cmslimit}
+		</if>
+	</select>
+
+	<select id="selectList" resultType="Article">
+		SELECT
+		<include refid="articleQueryCloumnsSQL" />
+		FROM t_cms_article st
+		<include refid="articleQueryCloumnsJoin" />
+		<where>
+			<if test="cm.columnsId != null and cm.columnsId != ''">
+				AND st.columnsId = #{cm.columnsId}
+			</if>
+		</where>
+		ORDER BY st.stick desc
+		<if test="cm.cmslimit != null and cm.cmslimit != ''">
+			limit ${cm.cmslimit}
+		</if>
+	</select>
+
+	<select id="selectImageList" resultType="Article">
+		SELECT
+		<include refid="articleQueryCloumnsSQL" />
+		FROM t_cms_article st
+		<include refid="articleQueryCloumnsJoin" />
+		<where>
+			<if test="cm.columnsId != null and cm.columnsId != ''">
+				AND st.columnsId = #{cm.columnsId}
+			</if>
+			AND ST.image is not null
+			AND st.releaseDate &lt;= current_time()
+			AND ST.status = 1
+		</where>
+		ORDER BY st.stick desc
+		<if test="cm.cmslimit != null and cm.cmslimit != ''">
+			limit ${cm.cmslimit}
+		</if>
+	</select>
+
+	<!-- 插入用户 -->
+	<insert id="insert">
+		INSERT INTO t_cms_article(
+		id,
+		title,
+		columnsId,
+		snippet,
+		image,
+		stick,
+		content,
+		source,
+		showTitle,
+		releaseDate,
+		releasetor,
+		status,
+		createUser,
+		version,
+		ip,
+		remarks
+		) VALUES (
+		#{id},
+		#{title},
+		#{columnsId},
+		#{snippet},
+		#{image},
+		#{stick},
+		#{content},
+		#{source},
+		#{showTitle},
+		#{releaseDate},
+		#{releasetor},
+		#{status},
+		#{createUser.id},
+		#{version},
+		#{ip},
+		#{remarks}
+		)
+	</insert>
+
+	<!-- 更新用户 -->
+	<update id="update">
+		UPDATE t_cms_article SET
+		title = #{title},
+		snippet = #{snippet},
+		image = #{image},
+		stick = #{stick},
+		content = #{content},
+		source = #{source},
+		status = #{status},
+		showTitle = #{showTitle},
+		releasetor = #{releasetor},
+		releaseDate = #{releaseDate},
+		lastUpdateUser= #{lastUpdateUser.id},
+		lastUpdateVersion= #{lastUpdateVersion},
+		lastUpdateIp= #{lastUpdateIp},
+		remarks = #{remarks}
+		WHERE id = #{id}
+	</update>
+
+	<update id="release">
+		UPDATE t_cms_article SET
+		status = 1,
+		releasetor = #{releasetor},
+		releaseDate = CURRENT_TIMESTAMP
+		WHERE id = #{id}
+	</update>
+
+	<delete id="delete">
+		DELETE FROM t_cms_article WHERE id = #{id}
+	</delete>
+</mapper>
