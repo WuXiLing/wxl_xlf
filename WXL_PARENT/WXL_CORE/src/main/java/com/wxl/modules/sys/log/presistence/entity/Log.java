@@ -42,20 +42,6 @@ public class Log extends SingleTableEntity {
 
 	private String remoteArea; // 操作地区
 
-<<<<<<< HEAD
-	// 操作公司
-	private String opreatCompany;
-
-	// 操作部门
-	private String opreatDep;
-
-	// 操作者
-=======
-	private String opreatCompany;
-
-	private String opreatDep;
-
->>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 	private String opreatUser;
 
 	// 日志类型（1：接入日志；2：错误日志）
@@ -68,7 +54,6 @@ public class Log extends SingleTableEntity {
 		super();
 	}
 
-<<<<<<< HEAD
 	/** 执行时长 */
 	private long timeDuration;
 
@@ -96,26 +81,6 @@ public class Log extends SingleTableEntity {
 	//方法参数
 	private String methodParams;
 
-=======
-	/**执行时长*/
-	private long timeDuration;
-	
-	/**浏览器*/
-	private String browser;
-	
-	/**浏览器版本*/
-	private String browserVersion;
-	
-	/**访问终端*/
-	private String terminal;
-	
-	/**终端型号*/
-	private String terminalType;
-	
-	/**请求方式*/
-	private String requestMode;
-	
->>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 	public String getType() {
 
 		return type;
@@ -226,26 +191,6 @@ public class Log extends SingleTableEntity {
 		this.remoteArea = remoteArea;
 	}
 
-	public String getOpreatCompany() {
-
-		return opreatCompany;
-	}
-
-	public void setOpreatCompany(String opreatCompany) {
-
-		this.opreatCompany = opreatCompany;
-	}
-
-	public String getOpreatDep() {
-
-		return opreatDep;
-	}
-
-	public void setOpreatDep(String opreatDep) {
-
-		this.opreatDep = opreatDep;
-	}
-
 	public String getOpreatUser() {
 
 		return opreatUser;
@@ -256,8 +201,6 @@ public class Log extends SingleTableEntity {
 		this.opreatUser = opreatUser;
 	}
 
-<<<<<<< HEAD
-=======
 //	public void setCreateBy(User createBy) {
 //        super.setCreateBy(createBy);
 //		if (createBy != null) {
@@ -268,7 +211,6 @@ public class Log extends SingleTableEntity {
 ////		this.createBy = createBy;
 //	}
 
->>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 	/**
 	 * 设置请求参数
 	 * 
@@ -337,7 +279,6 @@ public class Log extends SingleTableEntity {
 		this.requestMode = requestMode;
 	}
 
-<<<<<<< HEAD
 	public String getClassName() {
 		return className;
 	}
@@ -362,8 +303,6 @@ public class Log extends SingleTableEntity {
 		this.methodParams = methodParams;
 	}
 
-=======
->>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 	@Override
 	public String toString() {
 

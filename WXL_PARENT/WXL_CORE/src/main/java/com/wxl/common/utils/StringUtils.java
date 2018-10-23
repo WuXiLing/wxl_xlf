@@ -259,12 +259,9 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
 	 * 获得用户远程地址
 	 */
 	public static String getRemoteAddr(HttpServletRequest request) {
-<<<<<<< HEAD
 		if(request == null) {
 			return "";
 		}
-=======
->>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 		String remoteAddr = request.getHeader("X-Real-IP");
 		if (isNotBlank(remoteAddr)) {
 			remoteAddr = request.getHeader("X-Forwarded-For");

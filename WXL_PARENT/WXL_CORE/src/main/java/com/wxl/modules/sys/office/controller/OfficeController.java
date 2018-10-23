@@ -80,13 +80,8 @@ public class OfficeController extends TreeTableController<Office, OfficeServiceI
 	}
 	
 	@ResponseBody
-<<<<<<< HEAD
 	@RequestMapping(value = "getManageData")
 	public Map<String, Object> getManageData(HttpServletResponse response) {
-=======
-	@RequestMapping(value = "officeManageData")
-	public Map<String, Object> officeManageData(HttpServletResponse response) {
->>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 		Map<String,Object> params = new HashMap<String,Object>();
 		List<Map<String, Object>> mapList = new ArrayList<>();
 		List<Office> list = UserUtils.getOfficeList();
@@ -98,11 +93,8 @@ public class OfficeController extends TreeTableController<Office, OfficeServiceI
 				map.put("pId", entity.getParent().getId());
 				map.put("name", entity.getName());
 				map.put("abbreviation", entity.getAbbreviation());
-<<<<<<< HEAD
 				map.put("code",entity.getCode());
 				map.put("sort",entity.getSort());
-=======
->>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 				map.put("grade", entity.getGrade());
 				map.put("type", entity.getType());
 				map.put("status", entity.getStatus());

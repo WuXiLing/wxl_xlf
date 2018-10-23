@@ -60,11 +60,7 @@ public class RoleController extends SingleTableController<Role, RoleServiceI> {
 	 * @param model
 	 * @return
 	 */
-<<<<<<< HEAD
 	@RequestMapping(value = "authority/{roleId}")
-=======
-	@RequestMapping(value = "toAuthority/{roleId}")
->>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 	public String authority(@PathVariable("roleId") String roleId, Model model) {
 		Role entity = this.service.get(roleId);
 		model.addAttribute(entity);
@@ -78,11 +74,7 @@ public class RoleController extends SingleTableController<Role, RoleServiceI> {
 	 * @param model
 	 * @return
 	 */
-<<<<<<< HEAD
-	@RequestMapping(value = "distribute/{roleId}")
-=======
 	@RequestMapping(value = "toAssign/{roleId}")
->>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 	public String assign(@PathVariable("roleId") String roleId, Model model) {
 		Role entity = this.service.get(roleId);
 		entity.setUserList(this.userService.findByRoleId(entity.getId()));

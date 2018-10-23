@@ -18,7 +18,6 @@ import com.wxl.common.provider.treetable.controller.TreeTableController;
 import com.wxl.modules.cms.columns.presistence.entity.Columns;
 import com.wxl.modules.cms.columns.service.ColumnsServiceI;
 import com.wxl.modules.cms.columns.utls.CmsUtils;
-import com.wxl.modules.sys.area.presistence.entity.Area;
 import com.wxl.modules.sys.storge.presistence.entity.StorgeEntity;
 import com.wxl.modules.sys.storge.service.StorgeEntityService;
 
@@ -28,7 +27,7 @@ import com.wxl.modules.sys.storge.service.StorgeEntityService;
  * @param <T>
  * @param <S>
  * @author wxl
- * 
+ * 	
  * @date 2017年7月11日 下午3:24:52
  */
 @Controller
@@ -96,13 +95,8 @@ public class ColumnsController extends TreeTableController<Columns, ColumnsServi
 	}
 
 	@ResponseBody
-<<<<<<< HEAD
 	@RequestMapping(value = "getManageData")
 	public Map<String, Object> getManageData(HttpServletResponse response) {
-=======
-	@RequestMapping(value = "columnsManageData")
-	public Map<String, Object> columnsManageData(HttpServletResponse response) {
->>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 		Map<String, Object> params = new HashMap<String, Object>();
 		List<Map<String, Object>> mapList = new ArrayList<>();
 		List<Columns> list = CmsUtils.getColumnsList();
