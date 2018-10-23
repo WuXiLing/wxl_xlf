@@ -15,12 +15,20 @@
 	</sql>
 
 	<sql id="columnsQueryCloumnsJoin">
+<<<<<<< HEAD
 		LEFT JOIN T_CMS_COLUMNS sr ON sr.id = st.parentId
+=======
+		LEFT JOIN t_cms_columns sr ON sr.id = st.parentId
+>>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 	</sql>
 	<select id="get" resultType="Columns" resultMap="columnsResult">
 		SELECT
 		<include refid="columnsQueryCloumnsSQL" />
+<<<<<<< HEAD
 		FROM T_CMS_COLUMNS st
+=======
+		FROM t_cms_columns st
+>>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 		<include refid="columnsQueryCloumnsJoin" />
 		WHERE st.id = #{id}
 	</select>
@@ -28,7 +36,11 @@
 	<select id="selectAll" resultType="Columns">
 		SELECT
 		<include refid="columnsQueryCloumnsSQL" />
+<<<<<<< HEAD
 		FROM T_CMS_COLUMNS st
+=======
+		FROM t_cms_columns st
+>>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 		<include refid="columnsQueryCloumnsJoin" />
 		ORDER BY st.longCode,st.sort
 	</select>
@@ -36,7 +48,11 @@
 	<select id="findByParentId" resultType="Columns" resultMap="columnsResult">
 		SELECT
 		<include refid="columnsQueryCloumnsSQL" />
+<<<<<<< HEAD
 		FROM T_CMS_COLUMNS st
+=======
+		FROM t_cms_columns st
+>>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 		<include refid="columnsQueryCloumnsJoin" />
 		where st.parentId = #{parentId}
 		ORDER BY st.sort
@@ -45,7 +61,11 @@
 	<select id="selectList" resultType="Columns">
 		SELECT
 		<include refid="columnsQueryCloumnsSQL" />
+<<<<<<< HEAD
 		FROM T_CMS_COLUMNS st
+=======
+		FROM t_cms_columns st
+>>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 		<include refid="columnsQueryCloumnsJoin" />
 		ORDER BY st.longCode,st.sort
 	</select>
@@ -53,7 +73,11 @@
 	<select id="selectPageList" resultType="Columns">
 		SELECT
 		<include refid="columnsQueryCloumnsSQL" />
+<<<<<<< HEAD
 		FROM T_CMS_COLUMNS st
+=======
+		FROM t_cms_columns st
+>>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 		<include refid="columnsQueryCloumnsJoin" />
 		ORDER BY st.longCode,st.sort
 	</select>
@@ -61,7 +85,11 @@
 	<select id="findByUserId" resultType="Columns">
 		SELECT
 		<include refid="columnsQueryCloumnsSQL" />
+<<<<<<< HEAD
 		FROM T_CMS_COLUMNS st
+=======
+		FROM t_cms_columns st
+>>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 		<include refid="columnsQueryCloumnsJoin" />
 		ORDER BY st.longCode,st.sort
 	</select>
@@ -69,7 +97,11 @@
 	<select id="getChildrenColumnsByParentId" resultType="Columns">
 		SELECT
 		<include refid="columnsQueryCloumnsSQL" />
+<<<<<<< HEAD
 		FROM T_CMS_COLUMNS st
+=======
+		FROM t_cms_columns st
+>>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 		<include refid="columnsQueryCloumnsJoin" />
 		where st.parentId = #{parentId}
 		ORDER BY st.sort
@@ -77,7 +109,11 @@
 	<select id="getFirstNavColumns" resultType="Columns">
 		SELECT
 		<include refid="columnsQueryCloumnsSQL" />
+<<<<<<< HEAD
 		FROM T_CMS_COLUMNS st
+=======
+		FROM t_cms_columns st
+>>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 		<include refid="columnsQueryCloumnsJoin" />
 		where st.firstnav = 'on'
 		ORDER BY st.sort
@@ -85,26 +121,42 @@
 	
 	<!-- 启用 -->
 	<update id="start">
+<<<<<<< HEAD
 		UPDATE T_CMS_COLUMNS
+=======
+		UPDATE t_cms_columns
+>>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 		SET status = 0
 		WHERE id = #{id}
 	</update>
 	<!-- 停用 -->
 	<update id="stop">
+<<<<<<< HEAD
 		UPDATE T_CMS_COLUMNS
+=======
+		UPDATE t_cms_columns
+>>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 		SET status = 1
 		WHERE id = #{id}
 	</update>
 	<!-- 假删除 -->
 	<update id="fakeDelete">
+<<<<<<< HEAD
 		UPDATE T_CMS_COLUMNS
+=======
+		UPDATE t_cms_columns
+>>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 		SET status = 2
 		WHERE id = #{id}
 	</update>
 
 	<!-- 启更新 -->
 	<update id="update">
+<<<<<<< HEAD
 		UPDATE T_CMS_COLUMNS
+=======
+		UPDATE t_cms_columns
+>>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 		SET
 		type = #{type},
 		parentId = #{parent.id},
@@ -125,13 +177,21 @@
 	</update>
 	<!-- 删除 -->
 	<delete id="delete">
+<<<<<<< HEAD
 		DELETE FROM T_CMS_COLUMNS
+=======
+		DELETE FROM t_cms_columns
+>>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 		WHERE ID = #{id}
 	</delete>
 
 	<!-- 添加 -->
 	<insert id="insert">
+<<<<<<< HEAD
 		INSERT INTO T_CMS_COLUMNS (
+=======
+		INSERT INTO t_cms_columns (
+>>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 		ID,
 		type,
 		parentId,

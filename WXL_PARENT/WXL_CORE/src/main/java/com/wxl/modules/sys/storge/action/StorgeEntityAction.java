@@ -128,7 +128,11 @@ public class StorgeEntityAction extends SingleTableController<StorgeEntity, Stor
 
 		try {
 
+<<<<<<< HEAD
 			InputStream inputStream = new FileInputStream(new File(Global.getConfig("userfiles.basedir") + entity.getFilePhysicalPath()));
+=======
+			InputStream inputStream = new FileInputStream(Global.getCurrenFiletPath(new File(Global.getConfig("userfiles.basedir") + entity.getFilePhysicalPath())));
+>>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 			OutputStream os = response.getOutputStream();
 			byte[] b = new byte[2048];
 			int length;
@@ -155,7 +159,12 @@ public class StorgeEntityAction extends SingleTableController<StorgeEntity, Stor
 		OutputStream out = null;
 		try {
 			StorgeEntity entity = service.get(id);
+<<<<<<< HEAD
 			InputStream inputStream = new FileInputStream(new File(Global.getConfig("userfiles.basedir") + entity.getFilePhysicalPath()));
+=======
+			
+			InputStream inputStream = new FileInputStream(Global.getCurrenFiletPath(new File(Global.getConfig("userfiles.basedir") + entity.getFilePhysicalPath())));
+>>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 			response.setContentType("multipart/form-data;charset=utf8");
 			out = response.getOutputStream();
 			byte[] b = new byte[1024];

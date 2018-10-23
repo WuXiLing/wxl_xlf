@@ -3,7 +3,10 @@ package com.wxl.modules.cms.article.service.impl;
 import java.util.List;
 import java.util.Map;
 
+<<<<<<< HEAD
 import org.apache.commons.lang3.StringUtils;
+=======
+>>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +26,7 @@ import com.wxl.modules.sys.utils.UserUtils;
 @CacheConfig(cacheNames = "cms_article")
 public class ArticleServiceImpl extends SingleTableServiceImpl<Article, ArticleMapper> implements ArticleService {
 
+<<<<<<< HEAD
 	/**
 	 * 保存前设置<br>
 	 * 状态是已发布，则设置发布人、否则发布人为空
@@ -39,16 +43,21 @@ public class ArticleServiceImpl extends SingleTableServiceImpl<Article, ArticleM
 		}
 	}
 	
+=======
+>>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 	@Override
 	public List<Article> selectImageList(Map<String, Object> params) {
 		return mapper.selectImageList(params);
 	}
 
+<<<<<<< HEAD
 	/**
 	 * 发布
 	 * 
 	 * @param id
 	 */
+=======
+>>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 	@Override
 	public void release(String id) {
 		mapper.release(id,UserUtils.getUser().getId());

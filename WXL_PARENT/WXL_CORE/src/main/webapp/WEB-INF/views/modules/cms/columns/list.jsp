@@ -4,18 +4,33 @@
 <head>
 <title>栏目管理</title>
 <meta name="decorator" content="layui" />
+<<<<<<< HEAD
 </head>
 <body>
     <div class="layui-fluid">
 		<div class="layui-btn-group cms-columns-operate-btn">
+=======
+<%@include file="/WEB-INF/views/layui/treetable.jsp"%>
+</head>
+<body>
+    <div class="layui-fluid">
+		<div class="layui-btn-group menu-operate-btn">
+>>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 			<button class="layui-btn layui-btn-sm" data-type="toquery">
 				<i class="fa fa-search"></i>查询
 			</button>
 		</div>
+<<<<<<< HEAD
 		<table id="cms-columns-table" class="layui-table" lay-filter="cms-columns-table"></table>
 	</div>
 	<div class="layui-card cms-columns-query-content" style="display: none;">
 		<div class="layui-card-header"><i class="fa fa-search"></i> 查询</div>
+=======
+		<table id="tableMain" class="layui-table" lay-filter="tableMain"></table>
+	</div>
+	<div class="layui-card columns-component-layer" style="display: none;">
+		<div class="layui-card-header">查询</div>
+>>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 		<div class="layui-card-body">
 			<form class="layui-form layui-form-pane">
 				<div class="layui-form-item">
@@ -27,9 +42,15 @@
 					</div>
 				</div>
 				<div class="layui-form-item">
+<<<<<<< HEAD
 					<div class="layui-input-block cms-columns-table-operate-btn">
 						<button class="layui-btn layui-btn-sm" lay-submit data-type="query" lay-filter="component-form-cms-columns-query" onclick="return false;"><i class="fa fa-search"></i>查询</button>
 						<button type="reset" class="layui-btn layui-btn-sm layui-btn-primary" onclick="return false;"><i class="fa fa-reply"></i>重新填写</button>
+=======
+					<div class="layui-input-block columns-table-operate-btn">
+						<button class="layui-btn layui-btn-sm" lay-submit data-type="query" lay-filter="component-form-columns-query"><i class="fa fa-search"></i>查询</button>
+						<button type="reset" class="layui-btn layui-btn-sm layui-btn-primary"><i class="fa fa-reply"></i>重新填写</button>
+>>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 					</div>
 				</div>
 			</form>

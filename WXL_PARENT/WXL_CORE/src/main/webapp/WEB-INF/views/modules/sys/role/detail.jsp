@@ -37,6 +37,7 @@
 							</div>
 						</div>
 						<div class="layui-inline">
+<<<<<<< HEAD
 							<label class="layui-form-label">是否可用：</label>
 							<div class="layui-input-block">
 								<input type="checkbox" name="status" lay-filter="switchStatus" lay-skin="switch" ${role.status eq '1' ? 'checked': ''} value="${role.status}" lay-text="可用|不可用" disabled>
@@ -45,6 +46,8 @@
 					</div>
 					<div class="layui-form-item">
 						<div class="layui-inline">
+=======
+>>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 							<label class="layui-form-label">数据范围：</label>
 							<div class="layui-input-block">
 							    <select name="dataScope" lay-filter="aihao" disabled>
@@ -93,7 +96,11 @@
 				</form>
 			</div>
 			<div class="layui-card-footer">
+<<<<<<< HEAD
 			     <button class="layui-btn layui-btn-primary" onclick="return false;" data-type="close"><i class="fa fa-remove"></i>关闭页面</button>
+=======
+			     <button class="layui-btn layui-btn-primary" data-type="close"><i class="fa fa-remove"></i>关闭页面</button>
+>>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 			</div>
 		</div>
 	</div>

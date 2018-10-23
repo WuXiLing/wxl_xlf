@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+<<<<<<< HEAD
 import java.util.concurrent.TimeUnit;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,12 +18,23 @@ import org.springframework.data.redis.core.BoundSetOperations;
 import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.ListOperations;
 import org.springframework.data.redis.core.RedisCallback;
+=======
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.redis.core.BoundSetOperations;
+import org.springframework.data.redis.core.HashOperations;
+import org.springframework.data.redis.core.ListOperations;
+>>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.stereotype.Service;
 
+<<<<<<< HEAD
 import com.wxl.common.exception.RedisExpireOutOfRangeException;
 
+=======
+>>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 /**
  * redis缓存工具类
  * 
@@ -32,8 +44,11 @@ import com.wxl.common.exception.RedisExpireOutOfRangeException;
 @Service
 public class RedisCacheUtil {
 
+<<<<<<< HEAD
 	public final static long REDIS_EXPIRE_ALWAYS = -1;
 	
+=======
+>>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 	@Autowired
 	@Qualifier("redisTemplate")
 	public RedisTemplate<String, Object> redisTemplate;
@@ -50,6 +65,7 @@ public class RedisCacheUtil {
 	public void setCacheObject(String key, Object value) {
 		redisTemplate.opsForHash().put("sys", key, value);
 	}
+<<<<<<< HEAD
 	public void setCacheObject(String key, Object value, long time) {
 		setCacheObject(key, value);
 		setExpire(key, time);
@@ -63,6 +79,8 @@ public class RedisCacheUtil {
 			redisTemplate.expire(key, time, TimeUnit.MILLISECONDS);
 		}
 	}
+=======
+>>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 
 	/**
 	 * 获得缓存的基本对象。
@@ -108,10 +126,13 @@ public class RedisCacheUtil {
 
 		return listOperation;
 	}
+<<<<<<< HEAD
 	public void setCacheList(String key, List<Object> value, long time) {
 		setCacheList(key, value);
 		setExpire(key, time);
 	}
+=======
+>>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 
 	/**
 	 * 获得缓存的list对象
@@ -154,11 +175,14 @@ public class RedisCacheUtil {
 
 		return setOperation;
 	}
+<<<<<<< HEAD
 	public void setCacheSet(String key, Set<Object> value, long time) {
 		setCacheSet(key, value);
 		setExpire(key, time);
 	}
 
+=======
+>>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 
 	/**
 	 * 获得缓存的set
@@ -203,10 +227,13 @@ public class RedisCacheUtil {
 
 		return hashOperations;
 	}
+<<<<<<< HEAD
 	public void setCacheMap(String key, Map<String, Object> value, long time) {
 		setCacheMap(key, value);
 		setExpire(key, time);
 	}
+=======
+>>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 
 	/**
 	 * 获得缓存的Map
@@ -216,6 +243,7 @@ public class RedisCacheUtil {
 	 * @return
 	 */
 	public Map<String, Object> getCacheMap(String key) {
+<<<<<<< HEAD
 		BoundHashOperations<String, String, Object> hashOperations = redisTemplate.boundHashOps(key);
 		return hashOperations.entries();
 	}
@@ -233,11 +261,19 @@ public class RedisCacheUtil {
 				return null;
 			}
 		});
+=======
+		Map<String, Object> map = null;
+		/* Map<String, T> map = hashOperation.entries(key); */
+		return map;
+>>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 	}
 
 	protected RedisSerializer<String> getRedisSerializer() {
 
 		return redisTemplate.getStringSerializer();
 	}
+<<<<<<< HEAD
 
+=======
+>>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 }

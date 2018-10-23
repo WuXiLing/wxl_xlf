@@ -42,6 +42,10 @@
 	</div>
 	<input id="parentId" value="${id}" type="hidden" />
 	<input id="parentName" value="${name}" type="hidden" />
+<<<<<<< HEAD
 	<script src="${ctxStatic}/wxl/utils/userTree.js" type="text/javascript"></script>
+=======
+	<script src="${ctxStatic}/wxl/modules/component/userTree.js" type="text/javascript"></script>
+>>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 </body>
 </html>

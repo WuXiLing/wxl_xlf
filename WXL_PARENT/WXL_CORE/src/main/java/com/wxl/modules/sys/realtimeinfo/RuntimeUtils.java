@@ -26,12 +26,15 @@ import org.slf4j.LoggerFactory;
 
 import com.wxl.common.utils.DateUtils;
 
+<<<<<<< HEAD
 /**
  * 获取系统实时信息
  * 
  * @author Liang
  *
  */
+=======
+>>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 public class RuntimeUtils {
 
 	protected static Logger logger = LoggerFactory.getLogger(RuntimeUtils.class);
@@ -69,11 +72,14 @@ public class RuntimeUtils {
 		}
 	}
 
+<<<<<<< HEAD
 	/**
 	 * CPU信息
 	 * 
 	 * @return
 	 */
+=======
+>>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 	public static List<String[]> getCPUInfo() {
 
 		List<String[]> s = new ArrayList<>();
@@ -93,11 +99,14 @@ public class RuntimeUtils {
 		return s;
 	}
 
+<<<<<<< HEAD
 	/**
 	 * 内存信息
 	 * 
 	 * @return
 	 */
+=======
+>>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 	public static List<String[]> getMemeryInfo() {
 		try {
 			Sigar sigar = new Sigar();
@@ -124,11 +133,14 @@ public class RuntimeUtils {
 		return new ArrayList<String[]>();
 	}
 
+<<<<<<< HEAD
 	/**
 	 * jvm内存信息
 	 * 
 	 * @return
 	 */
+=======
+>>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 	public static List<String[]> getJvmInfo() {
 		return new ArrayList<String[]>() {
 
@@ -146,11 +158,14 @@ public class RuntimeUtils {
 		};
 	}
 
+<<<<<<< HEAD
 	/**
 	 * 系统信息
 	 * 
 	 * @return
 	 */
+=======
+>>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 	public static Map<String, Object> getSysInfo() {
 		Map<String, Object> map = new HashMap<String, Object>();
 		InetAddress addr;

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+ 
+    <!-- 注册中心服务地址 -->
+    <dubbo:registry id="zookeeper" protocol="${dubbo.registry.protocol}" address="${dubbo.registry.address}" /> 
+    
+    <dubbo:protocol name="${dubbo.provider.protocol}" port="${dubbo.protocol.port}" server="${dubbo.protocol.server}" />
+    
+    <!-- 声明需要暴露的服务接口 -->
+    <dubbo:service interface="avic.apache.dubbo.provider.StringService" ref="stringService" version="1.0" registry="zookeeper"/>
+    <!-- 具体服务接口的实现 -->
+    <!--  <bean id="stringService" class="avic.apache.dubbo.provider.impl.StringServiceImpl" /> -->
+     
+     <!-- 声明需要暴露的服务接口 -->
+    <dubbo:service interface="avic.apache.dubbo.provider.ListService" ref="listService" version="1.0" registry="zookeeper"/>
+    <!-- 具体服务接口的实现 -->
+     <!-- <bean id="listService" class="avic.apache.dubbo.provider.impl.ListServiceImpl" /> -->
+     
+     <!-- 声明需要暴露的服务接口 -->
+    <dubbo:service interface="avic.apache.dubbo.provider.ObjectService" ref="objectService" version="1.0" registry="zookeeper"/>
+    <!-- 具体服务接口的实现 -->
+    <!-- <bean id="objectService" class="avic.apache.dubbo.provider.impl.ObjectServiceImpl" /> -->
+ 
+</beans>

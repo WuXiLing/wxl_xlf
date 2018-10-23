@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<<<<<<< HEAD
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" version="3.0">
+=======
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" version="3.0">
+>>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 
 	<display-name>WXL_ADMIN</display-name>
 	<!-- Context ConfigLocation -->
@@ -45,6 +49,7 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 
+<<<<<<< HEAD
 	<filter>
 		<filter-name>JerseyServletContainer</filter-name>
 		<filter-class>org.glassfish.jersey.servlet.ServletContainer</filter-class>
@@ -62,6 +67,13 @@
 		<filter-name>JerseyServletContainer</filter-name>
 		<url-pattern>/ws/rest/*</url-pattern>
 	</filter-mapping>
+=======
+	<!-- <filter> <filter-name>csrfFilter</filter-name> <filter-class>com.wxl.common.filter.CsrfFilter</filter-class> </filter> <filter-mapping> <filter-name>csrfFilter</filter-name> <url-pattern>/*</url-pattern> </filter-mapping> <filter> <filter-name>xssFilter</filter-name> <filter-class>com.wxl.common.filter.XssFilter</filter-class> 
+		</filter> <filter-mapping> <filter-name>xssFilter</filter-name> <url-pattern>/*</url-pattern> </filter-mapping> -->
+
+	<!-- PageCache, cache .html suffix. <filter> <filter-name>PageCacheFilter</filter-name> <filter-class>com.wxl.common.filter.PageCachingFilter</filter-class> </filter> <filter-mapping> <filter-name>PageCacheFilter</filter-name> <url-pattern>/</url-pattern> </filter-mapping> <filter-mapping> <filter-name>PageCacheFilter</filter-name> 
+		<url-pattern>*.html</url-pattern> </filter-mapping> -->
+>>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 
 	<!-- SiteMesh -->
 	<filter>
@@ -77,6 +89,10 @@
 		<url-pattern>/f/*</url-pattern>
 	</filter-mapping>
 
+<<<<<<< HEAD
+=======
+	<!-- MVC Servlet -->
+>>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 	<servlet>
 		<servlet-name>springServlet</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -91,6 +107,32 @@
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 
+<<<<<<< HEAD
+=======
+	<!-- DruidStatView -->
+	<servlet>
+		<servlet-name>DruidStatView</servlet-name>
+		<servlet-class>com.alibaba.druid.support.http.StatViewServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DruidStatView</servlet-name>
+		<url-pattern>/druid/*</url-pattern>
+	</servlet-mapping>
+
+<<<<<<< HEAD
+=======
+    <!-- activiti code -->
+	<!-- <filter>
+		<filter-name>JSONPFilter</filter-name>
+		<filter-class>org.activiti.explorer.JsonpCallbackFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>JSONPFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping> -->
+
+>>>>>>> ebbb5fa033832c23feae3fa25849d31f1e876660
+>>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 	<!-- Validate code -->
 	<servlet>
 		<servlet-name>captchaServlet</servlet-name>
@@ -100,12 +142,36 @@
 		<servlet-name>captchaServlet</servlet-name>
 		<url-pattern>/servlet/validateCodeServlet</url-pattern>
 	</servlet-mapping>
+<<<<<<< HEAD
 	<servlet>
 		<servlet-name>openBrowerServlet</servlet-name>
 		<servlet-class>com.wxl.common.listener.OpenBrowerServlet</servlet-class>
 		<!-- 如果需要自动加载，加下面一句 -->
 		<load-on-startup>100</load-on-startup>
 	</servlet>
+=======
+
+<<<<<<< HEAD
+=======
+    <!-- cxf code -->
+>>>>>>> ebbb5fa033832c23feae3fa25849d31f1e876660
+	<servlet>
+		<servlet-name>CXFServlet</servlet-name>
+		<servlet-class>org.apache.cxf.transport.servlet.CXFServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>CXFServlet</servlet-name>
+		<url-pattern>/webservice/*</url-pattern>
+	</servlet-mapping>
+
+	<!-- [INSERT FRAGMENT HERE] -->
+
+	<!-- Session configure, to "wxl.properties" file "session.sessionTimeout" parameter. <session-config> <session-timeout>30</session-timeout> </session-config> -->
+
+	<!-- Error page -->
+	<!-- <error-page> <exception-type>java.lang.Throwable</exception-type> <location>/WEB-INF/views/error/500.jsp</location> </error-page> -->
+>>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 	<error-page>
 		<error-code>500</error-code>
 		<location>/WEB-INF/views/error/500.jsp</location>

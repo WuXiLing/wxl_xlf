@@ -38,7 +38,11 @@ layui.config({
 			 url:ctx + "/sys/storge/upload/cms/columns",
 			 elem:"#LAY_avatarUpload",
 			 accept: 'file',
+<<<<<<< HEAD
 			 size: 1024,
+=======
+			 size: 60,
+>>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 			 exts: 'jpg|png|gif',
 			 done:function(t){
 				 if(t.msg == 'do_ok'){
@@ -74,10 +78,18 @@ layui.config({
 				dataType : "json",
 				contentType : "application/json; charset=utf-8",
 				success : function(msg) {
+<<<<<<< HEAD
 					parent.cms_Columns.initTreeTable();
 					parent.layui.layer.msg('提交成功。', {
 						time : 2000
 					});
+=======
+//					treetable.reload(tableId);
+					parent.layui.layer.msg('提交成功。', {
+						time : 2000
+					});
+//					parent.location.reload();
+>>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 					parent.layer.close(index);
 				},
 				error : function() {

@@ -12,6 +12,7 @@ li {
 
 #cms_nav_menu li:hover {
 	background-color :#01439A;
+<<<<<<< HEAD
 } 
 
 .layui-carousel{
@@ -32,6 +33,23 @@ li {
 }
 
 
+=======
+}
+
+/* #cms_nav_menu .layui-anim-upbit{
+	background-color :#0D59A7;
+	color : #FEFEFE!important; 
+}
+
+#cms_nav_menu .layui-anim-upbit:hover {
+	color : #FEFEFE!important; 
+} */
+
+.layui-carousel{
+	width : 100%!important;
+}
+
+>>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 #cms_first_nav .layui-card {
 	border-top-width: 0px;
 	border-left-width: 0px;

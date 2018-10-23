@@ -32,14 +32,30 @@
         </div>
 	</div>
 		<div class="layui-card demo-component-layer" style="display:none;">
+<<<<<<< HEAD
           <div class="layui-card-header"><i class="fa fa-search"></i> 查询</div>
+=======
+          <div class="layui-card-header">查询</div>
+>>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
           <div class="layui-card-body">
               <form class="layui-form layui-form-pane">
 					<div class="layui-form-item">
 						<div class="layui-inline">
+<<<<<<< HEAD
 							<label class="layui-form-label">标题：</label>
 							<div class="layui-input-block">
 								<input type="text" name="title" placeholder="请输入标题" class="layui-input condition">
+=======
+							<label class="layui-form-label">姓名</label>
+							<div class="layui-input-block">
+								<input type="text" name="name" placeholder="请输入姓名" class="layui-input condition">
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">登录名</label>
+							<div class="layui-input-block">
+								<input type="text" name="loginName" placeholder="请输入登录名" class="layui-input condition">
+>>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 							</div>
 						</div>
 					</div>

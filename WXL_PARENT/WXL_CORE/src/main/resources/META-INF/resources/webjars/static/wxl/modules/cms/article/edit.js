@@ -18,11 +18,14 @@ layui.use([ 'form', 'laydate', 'table'  ],
 		      elem: '#releaseDate'
 		      ,type: 'date'
 		      ,value : releaseDate ? new Date(releaseDate) : new Date()
+<<<<<<< HEAD
 		      ,done: function(value, date){
 		          if(!value){ 
 		        	  form.val('component-form-article-edit', {"status": false})
 		          }
 		       }
+=======
+>>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 		 });
 		 
 		/* 自定义验证规则 */
@@ -43,7 +46,11 @@ layui.use([ 'form', 'laydate', 'table'  ],
 			 url:ctx + "/sys/storge/upload/cms/article",
 			 elem:"#LAY_avatarUpload",
 			 accept: 'file',
+<<<<<<< HEAD
 			 size: 1024,
+=======
+			 size: 60,
+>>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 			 exts: 'jpg|png|gif',
 			 done:function(t){
 				 if(t.msg == 'do_ok'){
@@ -60,6 +67,7 @@ layui.use([ 'form', 'laydate', 'table'  ],
 		 });
 
 		/* 监听指定开关 */
+<<<<<<< HEAD
 		form.on('switch(switchStatus)',function(data) {
 		        if(this.checked){
 		        	var releaseDate = $("#releaseDate").val();
@@ -78,6 +86,20 @@ layui.use([ 'form', 'laydate', 'table'  ],
 				layer.msg("请输入：<span style='color:red;'>内容。<span>", {icon: 5});
 				return false;
 			}
+=======
+		/*form.on('switch(component-form-switchTest)',
+				function(data) {
+					layer.msg('开关checked：'
+							+ (this.checked ? 'true' : 'false'), {
+						offset : '6px'
+					});
+					layer.tips('温馨提示：请注意开关状态的文字可以随意定义，而不仅仅是ON|OFF',
+							data.othis)
+				});*/
+
+		/* 监听提交 */
+		form.on('submit(component-form-article-edit)', function(data) {
+>>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 			$.ajax({
 				type : 'POST',
 				url : baseUrl + "aysnsave",
@@ -85,7 +107,11 @@ layui.use([ 'form', 'laydate', 'table'  ],
 				dataType : "json",
 				contentType : "application/json; charset=utf-8",
 				success : function(msg) {
+<<<<<<< HEAD
 					parent.layui.table.reload(tableId, {
+=======
+					table.reload(tableId, {
+>>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 						page : {
 							curr : 1
 						// 重新从第 1 页开始

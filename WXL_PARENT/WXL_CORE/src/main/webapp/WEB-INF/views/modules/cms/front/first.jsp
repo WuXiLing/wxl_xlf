@@ -29,9 +29,14 @@
 				<div class="layui-card">
 					<div class="layui-card-body">
 						<div class="layui-tab layui-tab-brief">
+<<<<<<< HEAD
 							<ul class="layui-tab-title" id="news_title">
 								<li class="layui-this"><h2>新闻动态</h2></li>
 								<li id="news_more"><a href="#" target="_blank">更多&nbsp;<i class="layui-icon layui-icon-next" style="font-size: 12px;"></i></a></li>
+=======
+							<ul class="layui-tab-title">
+								<li class="layui-this"><h2>新闻动态</h2></li>
+>>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 							</ul>
 							<div class="layui-tab-content">
 								<div class="layui-tab-item layui-show">
@@ -71,9 +76,14 @@
 				<div class="layui-card">
 					<div class="layui-card-body">
 						<div class="layui-tab layui-tab-brief cms_tztg">
+<<<<<<< HEAD
 							<ul class="layui-tab-title" id="notice_title">
 								<li class="layui-this"><h2>通知通告</h2></li>
 								<li id="notice_more"><a href="#" target="_blank">更多&nbsp;<i class="layui-icon layui-icon-next" style="font-size: 12px;"></i></a></li>
+=======
+							<ul class="layui-tab-title">
+								<li class="layui-this"><h2>通知通告</h2></li>
+>>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 							</ul>
 							<div class="layui-tab-content">
 								<div class="layui-tab-item layui-show " id="cms_tztg_nr"></div>
@@ -87,9 +97,14 @@
 		    <div class="layui-card">
 				<div class="layui-card-body">
 					<div class="layui-tab layui-tab-brief">
+<<<<<<< HEAD
 						<ul class="layui-tab-title" id="academic_title">
 							<li class="layui-this"><h2>学术研究</h2></li>
 							<li id="academic_more"><a href="#" target="_blank">更多&nbsp;<i class="layui-icon layui-icon-next" style="font-size: 12px;"></i></a></li>
+=======
+						<ul class="layui-tab-title">
+							<li class="layui-this"><h2>学术研究</h2></li>
+>>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 						</ul>
 						<div class="layui-tab-content cms_xsyj">
 							<div class="layui-tab-item layui-show">
@@ -106,6 +121,176 @@
 		<jsp:include page="bottom.jsp" />
 	</div>
 	<script src="${ctxStatic}/wxl/utils/date.js" type="text/javascript"></script>
+<<<<<<< HEAD
 	<script src="${ctxStatic}/wxl/modules/cms/front/index.js" type="text/javascript"></script>
+=======
+	<script>
+		layui.use(['table','carousel'], function() {
+			var $ = layui.$, element = layui.element;
+			var carousel = layui.carousel;
+			var table = layui.table;
+			
+			//常规轮播
+		    /* carousel.render({
+		      elem: '#logo-carousel-normal'
+		      ,arrow: 'always'
+		    }); */
+		    
+		    
+			table.render({
+				elem : '#news-table-operate',
+				url : ctxf + '/cms/front/selectLayuiPageList',
+				//height : 'full-70',
+				where : {
+					key : {
+						"limit" : 8,
+						"status" : 1,
+						"columnsId" : '4e04bedf842d40ddaba5794bb5985928'
+					}
+				},
+				cols : [ [ {
+					field : 'title',
+					title : '标题',
+					align : 'left',
+					width : 340,
+					templet : function(d){
+						return "&nbsp;&nbsp;&nbsp;&nbsp;<span>▶</span>&nbsp;&nbsp;&nbsp;&nbsp;<a href='" + ctxf + "/cms/front/three/" + d.id + "' target='_blank'>" + d.title +"</a>";
+					}
+				}, {
+					field : 'releaseDate',
+					title : '发布时间',
+					align : 'center',
+					width : '100px',
+					templet : function(d){
+						if(d.releaseDate){
+							var date = new Date(d.releaseDate);
+							return date.Format("yyyy-MM-dd");
+						}
+						return '';
+					}
+				}] ],
+				page : false,
+				done : function(res, curr, count){
+					$(".layui-table-header").hide();
+				},
+				skin : 'nob'
+			});
+			
+			//newsPhoto
+			$.get(ctxf + "/cms/front/getImageListByColumnsId/4e04bedf842d40ddaba5794bb5985928/5",{},function(data){
+				if(data && data.articleList && data.articleList.length > 0){
+					var cms_news_photo = $("#cms_news_photo");
+					$.each(data.articleList,function(i,e){
+					    cms_news_photo.append("<div><img src='${ctxf}/sys/storge/showImage/cms/article/" + e.image + "'></div>");
+					});
+					carousel.render({
+				      elem: '#news-carousel-normal'
+				      ,arrow: 'always'
+				    }); 
+				}
+			});
+			//logoPhoto
+			$.get(ctxf + "/cms/front/getImageListByColumnsId/f7b3dc3ab4e94274b8053d95da0aaf95/6",{},function(data){
+				if(data && data.articleList && data.articleList.length > 0){
+					var cms_logo_carousel = $("#cms_logo_carousel");
+					$.each(data.articleList,function(i,e){
+						cms_logo_carousel.append("<div><img src='${ctxf}/sys/storge/showImage/cms/article/" + e.image + "'></div>");
+					});
+					carousel.render({
+				      elem: '#logo-carousel-normal'
+				      ,arrow: 'always'
+				    }); 
+				}
+			});
+			
+			//nav
+			$.get(ctxf + "/cms/front/getFirstNavColumns",{},function(data){
+				if(data && data.columnsList && data.columnsList.length > 0){
+					var cms_nav_menu = $("#cms_nav_menu");
+					console.info(data.columnsList);
+					$.each(data.columnsList,function(i,e){
+						var str = [];
+						str.push("<li class='layui-nav-item'>");
+						var target = e.target || "_blank";
+						if(e.type == "389e1a7f28ef4500bb68d9dba14207d4"){//three page
+							str.push("<a href='" + ctxf + "/cms/front/columnsThree/" + e.id + "' target='" + target + "'>" + e.name + "</a>");
+						} else if(e.type == "502fa94eb9b64516aaff1f254e71654f"){//coolumns
+							str.push("<a href='" + ctxf + "/cms/front/senond/" + e.id + "' target='" + target + "'>" + e.name + "</a>");
+						} else if(e.type == "0e0acb903a374b7e94aff42917a475af"){//list
+							str.push("<a href='" + ctxf + "/cms/front/senond/" + e.id + "' target='" + target + "'>" + e.name + "</a>");
+						}
+						if(e.childrens && e.childrens.length > 0){
+							str.push("<dl class='layui-nav-child'>");
+							$.each(e.childrens,function(k,el){
+								if(el.target == "_blank"){
+							        str.push("<a href='" + el.href + "' target='" + el.target + "'>" + el.name + "</a>");
+								} else if(e.target == "_top") {
+									 str.push("<a href='" + ctxf + el.href + "' target='" + el.target + "'>" + el.name + "</a>");
+								} else {
+									var target = el.target || "_blank";
+									if(el.type == "389e1a7f28ef4500bb68d9dba14207d4"){//three page
+										str.push("<a href='" + ctxf + "/cms/front/columnsThree/" + el.id + "' target='" + target + "'>" + el.name + "</a>");
+									} else if(el.type == "502fa94eb9b64516aaff1f254e71654f"){//coolumns
+										str.push("<a href='" + ctxf + "/cms/front/senond/" + el.id + "' target='" + target + "'>" + el.name + "</a>");
+									} else if(el.type == "0e0acb903a374b7e94aff42917a475af"){//list
+										str.push("<a href='" + ctxf + "/cms/front/senond/" + el.id + "' target='" + target + "'>" + el.name + "</a>");
+									}
+								}
+							});
+							str.push("</dl>");
+						}
+						str.push("</li>");
+						cms_nav_menu.append(str.join(""));
+					});
+					element.render('nav', 'component-nav');
+					element.render('nav', 'component-nav-active');
+
+					element.on('nav(component-nav-active)', function(elem) {
+						layer.msg(elem.text());
+					});
+				}
+			});
+		});
+		
+		$(function(){
+			
+			//Academic
+			$.get(ctxf + "/cms/front/getImageListByColumnsId/87ad7806570346b58f1405557f7248ee/4",{},function(data){
+				if(data && data.articleList && data.articleList.length > 0){
+					var cms_xsyj_iamge = $("#cms_xsyj_image");
+					var cms_xsyj_title = $("#cms_xsyj_title");
+					var cms_xsyj_content = $("#cms_xsyj_content");
+					$.each(data.articleList,function(i,e){
+						cms_xsyj_iamge.append("<div class='layui-col-md3'><img src='${ctxf}/sys/storge/showImage/cms/article/" + e.image + "'></div>");
+						cms_xsyj_title.append("<div class='layui-col-md3 cms_xsyj_title'><span class='symbol'>■</span><a href='" + ctxf + "/cms/front/three/" + e.id + "' target='_blank'>" + e.title + "</a></div>");
+						cms_xsyj_content.append("<div class='layui-col-md3'><blockquote class='layui-elem-quote layui-quote-nm'>" + autoAddEllipsis(e.content,20*4) + "</blockquote></div>");
+					});
+				}
+			});
+			
+			//notice
+			$.get(ctxf + "/cms/front/getImageListByColumnsId/06bcb807af8b4b409b4b3d0f8aaeaf32/3",{},function(data){
+				if(data && data.articleList && data.articleList.length > 0){
+					var cms_tztg_nr = $("#cms_tztg_nr");
+					$.each(data.articleList,function(i,e){
+						var releaseDate = new Date(e.releaseDate);
+						var str = [];
+						str.push("<div class='layui-row " + (i==0 ? "active" : "") + "'>");
+						str.push("   <div class='layui-col-md3 cms_tztg_sj'>");
+						str.push("       <div class='layui-row'><div class='layui-col-md12'><h1>" + releaseDate.getDate() + "</h1></div></div>");
+						str.push("       <div class='layui-row'><div class='layui-col-md12'>" + (releaseDate.getMonth() + 1) + "月</div></div>");
+						str.push("   </div>");
+						str.push("   <div class='layui-col-md9 cms_tztg_js'>");
+						str.push("       <div class='layui-row'><div class='layui-col-md12'><a class='" + (i==0 ? "active" : "") + "' href='" + ctxf + "/cms/front/three/" + e.id + "' target='_blank'><h3>" + e.title + "</h3></a></div></div>");
+						str.push("       <div class='layui-row'><div class='layui-col-md12'><h4>" + autoAddEllipsis(e.content,19) + "</h4></div></div>");
+						str.push("   </div>");
+						str.push("</div>");
+						cms_tztg_nr.append(str.join(""));
+					});
+				}
+			});
+		});
+	</script>
+>>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 </body>
 </html>

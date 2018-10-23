@@ -8,8 +8,11 @@
 <link href="${ctxStatic}/wxl/css/cms.css" rel="stylesheet" media="all" />
 </head>
 <body>
+<<<<<<< HEAD
     <input id="type" value="${columns.type}" type="hidden">
 	<input id="id" value="${columns.id}" type="hidden">
+=======
+>>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 	<div class="layui-fluid">
 		<jsp:include page="logo.jsp" />
 		<jsp:include page="nav.jsp" />
@@ -39,6 +42,10 @@
 		    </div>
 		</div>
 		<jsp:include page="bottom.jsp" />
+<<<<<<< HEAD
+=======
+		<input id="type" value="${columns.type}" type="hidden">
+>>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 	</div>
 	<script src="${ctxStatic}/wxl/utils/date.js" type="text/javascript"></script>
 	<script type="text/javascript">
@@ -56,8 +63,12 @@
 					where : {
 						key : {
 							"columnsId" : "${columns.id}",
+<<<<<<< HEAD
 							"status" : 1,
 							"frontQuery" : "y"
+=======
+							"status" : 1
+>>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 						}
 					},
 					cellMinWidth : 80,

@@ -187,7 +187,11 @@ layui.use([ 'table','form','layer' ], function() {
 				});
 			});
 		} else if (obj.event === 'edit') {
+<<<<<<< HEAD
 			var index = layui.layer.open({
+=======
+			var index = parent.layui.layer.open({
+>>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 				type : 2,
 				title : "<i class='layui-icon layui-icon-read'></i> 文章编辑",
 				content : baseUrl + 'upd/' + data.id,
@@ -199,7 +203,11 @@ layui.use([ 'table','form','layer' ], function() {
 	});
 	var active = {
 		add : function(){
+<<<<<<< HEAD
 			var index = layui.layer.open({
+=======
+			var index = parent.layui.layer.open({
+>>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 				type: 2,
 				title:"<i class='layui-icon layui-icon-read'></i> 文章新增",
 				content: baseUrl + 'add?columnsId=' + selectId,
@@ -216,7 +224,11 @@ layui.use([ 'table','form','layer' ], function() {
 				area : [ '500px', '240px' ],
 				content : $('.demo-component-layer'),
 				cancel : function() {
+<<<<<<< HEAD
 					$('.demo-component-layer').hide();
+=======
+
+>>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 				}
 			});
 		},

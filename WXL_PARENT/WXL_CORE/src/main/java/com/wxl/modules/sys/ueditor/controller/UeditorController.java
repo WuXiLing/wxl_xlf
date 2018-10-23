@@ -12,12 +12,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.baidu.ueditor.ActionEnter;
 
+<<<<<<< HEAD
 /**
  * 百度富文本上传文件
  * 
  * @author Liang
  *
  */
+=======
+>>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 @Controller
 @RequestMapping(value = {"/sys/ueditor"})
 public class UeditorController {

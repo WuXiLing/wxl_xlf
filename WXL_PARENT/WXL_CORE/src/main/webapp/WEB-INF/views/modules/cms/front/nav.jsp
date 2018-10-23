@@ -9,5 +9,9 @@
 			</div>
 		</div>
 	</div>
+<<<<<<< HEAD
 </div>
 <script src="${ctxStatic}/wxl/modules/cms/front/nav.js" type="text/javascript"></script>
+=======
+</div>
+>>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502

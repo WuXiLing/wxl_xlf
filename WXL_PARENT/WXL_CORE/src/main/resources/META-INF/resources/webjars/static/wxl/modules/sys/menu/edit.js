@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+var table;
+>>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 var tableId = "tableMain";
 var baseUrl = ctx + "/sys/menu/";
 var page_id = "menu_edit";
@@ -11,7 +15,11 @@ $(function() {
 	element = layui.element, layer = layui.layer, form = layui.form,
 			index = parent.layer.getFrameIndex(window.name), form.render(null,
 					'component-form-group');
+<<<<<<< HEAD
 	var table = parent.layui.table;
+=======
+	table = parent.layui.table;
+>>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 	/* 自定义验证规则 */
 	form.verify({
 		title : function(value) {

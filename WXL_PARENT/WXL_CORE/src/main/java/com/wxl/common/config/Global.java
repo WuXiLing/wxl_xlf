@@ -197,4 +197,24 @@ public class Global {
 	public static boolean getDBInit() {
 		return "1".equals(String.valueOf(loader.getProperty("db.init"))) ? true : false;
 	}
+<<<<<<< HEAD
+=======
+	
+	public static final String FILE_SEPARATOR = System.getProperty("file.separator");
+		
+	public static String getCurrenFiletPath(File path) {
+		
+		return getCurrenFiletPath(path.getPath());
+	}
+	public static String getCurrenFiletPath(String path) {
+		if(isLinux()) {
+//			return path.replaceAll("\\", File.separator);
+			return path.replace("/", FILE_SEPARATOR).replace("\\", FILE_SEPARATOR);
+		}
+		return path;
+	}
+	public static boolean isLinux() {
+		return "Linux".equals(System.getProperty("os.name"));
+	}
+>>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 }

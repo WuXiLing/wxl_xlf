@@ -13,8 +13,12 @@
 				<ul id="authorityTree" class="ztree"></ul>
 			</div>
 			<div class="layui-card-footer right">
+<<<<<<< HEAD
 				<a class="layui-btn layui-btn-success authority" onclick="return false;"><i class="fa fa-edit"></i>授权</a>
 				<button class="layui-btn layui-btn-primary close"  onclick="return false;" data-type="close"><i class="fa fa-remove"></i>关闭</button>
+=======
+				<a class="layui-btn layui-btn-primary layui-btn-xs authority" onclick="return false;"><i class="fa fa-edit"></i>提交</a>
+>>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 			</div>
 		</div>
 	</div>
@@ -48,9 +52,12 @@
 			$(".authority").on("click",function(){
 				authority();
 			});
+<<<<<<< HEAD
 			$(".close").on("click",function(){
 				parent.layer.close(parent.layer.getFrameIndex(window.name));
 			});
+=======
+>>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 		});
 
 		function authority() {

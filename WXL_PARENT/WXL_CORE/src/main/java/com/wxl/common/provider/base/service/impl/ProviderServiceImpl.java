@@ -285,7 +285,11 @@ public abstract class ProviderServiceImpl<T extends ProviderEntity, D extends Pr
 			if (obj == null) {
 				t = mapper.get(id);
 				if (t != null) {
+<<<<<<< HEAD
 					CacheUtils.put(cacheEnable.cacheNames() + DELIMITER + id, t,cacheEnable.expiretime());
+=======
+					CacheUtils.put(cacheEnable.cacheNames() + DELIMITER + id, t);
+>>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 				}
 			} else {
 				t = (T) obj;

@@ -8,8 +8,11 @@
 <link href="${ctxStatic}/wxl/css/cms.css" rel="stylesheet" media="all" />
 </head>
 <body>
+<<<<<<< HEAD
     <input id="type" value="${columns.type}" type="hidden">
 	<input id="id" value="${columns.id}" type="hidden">
+=======
+>>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 	<div class="layui-fluid">
 		<jsp:include page="logo.jsp" />
 		<jsp:include page="nav.jsp" />

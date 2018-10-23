@@ -26,11 +26,19 @@
 					<div class="layui-form-item">
 						<label class="layui-form-label">缩略图：</label>
 						<div class="layui-input-inline">
+<<<<<<< HEAD
 							<input name="image" id="image_id" class="image" type='hidden'>
 							<input id="image_name" placeholder="图片地址" value="" class="layui-input">
 						</div>
 						<div class="layui-input-inline layui-btn-container" style="width: auto;">
 							<button type="button" class="layui-btn layui-btn-primary" id="image_upload">
+=======
+							<input name="image" id="image_id" type='hidden'>
+							<input id="image_name" placeholder="图片地址" value="" class="layui-input">
+						</div>
+						<div class="layui-input-inline layui-btn-container" style="width: auto;">
+							<button type="button" class="layui-btn layui-btn-primary" id="LAY_avatarUpload">
+>>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 								<i class="layui-icon">&#xe67c;</i>上传图片
 							</button>
 						</div>
@@ -89,7 +97,12 @@
 			</div>
 		</div>
 	</div>
+<<<<<<< HEAD
 	<script src="${ctxStatic}/wxl/modules/cms/CmsTree.js" type="text/javascript"></script>
 	<script src="${ctxStatic}/wxl/modules/cms/columns/edit.js" type="text/javascript"></script>
+=======
+	<script src="${ctxStatic}/wxl/modules/cms/columns/edit.js" type="text/javascript"></script>
+	<script src="${ctxStatic}/wxl/modules/cms/CmsTree.js" type="text/javascript"></script>
+>>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 </body>
 </html>

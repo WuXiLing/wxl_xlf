@@ -134,9 +134,15 @@
 					</div>
 					<div class="layui-form-item">
 						<div class="layui-input-block">
+<<<<<<< HEAD
 							<button class="layui-btn" lay-submit lay-filter="component-form-user-edit" onclick="return false;"><i class="fa fa-check"></i>确认保存</button>
 							<button type="reset" class="layui-btn layui-btn-primary" onclick="return false;"><i class="fa fa-reply"></i>重新填写</button>
 							<button class="layui-btn layui-btn-primary" data-type="close" onclick="return false;"><i class="fa fa-remove"></i>关闭页面</button>
+=======
+							<button class="layui-btn" lay-submit lay-filter="component-form-user-edit"><i class="fa fa-check"></i>确认保存</button>
+							<button type="reset" class="layui-btn layui-btn-primary"><i class="fa fa-reply"></i>重新填写</button>
+							<button class="layui-btn layui-btn-primary" data-type="close"><i class="fa fa-remove"></i>关闭页面</button>
+>>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 						</div>
 					</div>
 				</form>

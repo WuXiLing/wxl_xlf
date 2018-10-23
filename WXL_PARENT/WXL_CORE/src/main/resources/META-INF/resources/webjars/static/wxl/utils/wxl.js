@@ -118,6 +118,7 @@ function subString1111(str, len){
 
 function autoAddEllipsis(pStr, pLen) {
 	return subString1111(pStr, pLen*2);
+<<<<<<< HEAD
 }
 var Wxl = function Wxl(moduleKey, options) {
 	this.defaults = {
@@ -449,3 +450,6 @@ function createObj(){
 	inheritObject(temp, Wxl);
 	return temp;
 }
+=======
+}
+>>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
