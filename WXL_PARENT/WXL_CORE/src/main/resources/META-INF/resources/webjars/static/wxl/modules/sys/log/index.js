@@ -14,12 +14,8 @@ layui.use([ 'table', 'form' ], function() {
 		}, {
 			field : 'title',
 			fixed : 'left',
-<<<<<<< HEAD
 			title : '标题',
 			width : 100
-=======
-			title : '标题'
->>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 		}, {
 			field : 'opreatUser',
 			title : '操作人',
@@ -33,7 +29,6 @@ layui.use([ 'table', 'form' ], function() {
 			field : 'requestUri',
 			title : 'URI'
 		}, {
-<<<<<<< HEAD
 			field : 'browser',
 			title : '浏览器',
 			width : 60
@@ -54,38 +49,25 @@ layui.use([ 'table', 'form' ], function() {
 			title : '访问时长(ms)',
 			width : 100,
 			templet : function(d) {
-				return d.timeDuration ? d.timeDuration/1000 : 0;
+				return d ? d/1000 : 0;
 			}
 		}, {
 			field : 'createDate',
 			title : '时间',
 			width : 150,
-=======
-			field : 'createDate',
-			title : '时间',
-			width : 170,
->>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 			sort : true,
 			templet : function(d) {
 				var date = new Date();
 				date.setTime(d.createDate);
 				return date.Format("yyyy-MM-dd hh:mm:ss");
 			}
-<<<<<<< HEAD
 		}/*, { 
-=======
-		}, { 
->>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 			title : '操作',
 			width : 80,
 			align : 'center',
 			fixed : 'right',
 			toolbar : '#log-table-operate-toolbar'
-<<<<<<< HEAD
 		} */] ],
-=======
-		} ] ],
->>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 		page : true
 	});
 
