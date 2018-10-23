@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.wxl</groupId>
 	<artifactId>wxl_parent</artifactId>
@@ -62,33 +63,12 @@
 	</properties>
 
 	<!-- 设定主仓库，按设定顺序进行查找。 -->
-	<!-- <repositories>
-		<repository>
-			<id>wxl</id>
-			<name>wxl_maven</name>
-			<url>http://localhost:7777/repository/wxl/</url>
-		</repository>
-		<repository>
-			<id>mvnrepository</id>
-			<name>mvnrepository</name>
-			<url>https://mvnrepository.com/artifact/</url>
-		</repository>
-	</repositories>-->
-	<!-- <distributionManagement>
-		<repository>
-			<id>releases</id>
-			<url>http://localhost:7777/repository/wxl/</url>
-		</repository>
-		<snapshotRepository>
-			<id>Snapshots</id>
-			<url>http://localhost:7777/repository/wxl/</url>
-		</snapshotRepository>
-	</distributionManagement> -->
+	<!-- <repositories> <repository> <id>wxl</id> <name>wxl_maven</name> <url>http://localhost:7777/repository/wxl/</url> </repository> <repository> <id>mvnrepository</id> <name>mvnrepository</name> <url>https://mvnrepository.com/artifact/</url> 
+		</repository> </repositories> -->
+	<!-- <distributionManagement> <repository> <id>releases</id> <url>http://localhost:7777/repository/wxl/</url> </repository> <snapshotRepository> <id>Snapshots</id> <url>http://localhost:7777/repository/wxl/</url> 
+		</snapshotRepository> </distributionManagement> -->
 	<!-- 依赖项定义 -->
 	<dependencies>
-		<!-- 系统 start -->
-		<!-- <dependency> <groupId>com.wxl</groupId> <artifactId>wxl_static</artifactId> <version>2.0.0.0</version> </dependency> -->
-		<!-- 系统 end -->
 		<!-- SPRING begin -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -146,11 +126,7 @@
 		</dependency>
 
 		<!-- bean validate -->
-		<!-- <dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-validator</artifactId>
-			<version>${validator.version}</version>
-		</dependency> -->
+		<!-- <dependency> <groupId>org.hibernate</groupId> <artifactId>hibernate-validator</artifactId> <version>${validator.version}</version> </dependency> -->
 		<!-- SPRING end -->
 
 		<!-- AOP begin -->
@@ -270,16 +246,8 @@
 		<!-- WEB end -->
 
 		<!-- CACHE begin -->
-		<!-- <dependency>
-			<groupId>net.sf.ehcache</groupId>
-			<artifactId>ehcache-core</artifactId>
-			<version>${ehcache.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>net.sf.ehcache</groupId>
-			<artifactId>ehcache-web</artifactId>
-			<version>${ehcache-web.version}</version>
-		</dependency> -->
+		<!-- <dependency> <groupId>net.sf.ehcache</groupId> <artifactId>ehcache-core</artifactId> <version>${ehcache.version}</version> </dependency> <dependency> <groupId>net.sf.ehcache</groupId> <artifactId>ehcache-web</artifactId> 
+			<version>${ehcache-web.version}</version> </dependency> -->
 		<!-- CACHE end -->
 
 		<!-- SECURITY begin -->
@@ -315,47 +283,6 @@
 			<version>${shiro.version}</version>
 		</dependency>
 		<!-- SECURITY end -->
-
-		<!-- Activiti -->
-		<!-- <dependency>
-			<groupId>org.activiti</groupId>
-			<artifactId>activiti-engine</artifactId>
-			<version>${activiti.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.activiti</groupId>
-			<artifactId>activiti-spring</artifactId>
-			<version>${activiti.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.activiti</groupId>
-			<artifactId>activiti-explorer</artifactId>
-			<version>${activiti.version}</version>
-			<exclusions>
-				<exclusion>
-					<artifactId>vaadin</artifactId>
-					<groupId>com.vaadin</groupId>
-				</exclusion>
-				<exclusion>
-					<artifactId>dcharts-widget</artifactId>
-					<groupId>org.vaadin.addons</groupId>
-				</exclusion>
-				<exclusion>
-					<artifactId>activiti-simple-workflow</artifactId>
-					<groupId>org.activiti</groupId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-		<dependency>
-			<groupId>org.activiti</groupId>
-			<artifactId>activiti-modeler</artifactId>
-			<version>${activiti.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.activiti</groupId>
-			<artifactId>activiti-diagram-rest</artifactId>
-			<version>${activiti.version}</version>
-		</dependency> -->
 
 		<!-- LOGGING begin -->
 		<dependency>
@@ -416,11 +343,7 @@
 		</dependency>
 
 		<!-- google java lib -->
-		<!-- <dependency>
-			<groupId>com.google.guava</groupId>
-			<artifactId>guava</artifactId>
-			<version>${guava.version}</version>
-		</dependency> -->
+		<!-- <dependency> <groupId>com.google.guava</groupId> <artifactId>guava</artifactId> <version>${guava.version}</version> </dependency> -->
 
 		<!-- jackson json -->
 		<dependency>
@@ -452,11 +375,7 @@
 		</dependency>
 
 		<!-- pojo copy -->
-		<!-- <dependency>
-			<groupId>net.sf.dozer</groupId>
-			<artifactId>dozer</artifactId>
-			<version>${dozer.version}</version>
-		</dependency> -->
+		<!-- <dependency> <groupId>net.sf.dozer</groupId> <artifactId>dozer</artifactId> <version>${dozer.version}</version> </dependency> -->
 
 		<!-- freemarker engine -->
 		<dependency>
@@ -540,11 +459,7 @@
 		</dependency>
 
 		<!-- JSON系列包 开始 -->
-		<dependency>
-			<groupId>org.json</groupId>
-			<artifactId>json</artifactId>
-			<version>20140107</version>
-		</dependency>
+		<!-- <dependency> <groupId>org.json</groupId> <artifactId>json</artifactId> <version>20140107</version> </dependency> -->
 		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>fastjson</artifactId>
