@@ -1,10 +1,8 @@
 $(function() {
-	var Sys_Menu = function(moduleKey, options) {
-		Wxl.call(this, moduleKey, options)
-	}
-	inheritObject(Sys_Menu, Wxl);
+	var Sys_Menu = createObj();
 	var option = {
 		title : "菜单",
+		icon : "<i class='fa fa-pencil'> </i>",
 		baseUrl : ctx + "/sys/menu/",
 		columns : [ {
 			type : 'numbers'

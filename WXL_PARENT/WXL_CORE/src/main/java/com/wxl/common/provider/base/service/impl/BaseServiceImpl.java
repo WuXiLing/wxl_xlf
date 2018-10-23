@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -48,7 +49,7 @@ public class BaseServiceImpl<T extends BaseEntity, D extends BaseMapper<T>> exte
 		entity.setVersion(Global.getConfig("version"));
 		entity.setLastUpdateIp(WebUtil.getHost());
 		entity.setLastUpdateVersion(Global.getConfig("version"));
-		entity.setStatus(Constants.STATUS_ZERO);
+		entity.setStatus(StringUtils.isNotBlank(entity.getStatus()) ? entity.getStatus() : Constants.STATUS_ZERO);
 		entity.setSysData(Constants.SYSDATA_NO);
 	}
 
@@ -62,7 +63,7 @@ public class BaseServiceImpl<T extends BaseEntity, D extends BaseMapper<T>> exte
 	public void insertAfter(T entity) {
 		CacheEnable cacheEnable = this.getClass().getAnnotation(CacheEnable.class);
 		if (cacheEnable != null) {
-			CacheUtils.put(cacheEnable.cacheNames() + DELIMITER + entity.getId(), entity);
+			CacheUtils.put(cacheEnable.cacheNames() + DELIMITER + entity.getId(), entity,cacheEnable.expiretime());
 		}
 	}
 
@@ -92,7 +93,7 @@ public class BaseServiceImpl<T extends BaseEntity, D extends BaseMapper<T>> exte
 
 		CacheEnable cacheEnable = this.getClass().getAnnotation(CacheEnable.class);
 		if (cacheEnable != null) {
-			CacheUtils.put(cacheEnable.cacheNames() + DELIMITER + entity.getId(), entity);
+			CacheUtils.put(cacheEnable.cacheNames() + DELIMITER + entity.getId(), entity,cacheEnable.expiretime());
 		}
 	}
 

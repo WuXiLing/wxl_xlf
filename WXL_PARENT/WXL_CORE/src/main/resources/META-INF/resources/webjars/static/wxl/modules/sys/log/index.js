@@ -14,7 +14,8 @@ layui.use([ 'table', 'form' ], function() {
 		}, {
 			field : 'title',
 			fixed : 'left',
-			title : '标题'
+			title : '标题',
+			width : 100
 		}, {
 			field : 'opreatUser',
 			title : '操作人',
@@ -28,22 +29,45 @@ layui.use([ 'table', 'form' ], function() {
 			field : 'requestUri',
 			title : 'URI'
 		}, {
+			field : 'browser',
+			title : '浏览器',
+			width : 60
+		}, {
+			field : 'browserVersion',
+			title : '浏览器版本',
+			width : 90
+		}, {
+			field : 'terminal',
+			title : '访问终端',
+			width : 80
+		}, {
+			field : 'terminalType',
+			title : '终端类型',
+			width : 80
+		},{
+			field : 'timeDuration',
+			title : '访问时长(ms)',
+			width : 100,
+			templet : function(d) {
+				return d.timeDuration ? d.timeDuration/1000 : 0;
+			}
+		}, {
 			field : 'createDate',
 			title : '时间',
-			width : 170,
+			width : 150,
 			sort : true,
 			templet : function(d) {
 				var date = new Date();
 				date.setTime(d.createDate);
 				return date.Format("yyyy-MM-dd hh:mm:ss");
 			}
-		}, { 
+		}/*, { 
 			title : '操作',
 			width : 80,
 			align : 'center',
 			fixed : 'right',
 			toolbar : '#log-table-operate-toolbar'
-		} ] ],
+		} */] ],
 		page : true
 	});
 

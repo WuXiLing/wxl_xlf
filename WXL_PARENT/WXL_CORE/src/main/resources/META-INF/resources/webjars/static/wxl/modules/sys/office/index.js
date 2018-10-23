@@ -5,6 +5,7 @@ $(function() {
 	inheritObject(Sys_Office, Wxl);
 	var option = {
 		title : "组织机构",
+		icon : "<i class='fa fa-sitemap'> </i>",
 		baseUrl : ctx + "/sys/office/",
 		columns : [ {
 			type : 'numbers'

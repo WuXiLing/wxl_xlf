@@ -18,6 +18,11 @@ layui.use([ 'form', 'laydate', 'table'  ],
 		      elem: '#releaseDate'
 		      ,type: 'date'
 		      ,value : releaseDate ? new Date(releaseDate) : new Date()
+		      ,done: function(value, date){
+		          if(!value){ 
+		        	  form.val('component-form-article-edit', {"status": false})
+		          }
+		       }
 		 });
 		 
 		/* 自定义验证规则 */
@@ -38,7 +43,7 @@ layui.use([ 'form', 'laydate', 'table'  ],
 			 url:ctx + "/sys/storge/upload/cms/article",
 			 elem:"#LAY_avatarUpload",
 			 accept: 'file',
-			 size: 60,
+			 size: 1024,
 			 exts: 'jpg|png|gif',
 			 done:function(t){
 				 if(t.msg == 'do_ok'){
@@ -55,19 +60,24 @@ layui.use([ 'form', 'laydate', 'table'  ],
 		 });
 
 		/* 监听指定开关 */
-		/*form.on('switch(component-form-switchTest)',
-				function(data) {
-					layer.msg('开关checked：'
-							+ (this.checked ? 'true' : 'false'), {
-						offset : '6px'
-					});
-					layer.tips('温馨提示：请注意开关状态的文字可以随意定义，而不仅仅是ON|OFF',
-							data.othis)
-				});*/
+		form.on('switch(switchStatus)',function(data) {
+		        if(this.checked){
+		        	var releaseDate = $("#releaseDate").val();
+		        	if(!releaseDate){
+		        		form.val('component-form-article-edit', {"status": false});
+		        		layer.msg("请先设置：<span style='color:red;'>发布日期。<span>", {icon: 5});
+		        	}
+		        }
+		});
 
+		var ue = UE.getEditor('content');
 		/* 监听提交 */
 		form.on('submit(component-form-article-edit)', function(data) {
-			
+			var content = ue.getContentTxt();
+			if(!content || content.length == 0){
+				layer.msg("请输入：<span style='color:red;'>内容。<span>", {icon: 5});
+				return false;
+			}
 			$.ajax({
 				type : 'POST',
 				url : baseUrl + "aysnsave",
@@ -75,10 +85,6 @@ layui.use([ 'form', 'laydate', 'table'  ],
 				dataType : "json",
 				contentType : "application/json; charset=utf-8",
 				success : function(msg) {
-					//parent.reload($("#columnsId").val());
-					
-					//parent.layui.table.reload("article-table-operate");
-					
 					parent.layui.table.reload(tableId, {
 						page : {
 							curr : 1

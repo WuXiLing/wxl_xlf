@@ -19,5 +19,10 @@ public interface ArticleService extends SingleTableService<Article> {
 
 	List<Article> selectImageList(@Param("cm") Map<String, Object> params);
 	
+	/**
+	 * 发布
+	 * 
+	 * @param id
+	 */
 	void release(@Param("id") String id);
 }

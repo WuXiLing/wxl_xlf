@@ -26,6 +26,12 @@ import org.slf4j.LoggerFactory;
 
 import com.wxl.common.utils.DateUtils;
 
+/**
+ * 获取系统实时信息
+ * 
+ * @author Liang
+ *
+ */
 public class RuntimeUtils {
 
 	protected static Logger logger = LoggerFactory.getLogger(RuntimeUtils.class);
@@ -63,6 +69,11 @@ public class RuntimeUtils {
 		}
 	}
 
+	/**
+	 * CPU信息
+	 * 
+	 * @return
+	 */
 	public static List<String[]> getCPUInfo() {
 
 		List<String[]> s = new ArrayList<>();
@@ -82,6 +93,11 @@ public class RuntimeUtils {
 		return s;
 	}
 
+	/**
+	 * 内存信息
+	 * 
+	 * @return
+	 */
 	public static List<String[]> getMemeryInfo() {
 		try {
 			Sigar sigar = new Sigar();
@@ -108,6 +124,11 @@ public class RuntimeUtils {
 		return new ArrayList<String[]>();
 	}
 
+	/**
+	 * jvm内存信息
+	 * 
+	 * @return
+	 */
 	public static List<String[]> getJvmInfo() {
 		return new ArrayList<String[]>() {
 
@@ -125,6 +146,11 @@ public class RuntimeUtils {
 		};
 	}
 
+	/**
+	 * 系统信息
+	 * 
+	 * @return
+	 */
 	public static Map<String, Object> getSysInfo() {
 		Map<String, Object> map = new HashMap<String, Object>();
 		InetAddress addr;

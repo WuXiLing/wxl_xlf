@@ -1,8 +1,3 @@
-/**
- * Copyright (c) 2005-2012 springside.org.cn
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- */
 package com.wxl.common.web;
 
 import java.io.UnsupportedEncodingException;
@@ -10,7 +5,6 @@ import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.StringTokenizer;
 import java.util.TreeMap;
 
 import javax.servlet.ServletRequest;
@@ -30,8 +24,9 @@ import com.wxl.modules.sys.utils.UserUtils;
 
 /**
  * Http与Servlet工具类.
- * @author calvin/thinkgem
- * @version 2014-8-19
+ * 
+ * @author Liang
+ *
  */
 public class Servlets {
 

@@ -216,7 +216,7 @@ layui.use([ 'table','form','layer' ], function() {
 				area : [ '500px', '240px' ],
 				content : $('.demo-component-layer'),
 				cancel : function() {
-
+					$('.demo-component-layer').hide();
 				}
 			});
 		},

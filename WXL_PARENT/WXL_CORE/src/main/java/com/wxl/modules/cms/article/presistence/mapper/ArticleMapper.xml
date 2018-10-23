@@ -46,6 +46,12 @@
 			<if test="cm.status != null and cm.status != ''">
 				AND st.status = #{cm.status}
 			</if>
+			<if test="cm.frontQuery != null and cm.frontQuery != ''">
+				AND st.releaseDate &lt;= current_time()
+			</if>
+			<if test="cm.title != null and cm.title != ''">
+				AND st.title LIKE CONCAT('%', #{cm.title},'%')
+			</if>
 		</where>
 		order by st.stick desc
 		<if test="cm.cmslimit != null and cm.cmslimit != ''">
@@ -95,6 +101,7 @@
 				AND st.columnsId = #{cm.columnsId}
 			</if>
 			AND ST.image is not null
+			AND st.releaseDate &lt;= current_time()
 			AND ST.status = 1
 		</where>
 		ORDER BY st.stick desc
@@ -115,6 +122,8 @@
 		content,
 		source,
 		releaseDate,
+		releasetor,
+		status,
 		createUser,
 		version,
 		ip,
@@ -129,6 +138,8 @@
 		#{content},
 		#{source},
 		#{releaseDate},
+		#{releasetor},
+		#{status},
 		#{createUser.id},
 		#{version},
 		#{ip},
@@ -145,6 +156,9 @@
 		stick = #{stick},
 		content = #{content},
 		source = #{source},
+		status = #{status},
+		releasetor = #{releasetor},
+		releaseDate = #{releaseDate},
 		lastUpdateUser= #{lastUpdateUser.id},
 		lastUpdateVersion= #{lastUpdateVersion},
 		lastUpdateIp= #{lastUpdateIp},

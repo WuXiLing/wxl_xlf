@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.wxl.common.persistence.annotation;
 
 import java.lang.annotation.Documented;
@@ -13,9 +10,11 @@ import org.springframework.stereotype.Component;
 
 /**
  * 标识MyBatis的DAO,方便{@link org.mybatis.spring.mapper.MapperScannerConfigurer}的扫描。 
- * @author thinkgem
- * @version 2013-8-28
+ * 
+ * @author Liang
+ *
  */
+
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
 @Documented

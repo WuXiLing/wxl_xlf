@@ -11,7 +11,9 @@ import com.wxl.common.utils.DateUtils;
 
 /**
  * XStream 日期转换类
- * @author WangZhen
+ * 
+ * @author Liang
+ *
  */
 public class DateTimeConverter implements Converter {
 	

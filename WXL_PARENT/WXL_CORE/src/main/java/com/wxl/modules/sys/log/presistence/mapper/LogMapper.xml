@@ -6,23 +6,12 @@
 		st.*,
 		st.params as param,
 		u.name AS "opreatUser",
-		c.name AS
-		"opreatCompany",
+		c.name AS "opreatCompany",
 		o.name AS "opreatDep"
 		FROM sys_log ST
-		JOIN sys_user u ON
-		u.id = st.createUser
+		JOIN sys_user u ON u.id = st.createUser
 		JOIN sys_office c ON c.id = u.company_id
-		JOIN
-		sys_office o ON o.id = u.office_id
-		<!-- <where> <if test="cm.title != null and cm.title != ''"> AND a.title 
-			LIKE CONCAT('%', #{cm.title}, '%') </if> <if test="cm.createUser != null 
-			and cm.createUser.id != null and cm.createUser.id != ''"> AND a.createUser 
-			= #{cm.createBy.id} </if> <if test="cm.opreatUser != null and cm.opreatUser 
-			!= ''"> AND u.name = #{cm.opreatUser} </if> <if test="cm.requestUri != null 
-			and cm.requestUri != ''"> AND a.request_uri LIKE <if test="dbName == 'oracle'">'%'||#{cm.requestUri}||'%'</if> 
-			<if test="dbName == 'mysql'">CONCAT('%', #{cm.requestUri}, '%')</if> </if> 
-			</where> ORDER BY st.createDate desc -->
+		JOIN sys_office o ON o.id = u.office_id
 	</select>
 
 	<select id="selectJqgridPageList" resultType="Log">
@@ -30,15 +19,12 @@
 		st.*,
 		st.params as param,
 		u.name AS "opreatUser",
-		c.name AS
-		"opreatCompany",
+		c.name AS "opreatCompany",
 		o.name AS "opreatDep"
 		FROM sys_log ST
-		JOIN sys_user u ON
-		u.id = st.createUser
+		JOIN sys_user u ON u.id = st.createUser
 		JOIN sys_office c ON c.id = u.company_id
-		JOIN
-		sys_office o ON o.id = u.office_id
+		JOIN sys_office o ON o.id = u.office_id
 		<!-- <where> <if test=""></if> </where> -->
 	</select>
 	
@@ -47,15 +33,12 @@
 		st.*,
 		st.params as param,
 		u.name AS "opreatUser",
-		c.name AS
-		"opreatCompany",
+		c.name AS "opreatCompany",
 		o.name AS "opreatDep"
 		FROM sys_log ST
-		JOIN sys_user u ON
-		u.id = st.createUser
+		JOIN sys_user u ON u.id = st.createUser
 		JOIN sys_office c ON c.id = u.company_id
-		JOIN
-		sys_office o ON o.id = u.office_id
+		JOIN sys_office o ON o.id = u.office_id
 		<!-- <where> <if test=""></if> </where> -->
 	</select>
 
@@ -80,7 +63,13 @@
 		ip,
 		lastUpdateIp,
 		status,
-		remarks
+		remarks,
+		timeDuration,
+		browser,
+		browserVersion,
+		terminal,
+		terminalType,
+		requestMode
 		) VALUES (
 		#{id},
 		#{type},
@@ -101,7 +90,13 @@
 		#{ip},
 		#{lastUpdateIp},
 		#{status},
-		#{remarks}
+		#{remarks},
+		#{timeDuration},
+		#{browser},
+		#{browserVersion},
+		#{terminal},
+		#{terminalType},
+		#{requestMode}
 		)
 	</insert>
 	

@@ -28,7 +28,6 @@ public class RedisCacheConfig extends CachingConfigurerSupport {
 	private volatile RedisCacheManager				redisCacheManager;
 
 	public RedisCacheConfig() {
-
 		super();
 	}
 

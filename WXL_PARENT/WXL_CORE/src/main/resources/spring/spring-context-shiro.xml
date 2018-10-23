@@ -21,8 +21,11 @@
 				/webjars/static/** = anon
 				/userfiles/** = anon
 				/act/** = anon
-				${adminPath}/sys/storge/** = anon
 				/sys/ueditor/** = anon
+				/rest/** = anon
+				/ws/rest/** = anon
+				/v2/** = anon
+				${adminPath}/sys/storge/** = anon
 				${adminPath}/login = authc
 				${adminPath}/logout = logout
 				${adminPath}/** = user

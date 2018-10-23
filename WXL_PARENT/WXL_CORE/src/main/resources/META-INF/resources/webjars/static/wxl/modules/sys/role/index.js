@@ -1,11 +1,14 @@
 $(function() {
-	var Sys_Role = function(moduleKey, options) {
+	/*var Sys_Role = function(moduleKey, options) {
 		Wxl.call(this, moduleKey, options)
 	}
-	inheritObject(Sys_Role, Wxl);
+	inheritObject(Sys_Role, Wxl);*/
+	var Sys_Role = createObj();
 	var option = {
 		title : "角色",
 		baseUrl : ctx + "/sys/role/",
+		distributeOp : "distribute",
+		authorityOp : "authority",
 		columns : [ {
 			type : 'numbers'
 		}, {
@@ -57,12 +60,12 @@ $(function() {
 			}
 		}, {
 			field : 'status',
-			title : '状态',
+			title : '是否可用',
 			align : 'center',
 			sort : true,
 			width : 120,
 			templet : function(d) {
-				return getEleById("st_status_" + d.status);
+				return d.status == '1' ? "可用" : "不可用";
 			}
 		},{
 			title : '操作',
@@ -84,5 +87,37 @@ $(function() {
 		tableType : "table"
 	};
 	var t = new Sys_Role('sys-role', option);
+	t.options.rowOp = {
+		authority : function(id) {
+			t.authority(id);
+		},
+		distribute : function(id){
+			t.distribute(id);
+		}
+	}
 	t.init();
+	t.getDistributeUrl = function() {
+		return this.options.baseUrl + this.options.distributeOp;
+	}
+	t.getAuthorityUrl = function() {
+		return this.options.baseUrl + this.options.authorityOp;
+	}
+	t.distribute = function(id){
+		var index = layui.layer.open({
+			type : 2,
+			title : t.options.icon + t.options.title + "分配",
+			content : t.getDistributeUrl() + "/" + id,
+			area : [ '90%', '90%' ],
+			maxmin : true
+		});
+	}
+	t.authority = function(id){
+		var index = layui.layer.open({
+			type : 2,
+			title : t.options.icon + t.options.title + "授权",
+			content : t.getAuthorityUrl() + "/" + id,
+			area : [ '90%', '90%' ],
+			maxmin : true
+		});
+	}
 });

@@ -12,20 +12,25 @@ li {
 
 #cms_nav_menu li:hover {
 	background-color :#01439A;
-}
-
-/* #cms_nav_menu .layui-anim-upbit{
-	background-color :#0D59A7;
-	color : #FEFEFE!important; 
-}
-
-#cms_nav_menu .layui-anim-upbit:hover {
-	color : #FEFEFE!important; 
-} */
+} 
 
 .layui-carousel{
 	width : 100%!important;
 }
+
+.layui-anim-upbit{
+	background-color: #0D59A7;
+}
+
+.layui-anim-upbit a:hover{
+	background-color: #01439A!important;
+	color:#ffffff!important;
+}
+
+.layui-anim-upbit a{
+	color:#e6e6e6!important;
+}
+
 
 #cms_first_nav .layui-card {
 	border-top-width: 0px;

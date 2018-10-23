@@ -9,10 +9,17 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.wxl.modules.sys.realtimeinfo.RuntimeUtils;
 
+/**
+ * 系统信息
+ * 
+ * @author Liang
+ *
+ */
 @Controller
 @RequestMapping(value = "${adminPath}/sys/realtime/info")
 public class SystemRealTimeInfoController {
 
+	//cpu信息
 	@ResponseBody
 	@RequestMapping(value = "cpuInfo")
 	public Map<String, Object> cpuInfo() {
@@ -27,6 +34,7 @@ public class SystemRealTimeInfoController {
 		return map;
 	}
 
+	//内存信息
 	@ResponseBody
 	@RequestMapping(value = "memeryInfo")
 	public Map<String, Object> memeryInfo() {
@@ -41,6 +49,7 @@ public class SystemRealTimeInfoController {
 		return map;
 	}
 
+	//jvm信息
 	@ResponseBody
 	@RequestMapping(value = "jvmInfo")
 	public Map<String, Object> jvmInfo() {
@@ -55,6 +64,7 @@ public class SystemRealTimeInfoController {
 		return map;
 	}
 
+	//系统信息
 	@ResponseBody
 	@RequestMapping(value = "sysInfo")
 	public Map<String, Object> sysInfo() {

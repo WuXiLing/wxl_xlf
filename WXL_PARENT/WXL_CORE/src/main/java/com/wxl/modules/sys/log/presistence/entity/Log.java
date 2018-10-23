@@ -42,10 +42,13 @@ public class Log extends SingleTableEntity {
 
 	private String remoteArea; // 操作地区
 
+	// 操作公司
 	private String opreatCompany;
 
+	// 操作部门
 	private String opreatDep;
 
+	// 操作者
 	private String opreatUser;
 
 	// 日志类型（1：接入日志；2：错误日志）
@@ -58,24 +61,33 @@ public class Log extends SingleTableEntity {
 		super();
 	}
 
-	/**执行时长*/
+	/** 执行时长 */
 	private long timeDuration;
-	
-	/**浏览器*/
+
+	/** 浏览器 */
 	private String browser;
-	
-	/**浏览器版本*/
+
+	/** 浏览器版本 */
 	private String browserVersion;
-	
-	/**访问终端*/
+
+	/** 访问终端 */
 	private String terminal;
-	
-	/**终端型号*/
+
+	/** 终端型号 */
 	private String terminalType;
-	
-	/**请求方式*/
+
+	/** 请求方式 */
 	private String requestMode;
 	
+	//类
+	private String className;
+	
+	//方法签名
+	private String methodSign;
+	
+	//方法参数
+	private String methodParams;
+
 	public String getType() {
 
 		return type;
@@ -216,16 +228,6 @@ public class Log extends SingleTableEntity {
 		this.opreatUser = opreatUser;
 	}
 
-//	public void setCreateBy(User createBy) {
-//        super.setCreateBy(createBy);
-//		if (createBy != null) {
-//			this.setOpreatCompany(createBy.getCompany() != null?createBy.getCompany().getName(): "");
-//			this.setOpreatDep(createBy.getOffice() != null?createBy.getOffice().getName(): "");
-//			this.setOpreatUser(createBy.getName());
-//		}
-////		this.createBy = createBy;
-//	}
-
 	/**
 	 * 设置请求参数
 	 * 
@@ -292,6 +294,30 @@ public class Log extends SingleTableEntity {
 
 	public void setRequestMode(String requestMode) {
 		this.requestMode = requestMode;
+	}
+
+	public String getClassName() {
+		return className;
+	}
+
+	public void setClassName(String className) {
+		this.className = className;
+	}
+
+	public String getMethodSign() {
+		return methodSign;
+	}
+
+	public void setMethodSign(String methodSign) {
+		this.methodSign = methodSign;
+	}
+
+	public String getMethodParams() {
+		return methodParams;
+	}
+
+	public void setMethodParams(String methodParams) {
+		this.methodParams = methodParams;
 	}
 
 	@Override

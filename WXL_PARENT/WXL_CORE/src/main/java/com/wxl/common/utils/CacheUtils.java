@@ -9,8 +9,6 @@ import org.apache.commons.logging.LogFactory;
 
 import com.wxl.common.cache.RedisCacheUtil;
 
-import redis.clients.jedis.Jedis;
-
 /**
  * Cache工具类
  * 
@@ -19,7 +17,7 @@ import redis.clients.jedis.Jedis;
  */
 
 public class CacheUtils {
-	
+
 	protected static final Log logger = LogFactory.getLog(CacheUtils.class);
 
 	private static RedisCacheUtil cacheManager = ((RedisCacheUtil) SpringContextHolder.getBean("redisCacheUtil"));
@@ -31,7 +29,7 @@ public class CacheUtils {
 	 * @return
 	 */
 	public static Object get(String key) {
-		logger.debug("获取缓存：" + key);
+		logger.debug("get string：" + key);
 		Object obj = cacheManager.getCacheObject(key);
 		return obj;
 	}
@@ -43,9 +41,14 @@ public class CacheUtils {
 	 * @return
 	 */
 	public static void put(String key, Object value) {
-		logger.debug("添加缓存：" + key);
+		logger.debug("add string：" + key);
 		cacheManager.setCacheObject(key, value);
 	}
+	public static void put(String key, Object value,long time) {
+		logger.debug("add string：" + key);
+		cacheManager.setCacheObject(key, value,time);
+	}
+	
 
 	/**
 	 * 获取Map缓存
@@ -54,7 +57,7 @@ public class CacheUtils {
 	 * @return
 	 */
 	public static Map<String, Object> getMap(String key) {
-		logger.debug("获取缓存（Map）：" + key);
+		logger.debug("get Map：" + key);
 		return cacheManager.getCacheMap(key);
 	}
 
@@ -65,8 +68,12 @@ public class CacheUtils {
 	 * @return
 	 */
 	public static void putMap(String key, Map<String, Object> value) {
-		logger.debug("添加缓存（Map）：" + key);
+		logger.debug("add Map：" + key);
 		cacheManager.setCacheMap(key, value);
+	}
+	public static void putMap(String key, Map<String, Object> value,long time) {
+		logger.debug("add Map：" + key);
+		cacheManager.setCacheMap(key, value,time);
 	}
 
 	/**
@@ -76,7 +83,7 @@ public class CacheUtils {
 	 * @return
 	 */
 	public static List<Object> getList(String key) {
-		logger.debug("获取缓存（List）：" + key);
+		logger.debug("get List：" + key);
 		return cacheManager.getCacheList(key);
 	}
 
@@ -87,8 +94,12 @@ public class CacheUtils {
 	 * @return
 	 */
 	public static void putList(String key, List value) {
-		logger.debug("添加缓存（List）：" + key);
+		logger.debug("add List：" + key);
 		cacheManager.setCacheList(key, value);
+	}
+	public static void putList(String key, List value,long time) {
+		logger.debug("add List：" + key);
+		cacheManager.setCacheList(key, value,time);
 	}
 
 	/**
@@ -98,7 +109,7 @@ public class CacheUtils {
 	 * @return
 	 */
 	public static Set<Object> getSet(String key) {
-		logger.debug("获取缓存（Set）：" + key);
+		logger.debug("get Set：" + key);
 		return cacheManager.getCacheSet(key);
 	}
 
@@ -108,11 +119,15 @@ public class CacheUtils {
 	 * @param key
 	 * @return
 	 */
-	public static void putSet(String key, Set<Object> value) {
-		logger.debug("添加缓存（Set）：" + key);
+	public static void putSet(String key, Set value) {
+		logger.debug("add Set：" + key);
 		cacheManager.setCacheSet(key, value);
 	}
 
+	public static void putSet(String key, Set value,long time) {
+		logger.debug("add Set：" + key);
+		cacheManager.setCacheSet(key, value,time);
+	}
 	/**
 	 * 从缓存中移除
 	 * 
@@ -120,7 +135,16 @@ public class CacheUtils {
 	 * @return
 	 */
 	public static void remove(String key) {
-		logger.debug("删除缓存：" + key);
+		logger.debug("del cache：" + key);
 		cacheManager.deleteCacheObject(key);
+	}
+
+	/**
+	 * 清除缓存信息
+	 * 
+	 */
+	public static void flushAll() {
+		logger.debug("flushall cache");
+		cacheManager.flushAll();
 	}
 }

@@ -17,7 +17,6 @@ import com.wxl.common.provider.singletable.controller.SingleTableController;
 import com.wxl.common.provider.utils.LayuiPage;
 import com.wxl.modules.cms.article.presistence.entity.Article;
 import com.wxl.modules.cms.article.service.ArticleService;
-import com.wxl.modules.cms.columns.presistence.entity.Columns;
 import com.wxl.modules.cms.columns.service.ColumnsServiceI;
 import com.wxl.modules.sys.storge.presistence.entity.StorgeEntity;
 import com.wxl.modules.sys.storge.service.StorgeEntityService;

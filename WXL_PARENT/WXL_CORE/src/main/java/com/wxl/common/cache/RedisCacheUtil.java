@@ -6,15 +6,22 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.dao.DataAccessException;
+import org.springframework.data.redis.connection.RedisConnection;
+import org.springframework.data.redis.core.BoundHashOperations;
 import org.springframework.data.redis.core.BoundSetOperations;
 import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.ListOperations;
+import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.stereotype.Service;
+
+import com.wxl.common.exception.RedisExpireOutOfRangeException;
 
 /**
  * redis缓存工具类
@@ -25,6 +32,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class RedisCacheUtil {
 
+	public final static long REDIS_EXPIRE_ALWAYS = -1;
+	
 	@Autowired
 	@Qualifier("redisTemplate")
 	public RedisTemplate<String, Object> redisTemplate;
@@ -40,6 +49,19 @@ public class RedisCacheUtil {
 	 */
 	public void setCacheObject(String key, Object value) {
 		redisTemplate.opsForHash().put("sys", key, value);
+	}
+	public void setCacheObject(String key, Object value, long time) {
+		setCacheObject(key, value);
+		setExpire(key, time);
+	}
+
+	private void setExpire(String key, long time) {
+		if (time != REDIS_EXPIRE_ALWAYS && time <= 0) {
+			new RedisExpireOutOfRangeException(time + " is not a reasonable number,It has to be greater than 0 or -1");
+		}
+		if (time == REDIS_EXPIRE_ALWAYS) {
+			redisTemplate.expire(key, time, TimeUnit.MILLISECONDS);
+		}
 	}
 
 	/**
@@ -86,6 +108,10 @@ public class RedisCacheUtil {
 
 		return listOperation;
 	}
+	public void setCacheList(String key, List<Object> value, long time) {
+		setCacheList(key, value);
+		setExpire(key, time);
+	}
 
 	/**
 	 * 获得缓存的list对象
@@ -128,6 +154,11 @@ public class RedisCacheUtil {
 
 		return setOperation;
 	}
+	public void setCacheSet(String key, Set<Object> value, long time) {
+		setCacheSet(key, value);
+		setExpire(key, time);
+	}
+
 
 	/**
 	 * 获得缓存的set
@@ -172,6 +203,10 @@ public class RedisCacheUtil {
 
 		return hashOperations;
 	}
+	public void setCacheMap(String key, Map<String, Object> value, long time) {
+		setCacheMap(key, value);
+		setExpire(key, time);
+	}
 
 	/**
 	 * 获得缓存的Map
@@ -181,13 +216,28 @@ public class RedisCacheUtil {
 	 * @return
 	 */
 	public Map<String, Object> getCacheMap(String key) {
-		Map<String, Object> map = null;
-		/* Map<String, T> map = hashOperation.entries(key); */
-		return map;
+		BoundHashOperations<String, String, Object> hashOperations = redisTemplate.boundHashOps(key);
+		return hashOperations.entries();
+	}
+
+	/**
+	 * 清除redis缓存
+	 * 
+	 */
+	public void flushAll() {
+		redisTemplate.execute(new RedisCallback<Object>() {
+
+			@Override
+			public Object doInRedis(RedisConnection connection) throws DataAccessException {
+				connection.flushDb();
+				return null;
+			}
+		});
 	}
 
 	protected RedisSerializer<String> getRedisSerializer() {
 
 		return redisTemplate.getStringSerializer();
 	}
+
 }

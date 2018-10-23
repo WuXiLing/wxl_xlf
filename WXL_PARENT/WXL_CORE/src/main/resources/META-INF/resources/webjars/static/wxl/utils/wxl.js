@@ -119,7 +119,6 @@ function subString1111(str, len){
 function autoAddEllipsis(pStr, pLen) {
 	return subString1111(pStr, pLen*2);
 }
-
 var Wxl = function Wxl(moduleKey, options) {
 	this.defaults = {
 		version : "1.2.1",
@@ -127,8 +126,8 @@ var Wxl = function Wxl(moduleKey, options) {
 		baseUrl : "",// 模块相对URL
 		icon : "",// 图标
 		title : "",// 标题
-		table : undefined,// 表格
-		treeTable : undefined,// 树表格
+		table : layui.table,// 表格
+		treeTable : layui.treetable,// 树表格
 		tableId : moduleKey + "-table",// 表格ID
 		tableType : "table",// 表格类型
 		tableButtonId : "#" + moduleKey + "-table-operate-bar",// 表格按钮ID
@@ -141,7 +140,8 @@ var Wxl = function Wxl(moduleKey, options) {
 		detailOp : "detail",// 详细标识符
 		treeTableDataOp : "getManageData",//树表格数据
 		tableDataOp : "selectLayuiPageList",//表格数据
-		addChildrenOp : "addChildren"
+		addChildrenOp : "addChildren",
+		rowOp:null
 	}
 
 	this.options = $.extend({}, this.defaults, options)
@@ -168,7 +168,7 @@ var Wxl = function Wxl(moduleKey, options) {
 	this.getTreeTableDataUrl = function() {
 		return self.options.baseUrl + "/" + self.options.treeTableDataOp + "/";
 	}
-
+	
 	this.add = function() {
 		var index = layui.layer.open({
 			type : 2,
@@ -245,6 +245,7 @@ var Wxl = function Wxl(moduleKey, options) {
 			area : [ '500px', '240px' ],
 			content : $(self.options.queryContentId),
 			cancel : function() {
+				alert();
 				$(self.options.queryContentId).hide();
 			}
 		});
@@ -394,6 +395,9 @@ var Wxl = function Wxl(moduleKey, options) {
 				self.upd(data.id);
 			} else if (obj.event === 'addChildren') {
 				self.addChildren(data.id);
+			} else {
+				console.info(self.options.rowOp);
+				(self.options.rowOp && self.options.rowOp[obj.event]) ? self.options.rowOp[obj.event].call(this,data.id) : '';
 			}
 		});
 	}
@@ -406,7 +410,6 @@ var Wxl = function Wxl(moduleKey, options) {
 		}).use([  'table','form','layer','treetable' ], function() {
 			var form = layui.form;
 			self.options.treeTable = layui.treetable;
-			self.options.table = layui.table;
 			self.bindEve();
 			if (self.options.tableType == "table") {
 				self.initTable();
@@ -437,4 +440,12 @@ function inheritPrototype(subClass, superClass) {
 	p.constructor = subClass;
 	// 设置子类的原型
 	subClass.prototype = p;
+}
+
+function createObj(){
+	var temp = function(moduleKey, options) {
+		Wxl.call(this, moduleKey, options)
+	}
+	inheritObject(temp, Wxl);
+	return temp;
 }

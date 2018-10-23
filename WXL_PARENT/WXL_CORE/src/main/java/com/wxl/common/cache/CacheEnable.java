@@ -12,4 +12,7 @@ import java.lang.annotation.Target;
 public @interface CacheEnable {
 
 	String cacheNames() default "";
+	
+	//一天((((1000毫秒*60)秒*60)分*60)小时)天
+	long expiretime() default 1000*60*60*60*24;
 }

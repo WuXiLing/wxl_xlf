@@ -28,12 +28,10 @@ import com.wxl.common.captcha.ValidateCodeServlet;
 import com.wxl.common.config.Global;
 import com.wxl.common.security.shiro.session.SessionDAO;
 import com.wxl.common.utils.Encodes;
-import com.wxl.common.web.Servlets;
 import com.wxl.modules.sys.menu.presistence.entity.Menu;
 import com.wxl.modules.sys.role.presistence.entity.Role;
 import com.wxl.modules.sys.user.presistence.entity.User;
 import com.wxl.modules.sys.user.service.UserService;
-import com.wxl.modules.sys.utils.LogUtils;
 import com.wxl.modules.sys.utils.UserUtils;
 import com.wxl.modules.sys.web.LoginController;
 
@@ -135,7 +133,7 @@ public class SingleSystemRealm extends AuthorizingRealm {
 			// 更新登录IP和时间
 //			getSystemService().updateUserLoginInfo(user);
 			// 记录登录日志
-			LogUtils.saveLog(Servlets.getRequest(), "系统登录");
+			//LogUtils.saveLog(Servlets.getRequest(), "系统登录");
 			return info;
 		} else {
 			return null;
