@@ -4,14 +4,12 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.wxl.common.rest.RestCode;
+import com.wxl.common.rest.ResponseFormat;
 import com.wxl.common.rest.RestReponseMsg;
-import com.wxl.modules.sys.user.presistence.entity.User;
 import com.wxl.modules.sys.user.service.UserService;
 
 /**
@@ -31,11 +29,11 @@ public class WsUserRest {
 	@Path("{id}")
 //	@Produces({MediaType.TEXT_PLAIN,MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
 	@Produces("application/json;charset=UTF-8")
-	public RestReponseMsg<User> get(@PathParam("id") String id) {
+	public RestReponseMsg get(@PathParam("id") String id) {
 
-		RestReponseMsg<User> restReponseMsg = new RestReponseMsg<User>();
+		RestReponseMsg restReponseMsg = new RestReponseMsg();
 		restReponseMsg.setReponseBody(userService.get(id));
-		restReponseMsg.setCode(RestCode.SUCCESS);
+		restReponseMsg.setStatus(ResponseFormat.SUCCESS);
 		return restReponseMsg;
 	}
 }

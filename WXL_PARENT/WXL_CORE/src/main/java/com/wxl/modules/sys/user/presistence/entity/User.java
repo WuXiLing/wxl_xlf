@@ -14,6 +14,9 @@ import com.wxl.common.utils.excel.fieldtype.RoleListType;
 import com.wxl.modules.sys.office.presistence.entity.Office;
 import com.wxl.modules.sys.role.presistence.entity.Role;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 /**
  * 用户Entity
  * 
@@ -22,6 +25,7 @@ import com.wxl.modules.sys.role.presistence.entity.Role;
  * 
  * @date 2017年7月28日 下午2:36:14
  */
+@ApiModel(value = "user", description = "用户对象user")
 public class User extends SingleTableEntity {
 
 	private static final long serialVersionUID = 1L;
@@ -30,51 +34,67 @@ public class User extends SingleTableEntity {
 	private String no;
 
 	/** 姓名 */
+	@ApiModelProperty(value = "姓名", name = "name", required = true)
 	private String name;
 
 	/** 归属公司 */
+	@ApiModelProperty(value = "归属公司", name = "company", hidden = true)
 	private Office company;
 
 	/** 归属部门 */
+	@ApiModelProperty(value = "归属部门", name = "office", hidden = true)
 	private Office office;
 
 	/** 登录名 */
+	@ApiModelProperty(value = "登录名", name = "loginName", hidden = true)
 	private String loginName;
 
 	/** 密码 */
+	@ApiModelProperty(value = "密码", name = "password", hidden = true)
 	private String password;
 
 	/** 邮箱 */
+	@ApiModelProperty(value = "邮箱", name = "email")
 	private String email;
 
 	/** 电话 */
+	@ApiModelProperty(value = "电话", name = "phone")
 	private String phone;
 
 	/** 手机 */
+	@ApiModelProperty(value = "手机", name = "mobile")
 	private String mobile;
 
 	/** 用户类型 */
+	@ApiModelProperty(value = "用户类型", name = "userType", hidden = true)
 	private String userType;
 
 	/** 头像 */
+	@ApiModelProperty(value = "头像", name = "photo", hidden = true)
 	private String photo;
 
 	/** 拥有角色列表 */
+	@ApiModelProperty(value = "拥有角色列表", name = "roleList", hidden = true)
 	private List<Role> roleList = new ArrayList<>();
 
 	/** 性别 */
+	@ApiModelProperty(value = "性别", name = "gender")
 	private String gender;
 
 	/** 身份证号 */
+	@ApiModelProperty(value = "身份证号", name = "idcard")
 	private String idcard;
 
 	/** 出生年月 */
+	@ApiModelProperty(value = "出生年月", name = "birthday")
 	private Date birthday;
 
 	/** 民族 */
+	@ApiModelProperty(value = "民族", name = "nation")
 	private String nation;
 
 	/** qq */
+	@ApiModelProperty(value = "qq", name = "qq")
 	private String qq;
 
 	public User() {
