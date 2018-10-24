@@ -25,13 +25,8 @@
 	<meta name="apple-mobile-web-app-status-bar-style" content="black">
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="format-detection" content="telephone=no">
-<<<<<<< HEAD
-	<link rel="icon" href="${ctxStatic}/images/favicon/ktsys/32/favicon.ico" type="image/x-icon" />
-    <link rel="shortcut icon" href="${ctxStatic}/images/favicon/ktsys/32/favicon.ico" type="image/x-icon" />
-=======
 	<link rel="icon" href="${ctxStatic}/images/favicon/16/favicon.ico" type="image/x-icon" />
     <link rel="shortcut icon" href="${ctxStatic}/images/favicon/16/favicon.ico" type="image/x-icon" />
->>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 
 	<link href="${ctxStatic}/plugins/layui/css/layui.css" rel="stylesheet" media="all" />
 	<link href="${ctxStatic}/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" media="all" />
