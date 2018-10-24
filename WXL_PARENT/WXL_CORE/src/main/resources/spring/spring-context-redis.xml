@@ -9,11 +9,7 @@
                         http://www.springframework.org/schema/cache   
                         http://www.springframework.org/schema/cache/spring-cache-4.2.xsd">
 
-<<<<<<< HEAD
 	<context:property-placeholder ignore-unresolvable="true" location="classpath*:redis.properties" />
-=======
-	<context:property-placeholder ignore-unresolvable="true" location="classpath*:cache/redis.properties" />
->>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 
 	<!-- 启用缓存注解功能，这个是必须的，否则注解不会生效，另外，该注解一定要声明在spring主配置文件中才会生效 -->
 	<cache:annotation-driven cache-manager="redisCacheManager" />
@@ -50,9 +46,6 @@
         <property name="hashKeySerializer">
             <bean class="org.springframework.data.redis.serializer.StringRedisSerializer"></bean>
         </property> -->
-<<<<<<< HEAD
-    </bean>
-=======
         <property name="keySerializer"> 
 	       <bean class="org.springframework.data.redis.serializer.StringRedisSerializer"/> 
 	    </property> 
@@ -60,7 +53,6 @@
 	        <bean class="org.springframework.data.redis.serializer.JdkSerializationRedisSerializer"/> 
 	     </property> 
 	</bean>
->>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 
     <!-- 配置RedisCacheManager -->
     <bean id="redisCacheManager" class="org.springframework.data.redis.cache.RedisCacheManager">
