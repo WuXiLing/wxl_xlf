@@ -8,7 +8,7 @@ public class RestReponseMsg implements java.io.Serializable {
 
 	private static final long serialVersionUID = -6016291525217752497L;
 
-	private int status;
+	private int resultcode;
 
 	private Object reponseBody;
 
@@ -17,21 +17,22 @@ public class RestReponseMsg implements java.io.Serializable {
 	
 	public RestReponseMsg() {
 		super();
+		this.resultcode = ResponseFormat.SUCCESS;
 	}
 
-	public RestReponseMsg(Integer status, String message, Object data) {
-		this.status = status;
+	public RestReponseMsg(Integer resultcode, String message, Object data) {
+		this.resultcode = resultcode;
 		this.message = message;
 		this.reponseBody = data;
 		
 	}
 
-	public int getStatus() {
-		return status;
+	public int getResultcode() {
+		return resultcode;
 	}
 
-	public void setStatus(int status) {
-		this.status = status;
+	public void setResultcode(int resultcode) {
+		this.resultcode = resultcode;
 	}
 
 	public Object getReponseBody() {
