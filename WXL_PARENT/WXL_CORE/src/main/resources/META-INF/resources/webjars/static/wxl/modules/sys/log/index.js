@@ -49,7 +49,7 @@ layui.use([ 'table', 'form' ], function() {
 			title : '访问时长(ms)',
 			width : 100,
 			templet : function(d) {
-				return d ? d/1000 : 0;
+				return d.timeDuration ? d.timeDuration/1000 : 0;
 			}
 		}, {
 			field : 'createDate',
