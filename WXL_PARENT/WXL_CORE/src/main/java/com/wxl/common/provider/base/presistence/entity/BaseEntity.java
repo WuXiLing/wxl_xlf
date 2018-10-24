@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Value;
 
 import com.wxl.modules.sys.user.presistence.entity.User;
 
+import io.swagger.annotations.ApiModelProperty;
+
 /**
  * @author liangxf
  *
@@ -17,45 +19,59 @@ public class BaseEntity extends ProviderEntity {
 	private static final long serialVersionUID = -25358647898658102L;
 
 	/** 系统参数 */
+	@ApiModelProperty(value = "系统参数", name = "sysData", hidden = true)
 	protected boolean sysData;
 
 	/** 创建时间 **/
+	@ApiModelProperty(value = "创建时间", name = "createDate", hidden = true)
 	protected Date createDate;
 
 	/** 创建人 **/
+	@ApiModelProperty(value = "创建人", name = "createUser", hidden = true)
 	protected User createUser;
 
 	/** 最后修改时间 **/
+	@ApiModelProperty(value = "最后修改时间", name = "lastUpdateDate", hidden = true)
 	protected Date lastUpdateDate;
 
 	/** 最后修改人 **/
+	@ApiModelProperty(value = "最后修改人", name = "lastUpdateUser", hidden = true)
 	protected User lastUpdateUser;
 
 	/** 版本号 **/
+	@ApiModelProperty(value = "版本号", name = "version", hidden = true)
 	protected String version;
 
 	/** 最后修改版本号 **/
+	@ApiModelProperty(value = "最后修改版本号", name = "lastUpdateVersion", hidden = true)
 	protected String lastUpdateVersion;
 
 	/** 修改IP **/
+	@ApiModelProperty(value = "修改IP", name = "ip", hidden = true)
 	protected String ip;
 
 	/** 最后修改IP **/
+	@ApiModelProperty(value = "最后修改IP", name = "lastUpdateIp", hidden = true)
 	protected String lastUpdateIp;
 
 	/** 状态 **/
+	@ApiModelProperty(value = "状态", name = "status", hidden = true)
 	protected String status;
 
 	/** 备注 **/
+	@ApiModelProperty(value = "备注", name = "remarks", hidden = true)
 	protected String remarks;
 
 	/** 其他参数集合 */
+	@ApiModelProperty(value = "备注", name = "remarks", hidden = true)
 	protected Map<String, Object> params = new HashMap<String, Object>();
 
 	@Value("#{JDBC_PROP['jdbc.type']}")
+	@ApiModelProperty(value = "数据库", name = "dbType", hidden = true)
 	protected static String dbType;
 
 	/** 行号 */
+	@ApiModelProperty(value = "行号", name = "rowNum", hidden = true)
 	protected Integer rowNum;
 
 	/**
@@ -262,12 +278,13 @@ public class BaseEntity extends ProviderEntity {
 	}
 
 	/**
-	 * @param rowNum the rowNum to set
+	 * @param rowNum
+	 *            the rowNum to set
 	 */
 	public void setRowNum(Integer rowNum) {
 		this.rowNum = rowNum;
 	}
-	
+
 	public void setRn(Integer rowNum) {
 		this.rowNum = rowNum;
 	}
@@ -296,7 +313,7 @@ public class BaseEntity extends ProviderEntity {
 		}
 		return null;
 	}
-	
+
 	/**
 	 * @return the dbType
 	 */
