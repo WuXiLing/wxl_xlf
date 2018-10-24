@@ -6,11 +6,6 @@
 	</projects>
 	<buildSpec>
 		<buildCommand>
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
->>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 			<name>org.eclipse.ui.externaltools.ExternalToolBuilder</name>
 			<triggers>full,incremental,</triggers>
 			<arguments>
@@ -21,10 +16,6 @@
 			</arguments>
 		</buildCommand>
 		<buildCommand>
-<<<<<<< HEAD
-=======
->>>>>>> ebbb5fa033832c23feae3fa25849d31f1e876660
->>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 			<name>org.eclipse.wst.common.project.facet.core.builder</name>
 			<arguments>
 			</arguments>
