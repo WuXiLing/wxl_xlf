@@ -7,11 +7,7 @@
 	</sql>
 
 	<sql id="articleQueryCloumnsJoin">
-<<<<<<< HEAD
-	   LEFT JOIN SYS_USER se on se.id = st.releasetor
-=======
 	   LEFT JOIN sys_user se on se.id = st.releasetor
->>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 	</sql>
 
 	<select id="get" resultType="Article">
@@ -50,15 +46,12 @@
 			<if test="cm.status != null and cm.status != ''">
 				AND st.status = #{cm.status}
 			</if>
-<<<<<<< HEAD
 			<if test="cm.frontQuery != null and cm.frontQuery != ''">
 				AND st.releaseDate &lt;= current_time()
 			</if>
 			<if test="cm.title != null and cm.title != ''">
 				AND st.title LIKE CONCAT('%', #{cm.title},'%')
 			</if>
-=======
->>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 		</where>
 		order by st.stick desc
 		<if test="cm.cmslimit != null and cm.cmslimit != ''">
@@ -108,10 +101,7 @@
 				AND st.columnsId = #{cm.columnsId}
 			</if>
 			AND ST.image is not null
-<<<<<<< HEAD
 			AND st.releaseDate &lt;= current_time()
-=======
->>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 			AND ST.status = 1
 		</where>
 		ORDER BY st.stick desc
@@ -132,11 +122,8 @@
 		content,
 		source,
 		releaseDate,
-<<<<<<< HEAD
 		releasetor,
 		status,
-=======
->>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 		createUser,
 		version,
 		ip,
@@ -151,11 +138,8 @@
 		#{content},
 		#{source},
 		#{releaseDate},
-<<<<<<< HEAD
 		#{releasetor},
 		#{status},
-=======
->>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 		#{createUser.id},
 		#{version},
 		#{ip},
@@ -172,12 +156,9 @@
 		stick = #{stick},
 		content = #{content},
 		source = #{source},
-<<<<<<< HEAD
 		status = #{status},
 		releasetor = #{releasetor},
 		releaseDate = #{releaseDate},
-=======
->>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 		lastUpdateUser= #{lastUpdateUser.id},
 		lastUpdateVersion= #{lastUpdateVersion},
 		lastUpdateIp= #{lastUpdateIp},
@@ -188,12 +169,9 @@
 	<update id="release">
 		UPDATE t_cms_article SET
 		status = 1,
-<<<<<<< HEAD
 		releasetor = #{releasetor},
 		releaseDate = CURRENT_TIMESTAMP
-=======
 		releasetor = #{releasetor}
->>>>>>> 9188de5855b76d90d98766e10b924bfccbd8f502
 		WHERE id = #{id}
 	</update>
 
