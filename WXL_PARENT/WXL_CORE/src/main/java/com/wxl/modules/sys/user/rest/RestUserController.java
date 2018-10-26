@@ -27,9 +27,9 @@ import io.swagger.annotations.ApiResponses;
  * @author liangxf
  *
  */
-@RestController
-@RequestMapping(value = "/rest/user")
-@Api(value = "user", description = "用户管理API")
+@RestEasyController
+@RequestMapping(value = "/easy/rest/user")
+@Api(tags= {"userApi"}, value = "user", description = "用户管理API")
 public class RestUserController {
 
 	@Autowired

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.baidu.ueditor.ActionEnter;
+import com.wxl.common.config.Global;
 
 /**
  * 百度富文本上传文件
@@ -32,9 +33,10 @@ public class UeditorController {
 	public void imgUploadByUeditor(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		request.setCharacterEncoding("utf-8");
 		response.setHeader("Content-Type", "text/html");
-		ServletContext application = request.getSession().getServletContext();
+//		ServletContext application = request.getSession().getServletContext();
 //		String rootPath = request.getContextPath();
-		String rootPath = application.getRealPath("/");
+//		String rootPath = application.getRealPath("/");
+		String rootPath = Global.getUeditorFilePath();
 		PrintWriter out = response.getWriter();
 		out.write(new ActionEnter(request, rootPath).exec());
 	}

@@ -198,20 +198,24 @@ public class Global {
 		return "1".equals(String.valueOf(loader.getProperty("db.init"))) ? true : false;
 	}
 	
-	public static final String FILE_SEPARATOR = System.getProperty("file.separator");
+	public static final String FILE_SEPARATOR = File.separator;
+
+	public static String getFilePath() {
+		return getConfig("userfiles." + OSinfo.getOSname() + ".basedir");
+	}
+	
+	public static String getUeditorFilePath() {
+		return getConfig("ueditor." + OSinfo.getOSname() + ".basedir");
+	}
+	
+	public static String getCurrentFilePath(String path) {
+		return path.replace("/", FILE_SEPARATOR).replace("\\", FILE_SEPARATOR);
+	}
+	
+	public static String getCurrentFilePath(File path) {
+		return getCurrentFilePath(path.getPath());
+	}
+	
+	
 		
-	public static String getCurrenFiletPath(File path) {
-		
-		return getCurrenFiletPath(path.getPath());
-	}
-	public static String getCurrenFiletPath(String path) {
-		if(isLinux()) {
-//			return path.replaceAll("\\", File.separator);
-			return path.replace("/", FILE_SEPARATOR).replace("\\", FILE_SEPARATOR);
-		}
-		return path;
-	}
-	public static boolean isLinux() {
-		return "Linux".equals(System.getProperty("os.name"));
-	}
 }
