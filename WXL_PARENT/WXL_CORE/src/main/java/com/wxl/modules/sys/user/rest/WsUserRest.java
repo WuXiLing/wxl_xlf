@@ -37,5 +37,9 @@ public class WsUserRest {
 //		restReponseMsg.setReponseBody(userService.get(id));
 //		restReponseMsg.setStatus(ResponseFormat.SUCCESS);
 		return id;
+//		RestReponseMsg restReponseMsg = new RestReponseMsg();
+//		restReponseMsg.setReponseBody(userService.get(id));
+////		restReponseMsg.setStatus(ResponseFormat.SUCCESS);
+//		return restReponseMsg;
 	}
 }
