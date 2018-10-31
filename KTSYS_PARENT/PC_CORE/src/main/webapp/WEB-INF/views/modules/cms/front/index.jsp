@@ -74,23 +74,7 @@
 				<dd></dd>
 			</dl>
 		</div>
-		<!--关于我们-->
-		<div class="index_2_bj">
-			<div class="index_2">
-				<dl class="tit">
-					<dt>关于鹏创信息科技</dt>
-					<dd>ABOUT US</dd>
-				</dl>
-				<h3>为客户提供最优质的整体解决方案</h3>
-				<p id="about_text"><a class="more1" href="${ctxf}/columnsThree/9cbc7544c1574f42850223f13406bc17">【了解更多】</a>
-				</p>
-				<ul>
-					<li><img src="${ctxStatic}/wxl/modules/cms/front/img/gy_1.jpg" /></li>
-					<li><img src="${ctxStatic}/wxl/modules/cms/front/img/gy_2.jpg" /></li>
-					<li><img src="${ctxStatic}/wxl/modules/cms/front/img/gy_3.jpg" /></li>
-				</ul>
-			</div>
-		</div>
+		
 		<!--业务内容-->
 		<div class="index_3">
 			<dl class="tit">
@@ -157,6 +141,23 @@
 						<div class="inBd"></div>
 					</div>
 				</div>
+			</div>
+		</div>
+		<!--关于我们-->
+		<div class="index_2_bj">
+			<div class="index_2">
+				<dl class="tit">
+					<dt>关于鹏创信息科技</dt>
+					<dd>ABOUT US</dd>
+				</dl>
+				<h3>为客户提供最优质的整体解决方案</h3>
+				<p id="about_text"><a class="more1" href="${ctxf}/columnsThree/9cbc7544c1574f42850223f13406bc17">【了解更多】</a>
+				</p>
+				<ul>
+					<li><img src="${ctxStatic}/wxl/modules/cms/front/img/gy_1.jpg" /></li>
+					<li><img src="${ctxStatic}/wxl/modules/cms/front/img/gy_2.jpg" /></li>
+					<li><img src="${ctxStatic}/wxl/modules/cms/front/img/gy_3.jpg" /></li>
+				</ul>
 			</div>
 		</div>
 		<!--底部-->

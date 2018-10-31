@@ -69,6 +69,10 @@ public class FrontController {
 	public String senond(@PathVariable("id") String id, Model model) {
 		Columns columns = columnsService.get(id);
 		model.addAttribute(columns);
+		List<Columns> l = columnsService.getChildrenColumnsByParentId(id);
+		if(l!=null && l.size() > 0) {
+			model.addAttribute("columnsList", l);
+		}
 		return "modules/cms/front/two";
 	}
 
