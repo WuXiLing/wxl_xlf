@@ -56,20 +56,31 @@
 			<a class="prev" href="javascript:void(0)"></a>
 			<a class="next" href="javascript:void(0)"></a>
 		</div>
+		<!--关于我们-->
+		<div class="index_2_bj">
+			<div class="index_2">
+				<dl class="tit">
+					<dt>关于鹏创信息科技</dt>
+				</dl>
+				<h3>为客户提供最优质的整体解决方案</h3>
+				<p id="about_text"><a class="more1" href="${ctxf}/columnsThree/9cbc7544c1574f42850223f13406bc17">【了解更多】</a>
+				</p>
+			</div>
+		</div>
 		<!--企业文化-->
 		<div class="index_1">
 			<dl id="gsjs">
-				<a href=""><img src="${ctxStatic}/wxl/modules/cms/front/img/wh_3.jpg" /></a>
+				<a href=""><img src="${ctxStatic}/wxl/modules/cms/front/img/pc/yd-2.png" /></a>
 				<dt>公司介绍</dt>
 				<dd></dd>
 			</dl>
 			<dl id="qywh">
-				<a href=""><img src="${ctxStatic}/wxl/modules/cms/front/img/wh_1.jpg" /></a>
+				<a href=""><img src="${ctxStatic}/wxl/modules/cms/front/img/pc/yd-3.png" /></a>
 				<dt>企业文化</dt>
 				<dd></dd>
 			</dl>
 			<dl id="gsqh">
-				<a href=""><img src="${ctxStatic}/wxl/modules/cms/front/img/wh_2.jpg" /></a>
+				<a href=""><img src="${ctxStatic}/wxl/modules/cms/front/img/pc/yd-4.png" /></a>
 				<dt>公司情怀</dt>
 				<dd></dd>
 			</dl>
@@ -78,8 +89,7 @@
 		<!--业务内容-->
 		<div class="index_3">
 			<dl class="tit">
-				<dt>业务内容</dt>
-				<dd>business</dd>
+				<dt>我们的产品</dt>
 			</dl>
 			<div class="index_3_in">
 				<a href="">
@@ -117,8 +127,7 @@
 		<!--新闻中心-->
 		<div class="index_4">
 			<dl class="tit">
-				<dt>资讯中心</dt>
-				<dd>News Center</dd>
+				<dt>新闻动态</dt>
 			</dl>
 			<div class="outBox">
 				<div class="hd">
@@ -143,23 +152,7 @@
 				</div>
 			</div>
 		</div>
-		<!--关于我们-->
-		<div class="index_2_bj">
-			<div class="index_2">
-				<dl class="tit">
-					<dt>关于鹏创信息科技</dt>
-					<dd>ABOUT US</dd>
-				</dl>
-				<h3>为客户提供最优质的整体解决方案</h3>
-				<p id="about_text"><a class="more1" href="${ctxf}/columnsThree/9cbc7544c1574f42850223f13406bc17">【了解更多】</a>
-				</p>
-				<ul>
-					<li><img src="${ctxStatic}/wxl/modules/cms/front/img/gy_1.jpg" /></li>
-					<li><img src="${ctxStatic}/wxl/modules/cms/front/img/gy_2.jpg" /></li>
-					<li><img src="${ctxStatic}/wxl/modules/cms/front/img/gy_3.jpg" /></li>
-				</ul>
-			</div>
-		</div>
+		
 		<!--底部-->
 		<!-- <a class="top" href="#logo">返回顶部</a> -->
 		<jsp:include page="bottom.jsp"/>
