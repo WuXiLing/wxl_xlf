@@ -170,14 +170,14 @@ public final class ConfigManager {
 		try {
 			JSONObject jsonConfig = new JSONObject(configContent);
 			String x = WebUtil.getWebPath();
-			jsonConfig.put("imageUrlPrefix", x);
+		/*	jsonConfig.put("imageUrlPrefix", x);
 			jsonConfig.put("scrawlUrlPrefix", x);
 			jsonConfig.put("snapscreenUrlPrefix", x);
 			jsonConfig.put("catcherUrlPrefix", x);
 			jsonConfig.put("videoUrlPrefix", x);
 			jsonConfig.put("fileUrlPrefix", x);
 			jsonConfig.put("imageManagerUrlPrefix", x);
-			jsonConfig.put("fileManagerUrlPrefix", x);
+			jsonConfig.put("fileManagerUrlPrefix", x);*/
 
 			this.jsonConfig = jsonConfig;
 		} catch (Exception e) {

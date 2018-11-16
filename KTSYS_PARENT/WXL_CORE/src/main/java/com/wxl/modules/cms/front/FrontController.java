@@ -83,7 +83,7 @@ public class FrontController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		Article artilce = articleService.get(id);
 		map.put("article", artilce);
-		Columns columns = columnsService.get(artilce.getColumnsId());
+		Columns columns = artilce != null ? columnsService.get(artilce.getColumnsId() ): null;
 		map.put("columns", columns);
 		return map;
 	}

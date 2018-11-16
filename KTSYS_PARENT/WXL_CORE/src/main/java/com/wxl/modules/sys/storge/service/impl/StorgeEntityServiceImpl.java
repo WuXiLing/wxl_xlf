@@ -74,7 +74,7 @@ public class StorgeEntityServiceImpl extends SingleTableServiceImpl<StorgeEntity
 
 		entity.setFilePhysicalPath(path);
 		mapper.insert(entity);
-		File localFile = new File(Global.getConfig("userfiles.basedir") + path);
+		File localFile = new File(Global.getFilePath() + path);
 		if (!localFile.exists()) {
 			localFile.mkdirs();
 		}

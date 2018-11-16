@@ -204,6 +204,10 @@ public class Global {
 		return getConfig("userfiles." + OSinfo.getOSname() + ".basedir");
 	}
 	
+	public static String getUeditorFilePath() {
+		return getConfig("ueditor." + OSinfo.getOSname() + ".basedir");
+	}
+	
 	public static String getCurrentFilePath(String path) {
 		return path.replace("/", FILE_SEPARATOR).replace("\\", FILE_SEPARATOR);
 	}

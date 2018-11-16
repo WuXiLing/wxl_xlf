@@ -28,12 +28,21 @@
 								<i class="layui-icon">&#xe67c;</i>上传图片
 							</button>
 						</div>
-						<div class="layui-inline">
+						<div class="layui-input-inline" style="width: auto;">
 							<label class="layui-form-label">置顶系数：</label>
 							<div class="layui-input-block">
 								<input type="text" name="stick"  placeholder="请输入" autocomplete="off" class="layui-input">
 							</div>
 						</div>
+						<div class="layui-input-inline" style="width: auto;">
+							<label class="layui-form-label">标题颜色：</label>
+							<div class="layui-input-block">
+				                  <input type="text" value="#f51c40" name="color" placeholder="请选择颜色" class="layui-input" id="color">
+							</div>
+						</div>
+		                <div class="layui-input-inline" style="left: -11px;">
+		                  <div id="colorpicker-color"></div>
+		                </div>
 					</div>
 					<div class="layui-form-item">
 						<label class="layui-form-label">来源：</label>

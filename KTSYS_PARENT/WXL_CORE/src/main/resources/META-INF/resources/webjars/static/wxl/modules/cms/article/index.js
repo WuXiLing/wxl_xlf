@@ -84,7 +84,13 @@ layui.use([ 'table','form','layer' ], function() {
 			title : '发布状态',
 			align : 'center',
 			width : 100,
-			templet : '#statusTpl'
+			/*templet : '#statusTpl'*/
+			templet : function(d){
+				if(d.status == '1'){
+					return '已发布';
+				}
+				return '未发布';
+			}
 		}, {
 			field : 'stick',
 			title : '置顶系数',
@@ -102,15 +108,7 @@ layui.use([ 'table','form','layer' ], function() {
 				}
 				return '';
 			}
-		}, {
-			field : 'sysData',
-			title : '系统数据',
-			width : 100,
-			align : 'center',
-			templet : function(d){
-				return getEleById("st_sys_data_" + d.sysData);
-			}
-		}, {
+		},{
 			title : '操作',
 			align : 'center',
 			fixed : 'right',
@@ -130,7 +128,7 @@ layui.use([ 'table','form','layer' ], function() {
 	// 监听工具条
 	table.on('tool(article-table-operate)', function(obj) {
 		var data = obj.data;
-		if (obj.event === 'detail') {
+		if (obj.event === 'preview') {
 			var index = parent.layui.layer.open({
 				type : 2,
 				title : "<i class='layui-icon layui-icon-read'></i> 文章详细",
@@ -194,6 +192,8 @@ layui.use([ 'table','form','layer' ], function() {
 				area : [ '90%', '90%' ],
 				maxmin : true
 			});
+		} else if (obj.event === 'detail') {
+			window.open(ctxf + "/cms/front/three/" + data.id);
 		}
 		
 	});

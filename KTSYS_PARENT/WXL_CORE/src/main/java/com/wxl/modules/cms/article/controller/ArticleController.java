@@ -73,7 +73,10 @@ public class ArticleController extends SingleTableController<Article, ArticleSer
 	protected void updAfter(Article entity, Model model) {
 		super.updAfter(entity, model);
 		StorgeEntity storgeEntity = storgeEntityService.get(entity.getImage());
-		model.addAttribute(storgeEntity);
+		if(storgeEntity!=null) {
+			
+			model.addAttribute(storgeEntity);
+		}
 	}
 
 	/*

@@ -6,6 +6,26 @@
 <title>陕西空天飞行器设计技术重点实验室</title>
 <meta name="decorator" content="layui" />
 <link href="${ctxStatic}/wxl/css/cms.css" rel="stylesheet" media="all" />
+<style type="text/css">
+   #cms_news_photo div[carousel-item] > * {
+	text-align: center;
+   }
+   
+   #cms_news_photo a{
+    font-size :18px;
+    font-weight:bold;
+    color:#ffffff!important;
+   }
+   .layui-carousel-ind {
+	  top: -55px;
+   }
+   .layui-carousel-title{
+	   text-align:center;
+	   padding-top: 245px;
+	   margin-top:5px;
+	   margin-top:5px;
+   }
+</style>
 </head>
 <body>
 	<jsp:include page="logo.jsp" />

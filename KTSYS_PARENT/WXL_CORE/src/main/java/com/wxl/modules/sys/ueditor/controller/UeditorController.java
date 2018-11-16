@@ -3,16 +3,14 @@ package com.wxl.modules.sys.ueditor.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.baidu.ueditor.ActionEnter;
+import com.wxl.common.config.Global;
 
 @Controller
 @RequestMapping(value = {"/sys/ueditor"})
@@ -28,9 +26,9 @@ public class UeditorController {
 	public void imgUploadByUeditor(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		request.setCharacterEncoding("utf-8");
 		response.setHeader("Content-Type", "text/html");
-		ServletContext application = request.getSession().getServletContext();
+//		ServletContext application = request.getSession().getServletContext();
 //		String rootPath = request.getContextPath();
-		String rootPath = application.getRealPath("/");
+		String rootPath = Global.getUeditorFilePath();
 		PrintWriter out = response.getWriter();
 		out.write(new ActionEnter(request, rootPath).exec());
 	}

@@ -28,7 +28,7 @@
 				AND st.columnsId = #{cm.columnsId}
 			</if>
 		</where>
-		ORDER BY st.stick desc
+		ORDER BY st.stick desc,st.releaseDate desc
 		<if test="cm.cmslimit != null and cm.cmslimit != ''">
 			limit ${cm.cmslimit}
 		</if>
@@ -53,7 +53,7 @@
 				AND st.title LIKE CONCAT('%', #{cm.title},'%')
 			</if>
 		</where>
-		order by st.stick desc
+		order by st.stick desc,st.releaseDate desc
 		<if test="cm.cmslimit != null and cm.cmslimit != ''">
 			limit ${cm.cmslimit}
 		</if>
@@ -69,7 +69,7 @@
 				AND st.columnsId = #{cm.columnsId}
 			</if>
 		</where>
-		ORDER BY st.stick desc
+		ORDER BY st.stick desc,st.releaseDate desc
 		<if test="cm.cmslimit != null and cm.cmslimit != ''">
 			limit ${cm.cmslimit}
 		</if>
@@ -85,7 +85,7 @@
 				AND st.columnsId = #{cm.columnsId}
 			</if>
 		</where>
-		ORDER BY st.stick desc
+		ORDER BY st.stick desc,st.releaseDate desc
 		<if test="cm.cmslimit != null and cm.cmslimit != ''">
 			limit ${cm.cmslimit}
 		</if>
@@ -104,7 +104,7 @@
 			AND st.releaseDate &lt;= current_time()
 			AND ST.status = 1
 		</where>
-		ORDER BY st.stick desc
+		ORDER BY st.stick desc,st.releaseDate desc
 		<if test="cm.cmslimit != null and cm.cmslimit != ''">
 			limit ${cm.cmslimit}
 		</if>
@@ -121,6 +121,7 @@
 		stick,
 		content,
 		source,
+		color,
 		releaseDate,
 		releasetor,
 		status,
@@ -137,6 +138,7 @@
 		#{stick},
 		#{content},
 		#{source},
+		#{color},
 		#{releaseDate},
 		#{releasetor},
 		#{status},
@@ -157,6 +159,7 @@
 		content = #{content},
 		source = #{source},
 		status = #{status},
+		color = #{color},
 		releasetor = #{releasetor},
 		releaseDate = #{releaseDate},
 		lastUpdateUser= #{lastUpdateUser.id},

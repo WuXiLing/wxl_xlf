@@ -65,6 +65,7 @@
          <a class="layui-btn layui-btn-xs" lay-event="release"><i class="fa fa-plane"></i>发布</a>
 		 {{#  } }}
     </script>
+<!--          <a class="layui-btn layui-btn-xs" lay-event="preview"><i class="fa fa-hand-pointer-o"></i>预览</a> -->
 
     <script type="text/html" id="statusTpl">
          <input type="checkbox" name="status" lay-skin="switch" lay-text="已发布|未发布" value="{{ d.status }}" {{ d.status == '1' ? 'checked' : '' }} disabled>

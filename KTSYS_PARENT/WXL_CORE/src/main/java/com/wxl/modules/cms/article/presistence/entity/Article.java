@@ -52,6 +52,9 @@ public class Article extends SingleTableEntity {
 	/** 来源 */
 	private String source;
 
+	/** 标题颜色 */
+	private String color;
+	
 	public String getTitle() {
 		return title;
 	}
@@ -138,5 +141,13 @@ public class Article extends SingleTableEntity {
 
 	public void setReleasetName(String releasetName) {
 		this.releasetName = releasetName;
+	}
+
+	public String getColor() {
+		return color;
+	}
+
+	public void setColor(String color) {
+		this.color = color;
 	}
 }

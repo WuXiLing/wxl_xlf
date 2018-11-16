@@ -36,14 +36,16 @@
 		<c:if test="${not empty article}">
 		<div class="layui-row cms_content_title">
 		    <div class="layui-col-xs12 layui-col-sm12 layui-col-md12">
-		         <span><c:out value="${article.title}"></c:out></span>
+		         <span style="color:${not empty article.color ? article.color : '#f51c40'}"><c:out value="${article.title}"></c:out></span>
 		    </div>
 		</div>
 		<div class="layui-row cms_content_info">
 		    <div class="layui-col-xs12 layui-col-sm12 layui-col-md12">
 		          <span><fmt:formatDate value="${article.releaseDate}" type="date"/></span>
 		          
+		          <c:if test="${not empty article.source}">
 		          <span>来源：<c:out value="${article.source}"></c:out></span>
+		          </c:if>
 		         <%--  <span>点击数：<c:out value="${article.hits}"></c:out></span> --%>
 		          <span>字体：【<a href="javascript:" onclick="changeFontSize(18)">大</a>  <a href="javascript:" onclick="changeFontSize(16)">中</a>  <a href="javascript:" onclick="changeFontSize(14)">小</a>】</span>
 		    </div>
@@ -64,10 +66,10 @@
 			var table = layui.table;
 			var type= $("#type").val();
 			
-			$.get(ctxf + "/cms/front/article/${id}",function(res){
+			/* $.get(ctxf + "/cms/front/article/${id}",function(res){
 				var article = res.article;
 				var columns = res.columns;
-			});
+			}); */
 		});
 		function changeFontSize(size){
 			$(".cms_content_txt").css("font-size",size);

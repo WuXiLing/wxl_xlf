@@ -53,7 +53,7 @@ layui.use(['table','carousel'], function() {
 		if(data && data.articleList && data.articleList.length > 0){
 			var cms_news_photo = $("#cms_news_photo");
 			$.each(data.articleList,function(i,e){
-			    cms_news_photo.append("<div><img src='" + ctxf + "/sys/storge/showImage/cms/article/" + e.image + "'></div>");
+			    cms_news_photo.append("<div class='layui-carousel-title' style='background:url(" + ctxf + "/sys/storge/showImage/cms/article/" + e.image + ") no-repeat;'><div style='opacity:0.5;background-color:rgb(0,0,0)'><a href='" + ctxf + "/cms/front/three/" + e.id + "' title='" + e.title + "' target='_blank'>" + (e.title ? e.title.substr(0,10) + '...' : '') + "</a></div></div>");
 			});
 			carousel.render({
 		      elem: '#news-carousel-normal'

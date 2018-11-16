@@ -45,14 +45,6 @@ $(function() {
 			align: 'center',
 			width : 50
 		}, {
-			field : 'sysData',
-			title : '系统数据',
-			align: 'center',
-			width : 80,
-			templet : function(d) {
-				return getEleById("st_sys_data_" + d.sysData);
-			}
-		}, {
 			field : 'status',
 			title : '状态',
 			align: 'center',
